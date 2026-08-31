@@ -1,0 +1,18 @@
+{
+  "name": "umuranga",
+  "version": "0.1.0",
+  "private": true,
+  "description": "UMURANGA - Rwanda-first real estate SaaS and marketplace",
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @umuranga/api --filter @umuranga/web dev",
+    "dev:api": "pnpm --filter @umuranga/api dev",
+    "dev:web": "pnpm --filter @umuranga/web dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

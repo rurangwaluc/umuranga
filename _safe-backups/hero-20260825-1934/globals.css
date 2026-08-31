@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #F4EFE6;
+  --surface: #FFFFFF;
+  --surface-soft: #E9DDCC;
+  --text: #1A1A16;
+  --muted: #6F675C;
+  --border: #DDD0BE;
+  --primary: #6B4A2D;
+  --primary-dark: #3A2A1D;
+  --accent-gold: #B98A3B;
+  --trust-green: #245C46;
+  --trust-soft: #E5EFE9;
+  --cta: #111111;
+  --cta-text: #FFFFFF;
+  --danger: #B42318;
+
+  /* Compatibility aliases used by existing components */
+  --foreground: var(--text);
+  --card: var(--surface);
+  --soft: var(--surface-soft);
+  --line: var(--border);
+  --accent: var(--trust-green);
+
+  --font-quicksand: "Quicksand", "Nunito Sans", "Inter", Arial, Helvetica,
+    sans-serif;
+}
+
+.dark {
+  --background: #11100D;
+  --surface: #1A1814;
+  --surface-soft: #242018;
+  --text: #F8F3EA;
+  --muted: #B8AA98;
+  --border: #3A3328;
+  --primary: #B98A3B;
+  --primary-hover: #D6A84F;
+  --accent-gold: #B98A3B;
+  --trust-green: #7DD6A4;
+  --trust-soft: #18382C;
+  --cta: #F8F3EA;
+  --cta-text: #11100D;
+  --danger: #B42318;
+
+  /* Compatibility aliases used by existing components */
+  --foreground: var(--text);
+  --card: var(--surface);
+  --soft: var(--surface-soft);
+  --line: var(--border);
+  --accent: var(--trust-green);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-quicksand);
+  font-weight: 500;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--trust-green) 28%, transparent);
+}
+
+.surface {
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.soft-surface {
+  background: var(--soft);
+}
+
+.image-cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent 55%);
+  pointer-events: none;
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-soft {
+  animation: floatSoft 7s ease-in-out infinite;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition:
+    opacity 780ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 780ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.scroll-reveal .reveal-child {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition:
+    opacity 680ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 680ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible .reveal-child {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-load {
+  animation: heroLoad 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-load-late {
+  animation: heroLoad 920ms cubic-bezier(0.16, 1, 0.3, 1) 90ms both;
+}
+
+@keyframes heroLoad {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal,
+  .scroll-reveal .reveal-child,
+  .hero-load,
+  .hero-load-late {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  position: relative;
+}
+
+body > * {
+  max-width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+.font-premium-display {
+  font-family:
+    "Playfair Display Variable",
+    "Playfair Display",
+    Georgia,
+    serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+
+
