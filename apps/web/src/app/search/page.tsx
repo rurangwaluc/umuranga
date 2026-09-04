@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SearchFilters } from "@/components/search-filters";
+import { SearchMap } from "@/components/search-map";
 import {
   ArrowLeft,
   Bath,
@@ -35,6 +36,8 @@ const listings = [
     image: "/images/home/property-1.webp",
     title: "Modern Luxury House with Pool",
     slug: "modern-luxury-house-with-pool",
+    lat: -1.9436,
+    lng: 30.1027,
     location: "Kigali, Nyarutarama",
     price: "RWF 2,400,000",
     beds: "3",
@@ -47,6 +50,8 @@ const listings = [
     image: "/images/home/property-2.webp",
     title: "Bright Villa Near Nyarutarama",
     slug: "bright-villa-near-nyarutarama",
+    lat: -1.9449,
+    lng: 30.1048,
     location: "Gasabo, Kigali",
     price: "RWF 2,400,000",
     beds: "4",
@@ -59,6 +64,8 @@ const listings = [
     image: "/images/home/property-3.webp",
     title: "Modern Home at Dusk",
     slug: "modern-home-at-dusk",
+    lat: -1.9356,
+    lng: 30.0822,
     location: "Kacyiru, Kigali",
     price: "RWF 2,400,000",
     beds: "5",
@@ -71,6 +78,8 @@ const listings = [
     image: "/images/home/property-4.webp",
     title: "Waterfront Inspired Residence",
     slug: "waterfront-inspired-residence",
+    lat: -1.9607,
+    lng: 30.0714,
     location: "Lake view concept",
     price: "RWF 2,400,000",
     beds: "3",
@@ -83,6 +92,8 @@ const listings = [
     image: "/images/home/property-5.webp",
     title: "Family Home with Garden",
     slug: "family-home-with-garden",
+    lat: -1.9298,
+    lng: 30.1265,
     location: "Kibagabaga, Kigali",
     price: "RWF 2,400,000",
     beds: "4",
@@ -95,6 +106,8 @@ const listings = [
     image: "/images/home/property-6.webp",
     title: "Premium Green Residence",
     slug: "premium-green-residence",
+    lat: -1.9538,
+    lng: 30.0921,
     location: "Kimihurura, Kigali",
     price: "RWF 2,400,000",
     beds: "5",
@@ -129,154 +142,6 @@ function buildBudgetLabel(minPrice: string | null, maxPrice: string | null) {
   if (maxPrice) return `Up to ${maxPrice}`;
 
   return "Any budget";
-}
-
-function MapPreview() {
-  const mapPins = [
-    {
-      item: listings[0],
-      label: "2.4M",
-      x: "26%",
-      y: "30%",
-      cardSide: "right",
-    },
-    {
-      item: listings[1],
-      label: "2.4M",
-      x: "64%",
-      y: "24%",
-      cardSide: "left",
-    },
-    {
-      item: listings[2],
-      label: "2.4M",
-      x: "44%",
-      y: "58%",
-      cardSide: "right",
-    },
-    {
-      item: listings[4],
-      label: "2.4M",
-      x: "70%",
-      y: "66%",
-      cardSide: "left",
-    },
-    {
-      item: listings[5],
-      label: "2.4M",
-      x: "36%",
-      y: "76%",
-      cardSide: "right",
-    },
-  ];
-
-  return (
-    <div className="relative h-full min-h-[360px] overflow-hidden bg-[#efe2cf] dark:bg-[#100f0c]">
-      <div className="absolute inset-0 opacity-[0.65] dark:opacity-[0.48]">
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--border)_1px,transparent_1px),linear-gradient(180deg,var(--border)_1px,transparent_1px)] bg-[length:48px_48px]" />
-        <div className="absolute left-[5%] top-[10%] h-[18%] w-[38%] rounded-[50%] border-[9px] border-[#b8a389]/30" />
-        <div className="absolute right-[6%] top-[8%] h-[30%] w-[40%] rotate-[18deg] rounded-[45%] border-[10px] border-[#b8a389]/30" />
-        <div className="absolute bottom-[13%] left-[12%] h-[32%] w-[70%] rotate-[5deg] rounded-[44%] border-[11px] border-[#6f7f65]/24" />
-        <div className="absolute left-[18%] top-0 h-full w-[12px] rotate-[18deg] rounded-full bg-[#c8b79d]/22" />
-        <div className="absolute right-[26%] top-0 h-full w-[12px] rotate-[-17deg] rounded-full bg-[#c8b79d]/20" />
-      </div>
-
-      <div className="absolute left-5 top-5 z-10 rounded-[12px] border border-[var(--border)] bg-[var(--surface)]/94 p-4 shadow-[0_14px_34px_rgba(0,0,0,0.16)] dark:bg-[var(--surface)]/94">
-        <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--muted)]">
-          Map view
-        </p>
-        <p className="mt-2 max-w-[220px] text-sm font-bold leading-5">
-          Hover a price marker to preview the property.
-        </p>
-      </div>
-
-      {mapPins.map((pin) => (
-        <div
-          key={`${pin.item.title}-${pin.x}-${pin.y}`}
-          className="group absolute z-20 hover:z-50 focus-within:z-50"
-          style={{ left: pin.x, top: pin.y }}
-        >
-          <Link
-            href={`/property/${pin.item.slug}`}
-            className="relative z-20 inline-flex -translate-x-1/2 -translate-y-1/2 items-center rounded-md border border-[#3A2A1D]/25 bg-[#F8F3EA] px-3 py-1.5 text-xs font-black text-[#11100D] shadow-[0_12px_28px_rgba(0,0,0,0.26)] transition group-hover:border-[var(--accent-gold)] group-hover:bg-[var(--accent-gold)] group-hover:text-[#11100D] focus:outline-none focus:ring-2 focus:ring-[var(--accent-gold)]"
-          >
-            RWF {pin.label}
-            <span className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45 border-b border-r border-[#3A2A1D]/20 bg-inherit" />
-          </Link>
-
-          <span
-            className={`pointer-events-none absolute top-1/2 z-30 hidden h-[3px] w-7 -translate-y-1/2 bg-[var(--accent-gold)] shadow-[0_0_18px_rgba(185,138,59,0.45)] group-hover:block group-focus-within:block ${
-              pin.cardSide === "left" ? "right-[calc(100%+0.2rem)]" : "left-[calc(100%+0.2rem)]"
-            }`}
-          />
-
-          <span
-            className={`absolute top-1/2 z-30 hidden h-14 w-10 -translate-y-1/2 bg-transparent group-hover:block group-focus-within:block ${
-              pin.cardSide === "left" ? "right-[calc(100%+0.15rem)]" : "left-[calc(100%+0.15rem)]"
-            }`}
-          />
-
-          <span
-            className="pointer-events-none absolute left-1/2 top-1/2 z-30 hidden h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--accent-gold)] bg-[var(--surface)] shadow-[0_0_18px_rgba(185,138,59,0.55)] group-hover:block group-focus-within:block"
-          />
-
-          <Link
-            href={`/property/${pin.item.slug}`}
-            className={`absolute top-1/2 z-40 hidden w-[260px] -translate-y-1/2 overflow-hidden rounded-[12px] border border-[var(--accent-gold)] bg-[var(--surface)] shadow-[0_24px_70px_rgba(0,0,0,0.42)] group-hover:block group-focus-within:block ${
-              pin.cardSide === "left" ? "right-[calc(100%+1.15rem)]" : "left-[calc(100%+1.15rem)]"
-            }`}
-          >
-            <span
-              className={`absolute top-1/2 z-50 h-3 w-3 -translate-y-1/2 rotate-45 border border-[var(--accent-gold)] bg-[var(--surface)] ${
-                pin.cardSide === "left" ? "-right-1.5 border-b-0 border-l-0" : "-left-1.5 border-r-0 border-t-0"
-              }`}
-            />
-
-            <div className="relative h-[130px] bg-[var(--surface-soft)]">
-              <Image
-                src={pin.item.image}
-                alt={pin.item.title}
-                fill
-                sizes="260px"
-                className="object-cover"
-              />
-              <span className="absolute left-3 top-3 rounded-md bg-white/94 px-2.5 py-1 text-[11px] font-black text-[#1A1A16]">
-                {pin.item.tag}
-              </span>
-            </div>
-
-            <div className="p-3">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="text-sm font-black">{pin.item.price}</p>
-                  <h3 className="mt-1 line-clamp-1 text-sm font-black">
-                    {pin.item.title}
-                  </h3>
-                </div>
-
-                {pin.item.verified ? (
-                  <span className="rounded-md bg-[var(--trust-soft)] px-2 py-1 text-[10px] font-black text-[var(--trust-green)]">
-                    Verified
-                  </span>
-                ) : null}
-              </div>
-
-              <p className="mt-2 flex items-center gap-1.5 text-xs font-bold text-[var(--muted)]">
-                <MapPin size={13} />
-                {pin.item.location}
-              </p>
-
-              <div className="mt-3 flex items-center gap-3 border-t border-[var(--border)] pt-3 text-xs font-bold text-[var(--muted)]">
-                <span>{pin.item.beds} beds</span>
-                <span>{pin.item.baths} baths</span>
-                <span>{pin.item.type}</span>
-              </div>
-            </div>
-          </Link>
-        </div>
-      ))}
-    </div>
-  );
 }
 
 function ListingCard({ item }: { item: (typeof listings)[number] }) {
@@ -475,9 +340,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </div>
         </section>
 
-        <aside className="hidden min-h-[calc(100vh-73px)] border-l border-[var(--border)] bg-[var(--surface-soft)] dark:bg-[#14110d] lg:block">
-          <div className="sticky top-[73px] h-[calc(100vh-73px)]">
-            <MapPreview />
+        <aside className="hidden border-l border-[var(--border)] bg-[#17130e] dark:bg-[#090807] lg:block">
+          <div className="sticky top-[73px] h-[calc(100vh-73px)] min-h-[calc(100vh-73px)]">
+            <SearchMap listings={listings} />
           </div>
         </aside>
       </div>
