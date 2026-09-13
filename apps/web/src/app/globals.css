@@ -25,7 +25,7 @@
   --line: var(--border);
   --accent: var(--trust-green);
 
-  --font-figtree: "Figtree", "Figtree Fallback", sans-serif;
+  --font-figtree: "Figtree Variable", "Figtree", "Figtree Fallback", sans-serif;
 }
 
 .dark {
@@ -62,7 +62,7 @@ html {
 }
 
 body {
-  font-family: "Figtree", "Figtree Fallback", sans-serif;
+  font-family: var(--font-figtree);
   min-height: 100vh;
   margin: 0;
   background: var(--background);
@@ -235,7 +235,7 @@ body > * {
 }
 
 .font-premium-display {
-  font-family: "Figtree", "Figtree Fallback", sans-serif;
+  font-family: var(--font-figtree);
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
