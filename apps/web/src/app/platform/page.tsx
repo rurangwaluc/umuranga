@@ -31,7 +31,7 @@ export default function PlatformPage() {
 
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[#1e1f1c] px-5 text-sm font-black text-white dark:bg-[#f4efe3] dark:text-[#1e1f1c]"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-[#07152f] px-5 text-sm font-black text-white dark:bg-[#ffffff] dark:text-[#07152f]"
           >
             Back Home
           </Link>

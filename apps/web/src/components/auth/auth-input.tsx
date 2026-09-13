@@ -40,7 +40,7 @@ export function AuthInput({
           placeholder={placeholder}
           autoComplete={autoComplete}
           onChange={(event) => onChange(event.target.value)}
-          className={`h-14 w-full rounded-2xl border border-[var(--line)] bg-[var(--soft)] px-4 text-sm font-semibold text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[#1e1f1c] focus:bg-[var(--card)] dark:focus:border-[#f4efe3] ${
+          className={`h-14 w-full rounded-2xl border border-[var(--line)] bg-[var(--soft)] px-4 text-sm font-semibold text-[var(--foreground)] outline-none transition placeholder:text-[var(--muted)] focus:border-[#1357e8] focus:bg-[var(--card)] dark:focus:border-[#2f6bff] ${
             isPassword ? "pr-13" : ""
           }`}
         />

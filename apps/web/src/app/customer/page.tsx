@@ -16,7 +16,7 @@ export default function CustomerDashboardPage() {
           text: "Request visits and track responses from verified property owners or agents.",
         },
         {
-          title: "Smart Alerts",
+          title: "Saved Alerts",
           text: "Get notified when matching properties appear in your target neighborhoods.",
         },
       ]}

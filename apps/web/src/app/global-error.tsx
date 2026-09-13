@@ -12,8 +12,8 @@ export default function GlobalError({
         <main
           style={{
             minHeight: "100vh",
-            background: "#f4efe3",
-            color: "#1e1f1c",
+            background: "#ffffff",
+            color: "#07152f",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -74,8 +74,8 @@ export default function GlobalError({
                 marginTop: "22px",
                 border: 0,
                 borderRadius: "999px",
-                background: "#1e1f1c",
-                color: "#f4efe3",
+                background: "#07152f",
+                color: "#ffffff",
                 padding: "12px 18px",
                 fontSize: "13px",
                 fontWeight: 800,

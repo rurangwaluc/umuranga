@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/playfair-display";
+import "@fontsource-variable/figtree";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 

@@ -284,7 +284,7 @@ export function MobileMenu() {
 
                 <div className="mt-4 rounded-[14px] border border-[var(--border)] bg-[var(--surface-soft)] p-4">
                   <p className="text-sm font-black">
-                    Smart property search
+                    Describe your property need
                   </p>
                   <p className="mt-2 text-sm leading-6 text-[#6f716b] dark:text-[#b9b6ad]">
                     Search by budget, neighborhood, amenities, schools, work,

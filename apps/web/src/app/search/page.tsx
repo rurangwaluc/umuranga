@@ -340,7 +340,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </div>
         </section>
 
-        <aside className="hidden border-l border-[var(--border)] bg-[#17130e] dark:bg-[#090807] lg:block">
+        <aside className="hidden border-l border-[var(--border)] bg-[#050505] dark:bg-[#050505] lg:block">
           <div className="sticky top-[73px] h-[calc(100vh-73px)] min-h-[calc(100vh-73px)]">
             <SearchMap listings={listings} />
           </div>

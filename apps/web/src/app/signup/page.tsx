@@ -114,7 +114,7 @@ function AccountTypeSelector({
         aria-expanded={open}
       >
         <span className="flex min-w-0 items-center gap-3">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#b8d879] text-[#1e1f1c]">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1357e8] text-white">
             <SelectedIcon size={18} />
           </span>
 
@@ -171,7 +171,7 @@ function AccountTypeSelector({
                       <span
                         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${
                           active
-                            ? "bg-[#b8d879] text-[#1e1f1c]"
+                            ? "bg-[#1357e8] text-white"
                             : "bg-[var(--soft)] text-[var(--foreground)]"
                         }`}
                       >
@@ -189,7 +189,7 @@ function AccountTypeSelector({
                     </span>
 
                     {active ? (
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#b8d879] text-[#1e1f1c]">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#1357e8] text-white">
                         <Check size={15} />
                       </span>
                     ) : null}
@@ -270,7 +270,7 @@ if (currentUser) {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {notice ? (
-          <div className="rounded-2xl border border-[#b8d879]/40 bg-[#b8d879]/15 px-4 py-3 text-sm font-bold text-[var(--foreground)]">
+          <div className="rounded-2xl border border-[#1357e8]/25 bg-[#1357e8]/10 px-4 py-3 text-sm font-bold text-[var(--foreground)]">
             {notice}
           </div>
         ) : null}

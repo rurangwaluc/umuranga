@@ -83,10 +83,6 @@ export function SiteFooter() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/75" />
 
         <div className="relative z-10 mx-auto flex min-h-[430px] max-w-5xl flex-col items-center justify-center px-5 py-20 text-center sm:min-h-[520px] sm:px-8">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/10 px-3 py-2 text-xs font-bold text-white/85 backdrop-blur-md">
-            <ShieldCheck size={14} />
-            Verified Rwanda real estate
-          </p>
 
           <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
             Move through Rwanda’s property market with more confidence.
@@ -100,7 +96,7 @@ export function SiteFooter() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg bg-white px-6 py-3.5 text-sm font-bold text-[#1e1f1c] transition hover:bg-[#b8d879]"
+              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg bg-white px-6 py-3.5 text-sm font-bold text-[#07152f] transition hover:bg-[#1357e8]"
             >
               Get started
               <ArrowRight size={18} />
@@ -108,7 +104,7 @@ export function SiteFooter() {
 
             <Link
               href="#properties"
-              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white hover:text-[#1e1f1c]"
+              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white hover:text-[#07152f]"
             >
               Explore properties
             </Link>
@@ -119,7 +115,7 @@ export function SiteFooter() {
       <section className="grid gap-10 border-b border-[var(--line)] px-5 py-12 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-14 lg:py-16">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#1e1f1c] text-[#f4efe3] dark:bg-[#f4efe3] dark:text-[#1e1f1c]">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]">
               <Home size={18} />
             </span>
             <span className="text-2xl font-bold tracking-[-0.04em]">
@@ -150,9 +146,6 @@ export function SiteFooter() {
         </div>
 
         <div className="rounded-[18px] border border-[var(--line)] bg-[var(--soft)] p-5 sm:p-6">
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-[var(--muted)]">
-            Contact
-          </p>
 
           <div className="space-y-4 text-sm text-[var(--muted)]">
             <div className="flex gap-3">
@@ -189,7 +182,6 @@ export function SiteFooter() {
           <div className="mt-7 rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-2 text-[var(--foreground)]">
             <div className="flex items-center gap-2 rounded-xl px-3 py-2">
               <Building2 size={16} />
-              <p className="text-xs font-bold">Platform access</p>
             </div>
 
             <div className="mt-2 grid grid-cols-2 gap-2">
@@ -202,7 +194,7 @@ export function SiteFooter() {
 
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#1e1f1c] px-4 py-3 text-xs font-bold text-white dark:bg-[#f4efe3] dark:text-[#1e1f1c]"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#07152f] px-4 py-3 text-xs font-bold text-white dark:bg-[#ffffff] dark:text-[#07152f]"
               >
                 Sign up
               </Link>
@@ -258,7 +250,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#1e1f1c] hover:text-white dark:hover:bg-[#f4efe3] dark:hover:text-[#1e1f1c]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#ffffff] dark:hover:text-[#07152f]"
             >
               <InstagramIcon />
             </Link>
@@ -266,7 +258,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#1e1f1c] hover:text-white dark:hover:bg-[#f4efe3] dark:hover:text-[#1e1f1c]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#ffffff] dark:hover:text-[#07152f]"
             >
               <LinkedInIcon />
             </Link>

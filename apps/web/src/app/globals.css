@@ -3,18 +3,18 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #F4EFE6;
+  --background: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-soft: #E9DDCC;
-  --text: #1A1A16;
-  --muted: #6F675C;
-  --border: #DDD0BE;
-  --primary: #6B4A2D;
-  --primary-dark: #3A2A1D;
-  --accent-gold: #B98A3B;
-  --trust-green: #245C46;
-  --trust-soft: #E5EFE9;
-  --cta: #111111;
+  --surface-soft: #F6F9FF;
+  --text: #07152F;
+  --muted: #6B7F9E;
+  --border: #DCE8F8;
+  --primary: #1357E8;
+  --primary-dark: #0F49C7;
+  --accent-gold: #1357E8;
+  --trust-green: #1357E8;
+  --trust-soft: #EEF4FF;
+  --cta: #1357E8;
   --cta-text: #FFFFFF;
   --danger: #B42318;
 
@@ -25,25 +25,24 @@
   --line: var(--border);
   --accent: var(--trust-green);
 
-  --font-quicksand: "Quicksand", "Nunito Sans", "Inter", Arial, Helvetica,
-    sans-serif;
+  --font-figtree: "Figtree", "Figtree Fallback", sans-serif;
 }
 
 .dark {
-  --background: #11100D;
-  --surface: #1A1814;
-  --surface-soft: #242018;
-  --text: #F8F3EA;
-  --muted: #B8AA98;
-  --border: #3A3328;
-  --primary: #B98A3B;
-  --primary-hover: #D6A84F;
-  --accent-gold: #B98A3B;
-  --trust-green: #7DD6A4;
-  --trust-soft: #18382C;
-  --cta: #F8F3EA;
-  --cta-text: #11100D;
-  --danger: #B42318;
+  --background: #050505;
+  --surface: #111111;
+  --surface-soft: #0A0A0A;
+  --text: #FFFFFF;
+  --muted: rgba(255, 255, 255, 0.62);
+  --border: rgba(255, 255, 255, 0.12);
+  --primary: #2F6BFF;
+  --primary-hover: #7DA2FF;
+  --accent-gold: #2F6BFF;
+  --trust-green: #2F6BFF;
+  --trust-soft: #12234A;
+  --cta: #2F6BFF;
+  --cta-text: #FFFFFF;
+  --danger: #FF6B6B;
 
   /* Compatibility aliases used by existing components */
   --foreground: var(--text);
@@ -63,11 +62,11 @@ html {
 }
 
 body {
+  font-family: "Figtree", "Figtree Fallback", sans-serif;
   min-height: 100vh;
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-quicksand);
   font-weight: 500;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
@@ -236,11 +235,7 @@ body > * {
 }
 
 .font-premium-display {
-  font-family:
-    "Playfair Display Variable",
-    "Playfair Display",
-    Georgia,
-    serif;
+  font-family: "Figtree", "Figtree Fallback", sans-serif;
   font-feature-settings: "kern" 1, "liga" 1;
 }
 

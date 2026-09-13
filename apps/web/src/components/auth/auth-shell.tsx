@@ -38,7 +38,7 @@ export function AuthShell({
             href="/"
             className="group inline-flex items-center gap-2 rounded-full bg-[var(--soft)] px-3 py-2 text-sm font-black text-[var(--foreground)] transition hover:-translate-y-0.5"
           >
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1e1f1c] text-white dark:bg-[#f4efe3] dark:text-[#1e1f1c]">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]">
               <Home size={15} />
             </span>
             UMURANGA
@@ -56,7 +56,7 @@ export function AuthShell({
                 href={href}
                 className={`rounded-full px-5 py-3 transition ${
                   index === 0
-                    ? "bg-[#1e1f1c] text-white dark:bg-[#f4efe3] dark:text-[#1e1f1c]"
+                    ? "bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]"
                     : "text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
                 }`}
               >
@@ -70,7 +70,7 @@ export function AuthShell({
 
             <Link
               href={headerAction.href}
-              className="hidden whitespace-nowrap rounded-full bg-[#b8d879] px-5 py-3 text-sm font-black text-[#1e1f1c] transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
+              className="hidden whitespace-nowrap rounded-full bg-[#1357e8] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
             >
               {headerAction.label}
             </Link>
@@ -80,7 +80,7 @@ export function AuthShell({
         </header>
 
         <div className="grid min-h-[calc(100vh-5.5rem)] lg:grid-cols-[0.98fr_1.02fr]">
-          <aside className="relative hidden overflow-hidden bg-[#1e1f1c] p-6 text-white lg:flex lg:flex-col lg:justify-between xl:p-8">
+          <aside className="relative hidden overflow-hidden bg-[#07152f] p-6 text-white lg:flex lg:flex-col lg:justify-between xl:p-8">
             <Image
               src="/images/auth/auth-villa.webp"
               alt="Premium UMURANGA property"

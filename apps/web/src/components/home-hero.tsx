@@ -9,7 +9,6 @@ import {
   BedDouble,
   Check,
   ChevronDown,
-  CirclePlus,
   Home,
   KeyRound,
   Map,
@@ -17,11 +16,9 @@ import {
   Mic,
   Search,
   SlidersHorizontal,
-  UserRound,
   X,
 } from "lucide-react";
-import { MobileMenu } from "@/components/mobile-menu";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { HomeHeroHeader } from "@/components/home-hero-header";
 import { getPostLoginPath, useAuthUser } from "@/lib/auth";
 
 const navLinks = [
@@ -49,10 +46,18 @@ const propertyTypes = [
   "Short Stay",
 ];
 
+
+const landTypes = [
+  "Residential plot",
+  "Commercial land",
+  "Agricultural land",
+  "Mixed-use land",
+];
+
 const bedroomOptions = ["Any", "1+", "2+", "3+", "4+", "5+"];
 
 
-const smartTags = [
+const requestExamples = [
   "Budget + amenities",
   "Multiple neighborhoods",
   "Near work or school",
@@ -94,7 +99,7 @@ type SearchState = {
   minPrice: string;
   maxPrice: string;
   bedrooms: string;
-  smartQuery: string;
+  requestText: string;
   advanced: string[];
 };
 
@@ -105,7 +110,7 @@ const initialSearchState: SearchState = {
   minPrice: "",
   maxPrice: "",
   bedrooms: "Any",
-  smartQuery: "",
+  requestText: "",
   advanced: [],
 };
 
@@ -157,7 +162,7 @@ function SearchField({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-2.5 block text-sm font-black text-[var(--foreground)]">
+      <span className="mb-2.5 block text-[0.78rem] font-black">
         {label}
       </span>
       {children}
@@ -180,17 +185,19 @@ function SelectInput({
 }) {
   return (
     <span className="relative block">
-      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[var(--muted)]">
-        {icon}
-      </span>
+      {icon ? (
+        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#1357e8]">
+          {icon}
+        </span>
+      ) : null}
 
       <select
         aria-label={ariaLabel}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={`h-[54px] w-full appearance-none rounded-md border border-[var(--border)] bg-[var(--surface)] ${
+        className={`h-[46px] w-full appearance-none rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
-        } pr-11 text-sm font-bold text-[var(--foreground)] outline-none transition duration-200 hover:border-[var(--accent-gold)]/50 focus:border-[var(--accent-gold)] dark:bg-[var(--surface-soft)]`}
+        } pr-11 text-xs font-black text-[#07152f] outline-none transition duration-200 hover:border-[#1357e8] focus:border-[#1357e8] dark:border-white/12 dark:bg-[#111111] dark:text-white sm:h-[50px] sm:rounded-[12px]`}
       >
         {options.map((option) => (
           <option key={option} value={option}>
@@ -200,8 +207,8 @@ function SelectInput({
       </select>
 
       <ChevronDown
-        size={17}
-        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--muted)]"
+        size={16}
+        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#6b7f9e]"
       />
     </span>
   );
@@ -224,9 +231,11 @@ function TextInput({
 }) {
   return (
     <span className="relative block">
-      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[var(--muted)]">
-        {icon}
-      </span>
+      {icon ? (
+        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#1357e8]">
+          {icon}
+        </span>
+      ) : null}
 
       <input
         aria-label={ariaLabel}
@@ -236,9 +245,9 @@ function TextInput({
         inputMode={type === "number" ? "numeric" : undefined}
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className={`h-[54px] w-full rounded-md border border-[var(--border)] bg-[var(--surface)] ${
+        className={`h-[46px] w-full rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
-        } pr-4 text-sm font-bold text-[var(--foreground)] outline-none transition duration-200 placeholder:text-[var(--muted)] hover:border-[var(--accent-gold)]/50 focus:border-[var(--accent-gold)] dark:bg-[var(--surface-soft)]`}
+        } pr-4 text-xs font-semibold text-[#07152f] outline-none transition duration-200 placeholder:text-[#6b7f9e] hover:border-[#1357e8] focus:border-[#1357e8] dark:border-white/12 dark:bg-[#111111] dark:text-white dark:placeholder:text-white/62 sm:h-[50px] sm:rounded-[12px]`}
       />
     </span>
   );
@@ -256,7 +265,7 @@ function BudgetInputs({
   onMaxChange: (value: string) => void;
 }) {
   return (
-    <div className="grid h-[54px] grid-cols-[1fr_auto_1fr] items-center rounded-md border border-[var(--border)] bg-[var(--surface)] px-4 text-sm font-bold text-[var(--muted)] dark:bg-[var(--surface-soft)]">
+    <div className="grid h-[46px] grid-cols-[1fr_auto_1fr] items-center rounded-[11px] border border-[#dce8f8] bg-white px-4 text-xs font-semibold text-[#6b7f9e] dark:border-white/12 dark:bg-[#111111] dark:text-white/62 sm:h-[50px] sm:rounded-[12px]">
       <input
         aria-label="Minimum price"
         type="number"
@@ -265,9 +274,11 @@ function BudgetInputs({
         value={minPrice}
         placeholder="Min Price"
         onChange={(event) => onMinChange(event.target.value)}
-        className="min-w-0 bg-transparent text-sm font-bold text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
+        className="min-w-0 bg-transparent text-xs font-semibold text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/62"
       />
-      <span className="px-3 text-[var(--muted)]">-</span>
+
+      <span className="px-3 text-[#6b7f9e] dark:text-white/62">-</span>
+
       <input
         aria-label="Maximum price"
         type="number"
@@ -276,7 +287,7 @@ function BudgetInputs({
         value={maxPrice}
         placeholder="Max Price"
         onChange={(event) => onMaxChange(event.target.value)}
-        className="min-w-0 bg-transparent text-sm font-bold text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
+        className="min-w-0 bg-transparent text-xs font-semibold text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/62"
       />
     </div>
   );
@@ -301,19 +312,19 @@ function MobileAdvancedSearchPortal({
   if (typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[2147483647] flex w-full max-w-full items-center justify-center overflow-hidden bg-black/58 p-3 lg:hidden">
+    <div className="fixed inset-0 z-[2147483647] flex w-full max-w-full items-end justify-center overflow-hidden bg-black/48 p-3 sm:items-center lg:hidden">
       <button
         type="button"
-        aria-label="Close advanced search"
+        aria-label="Close filters"
         onClick={onClose}
         className="absolute inset-0"
       />
 
-      <section className="relative w-full min-w-0 max-w-[420px] overflow-hidden rounded-[18px] border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
-        <div className="flex items-center justify-between gap-3 border-b border-[var(--line)] px-4 py-3">
+      <section className="relative w-full min-w-0 max-w-[430px] overflow-hidden rounded-[18px] border border-[#dce8f8] bg-white text-[#07152f] shadow-[0_24px_80px_rgba(7,21,47,0.22)] dark:border-white/12 dark:bg-[#0A0A0A] dark:text-white">
+        <div className="flex items-center justify-between gap-3 border-b border-[#dce8f8] px-4 py-3 dark:border-white/12">
           <div className="min-w-0">
-            <p className="text-base font-black">Advanced search</p>
-            <p className="mt-1 text-xs font-semibold text-[var(--muted)]">
+            <p className="text-base font-black">Filters</p>
+            <p className="mt-1 text-xs font-semibold text-[#6b7f9e] dark:text-white/52">
               {search.advanced.length} selected
             </p>
           </div>
@@ -321,15 +332,15 @@ function MobileAdvancedSearchPortal({
           <button
             type="button"
             onClick={onClose}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--soft)]"
-            aria-label="Close advanced search"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#dce8f8] bg-white text-[#07152f] transition hover:border-[#1357e8] dark:border-white/12 dark:bg-[#111111] dark:text-white"
+            aria-label="Close filters"
           >
             <X size={18} />
           </button>
         </div>
 
         <div className="max-h-[66dvh] overflow-y-auto">
-          <div className="border-b border-[var(--line)] bg-[var(--soft)] px-3 py-3">
+          <div className="border-b border-[#dce8f8] bg-[#f6f9ff] px-3 py-3 dark:border-white/12 dark:bg-[#111111]">
             <div className="grid grid-cols-2 gap-2">
               {advancedSections.map((section) => {
                 const selectedCount = section.options.filter((option) =>
@@ -342,10 +353,10 @@ function MobileAdvancedSearchPortal({
                     key={section.title}
                     type="button"
                     onClick={() => setOpenAdvancedSection(section.title)}
-                    className={`flex h-10 min-w-0 items-center justify-between gap-2 rounded-md border px-3 text-xs font-black transition ${
+                    className={`flex h-10 min-w-0 items-center justify-between gap-2 rounded-[10px] border px-3 text-xs font-black transition ${
                       active
-                        ? "border-[var(--trust-green)] bg-[var(--trust-soft)] text-[var(--trust-green)]"
-                        : "border-[var(--line)] bg-[var(--card)] text-[var(--foreground)] dark:bg-[var(--surface-soft)]"
+                        ? "border-[#1357e8] bg-[#eef4ff] text-[#1357e8] dark:border-[#2f6bff] dark:bg-[#12234a] dark:text-[#8fb0ff]"
+                        : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#1357e8] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#2f6bff]"
                     }`}
                   >
                     <span className="min-w-0 truncate">{section.title}</span>
@@ -354,8 +365,8 @@ function MobileAdvancedSearchPortal({
                       <span
                         className={`flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-black ${
                           active
-                            ? "bg-[var(--trust-green)] text-[var(--trust-soft)]"
-                            : "bg-[var(--trust-soft)] text-[var(--trust-green)]"
+                            ? "bg-[#1357e8] text-white"
+                            : "bg-[#eef4ff] text-[#1357e8] dark:bg-[#12234a] dark:text-[#8fb0ff]"
                         }`}
                       >
                         {selectedCount}
@@ -379,20 +390,20 @@ function MobileAdvancedSearchPortal({
                         key={option}
                         type="button"
                         onClick={() => toggleAdvancedOption(option)}
-                        className={`flex min-h-12 items-center justify-between gap-3 rounded-md border px-4 py-3 text-left text-sm font-black transition ${
+                        className={`flex min-h-12 items-center justify-between gap-3 rounded-[11px] border px-4 py-3 text-left text-sm font-black transition ${
                           active
-                            ? "border-[var(--trust-green)] bg-[var(--trust-soft)] text-[var(--trust-green)]"
-                            : "border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] dark:bg-[var(--surface-soft)]"
+                            ? "border-[#1357e8] bg-[#eef4ff] text-[#1357e8] dark:border-[#2f6bff] dark:bg-[#12234a] dark:text-[#8fb0ff]"
+                            : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#1357e8] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#2f6bff]"
                         }`}
                       >
                         <span className="min-w-0 truncate">{option}</span>
 
                         {active ? (
-                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--trust-green)] text-[var(--trust-soft)]">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#1357e8] text-white">
                             <Check size={12} strokeWidth={3} />
                           </span>
                         ) : (
-                          <span className="h-5 w-5 shrink-0 rounded-full border border-[var(--line)] bg-[var(--card)]" />
+                          <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#101010]" />
                         )}
                       </button>
                     );
@@ -403,17 +414,17 @@ function MobileAdvancedSearchPortal({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 border-t border-[var(--line)] bg-[var(--soft)] px-4 py-3">
+        <div className="flex items-center justify-between gap-3 border-t border-[#dce8f8] bg-[#f6f9ff] px-4 py-3 dark:border-white/12 dark:bg-[#111111]">
           {search.advanced.length > 0 ? (
             <button
               type="button"
               onClick={clearAdvancedOptions}
-              className="h-10 rounded-full border border-[var(--line)] px-4 text-xs font-black"
+              className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] transition hover:border-[#1357e8] dark:border-white/12 dark:bg-[#141414] dark:text-white/74"
             >
               Clear
             </button>
           ) : (
-            <span className="text-xs font-semibold text-[var(--muted)]">
+            <span className="text-xs font-semibold text-[#6b7f9e] dark:text-white/48">
               No filters
             </span>
           )}
@@ -421,7 +432,7 @@ function MobileAdvancedSearchPortal({
           <button
             type="button"
             onClick={onClose}
-            className="h-10 rounded-full bg-[var(--cta)] px-6 text-xs font-black text-[var(--cta-text)]"
+            className="h-10 rounded-[10px] bg-[#1357e8] px-6 text-xs font-black text-white transition hover:bg-[#0f49c7]"
           >
             Apply filters
           </button>
@@ -431,8 +442,6 @@ function MobileAdvancedSearchPortal({
     document.body
   );
 }
-
-
 export function HeroSection() {
   const router = useRouter();
   const user = useAuthUser();
@@ -486,7 +495,6 @@ export function HeroSection() {
     });
   }
 
-
   function clearAdvancedOptions() {
     setSearch((current) => ({
       ...current,
@@ -500,15 +508,15 @@ export function HeroSection() {
     if (!SpeechRecognition) {
       setSearch((current) => ({
         ...current,
-        smartQuery:
-          current.smartQuery ||
+        requestText:
+          current.requestText ||
           "3 bedrooms near work, under 800k, close to school",
         bedrooms: current.bedrooms === "Any" ? "3+" : current.bedrooms,
         maxPrice: current.maxPrice || "800000",
       }));
 
       setSearchMessage(
-        "Voice search is not available in this browser yet. We filled an example smart search instead."
+        "Voice search is not available in this browser yet. We filled an example request instead."
       );
       return;
     }
@@ -529,7 +537,7 @@ export function HeroSection() {
 
       setSearch((current) => ({
         ...current,
-        smartQuery: transcript,
+        requestText: transcript,
       }));
 
       setSearchMessage(
@@ -539,7 +547,7 @@ export function HeroSection() {
 
     recognition.onerror = () => {
       setSearchMessage(
-        "Voice search could not start. You can still type your smart search."
+        "Voice search could not start. You can still type your property request."
       );
     };
 
@@ -549,7 +557,6 @@ export function HeroSection() {
 
     setVoiceListening(true);
     setSearchMessage("Listening... say the kind of property you want.");
-
     recognition.start();
   }
 
@@ -586,8 +593,8 @@ export function HeroSection() {
       params.set("bedrooms", search.bedrooms);
     }
 
-    if (search.smartQuery.trim()) {
-      params.set("q", search.smartQuery.trim());
+    if (search.requestText.trim()) {
+      params.set("q", search.requestText.trim());
     }
 
     if (search.advanced.length > 0) {
@@ -603,228 +610,236 @@ export function HeroSection() {
   }
 
   return (
-    <section
-      className={`relative isolate w-full max-w-full overflow-hidden bg-[var(--background)] text-[var(--foreground)] ${
-        advancedOpen ? "z-[2147483646]" : "z-0"
-      }`}
-    >
-      <header className="relative z-30 flex min-h-[76px] w-full max-w-full items-center justify-between gap-4 border-b border-[var(--line)] bg-[var(--background)] px-5 text-[var(--foreground)] sm:min-h-[82px] sm:px-8 lg:px-12 xl:px-14">
-        <Link href="/" className="flex min-w-0 shrink items-center gap-2 sm:gap-3">
-          <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--primary)] dark:text-[var(--accent-gold)]">
-            <span className="absolute h-8 w-8 rotate-45 rounded-[0.6rem] border-[4px] border-current" />
-            <span className="absolute h-4 w-4 rotate-45 rounded-[0.3rem] border-[3px] border-current bg-[var(--surface)]" />
-          </span>
+    <>
+      <HomeHeroHeader
+        navLinks={navLinks}
+        dashboardHref={dashboardHref}
+        listPropertyHref={listPropertyHref}
+        userLabel={user ? "Dashboard" : "Sign in"}
+      />
 
-          <span>
-            <span className="block text-[0.95rem] font-black leading-none tracking-[0.13em] sm:text-[1.2rem] lg:text-[1.32rem]">
-              UMURANGA
-            </span>
-            <span className="mt-1.5 block text-[8px] font-black uppercase tracking-[0.22em] text-[var(--muted)] sm:text-[9px]">
-              Real Estate
-            </span>
-          </span>
-        </Link>
+      <section
+        className={`relative isolate w-full max-w-full overflow-visible bg-white text-[#07152f] dark:bg-[#050505] dark:text-white ${
+          advancedOpen ? "z-[2147483646]" : "z-0"
+        }`}
+      >
 
-        <nav className="hidden items-center justify-center gap-9 text-sm font-bold xl:flex 2xl:gap-11">
-          {navLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="transition duration-200 hover:text-[var(--accent-gold)]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+      <div className="relative -mt-[92px] min-h-screen overflow-hidden bg-white dark:bg-[#050505] lg:-mt-[104px] xl:-mt-[112px]">
+        <Image
+          src="/images/home/hero-umuranga-premium.webp"
+          alt="Modern hillside property in Rwanda"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[58%_center] dark:brightness-[0.62] dark:saturate-[0.92] sm:object-[61%_center] lg:object-[64%_center]"
+        />
 
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <Link
-            href={listPropertyHref}
-            className="hidden h-10 items-center gap-2 rounded-md border border-[var(--line)] bg-transparent px-4 text-sm font-black text-[var(--primary)] transition duration-200 hover:border-[var(--primary)] dark:text-[var(--accent-gold)] lg:inline-flex"
-          >
-            <CirclePlus size={20} />
-            List property
-          </Link>
+        <div className="pointer-events-none absolute left-[-92px] top-[112px] h-[500px] w-[560px] bg-[radial-gradient(ellipse_at_48%_42%,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.94)_45%,rgba(255,255,255,0.56)_68%,rgba(255,255,255,0)_88%)] blur-[14px] dark:bg-[radial-gradient(ellipse_at_48%_42%,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.66)_48%,rgba(0,0,0,0.2)_72%,rgba(0,0,0,0)_91%)] sm:left-[-28px] sm:w-[620px] lg:left-[58px] lg:top-[136px] lg:h-[475px] lg:w-[620px]" />
 
-          <div className="hidden lg:block">
-            <ThemeToggle />
-          </div>
-
-          <Link
-            href={dashboardHref}
-            className="hidden h-10 items-center gap-2 rounded-md bg-[var(--cta)] px-5 text-sm font-black text-[var(--cta-text)] transition duration-200 hover:opacity-90 lg:inline-flex"
-          >
-            <UserRound size={20} />
-            {user ? "Dashboard" : "Sign in"}
-          </Link>
-
-          <div className="flex items-center gap-2 lg:hidden">
-            <ThemeToggle />
-            <MobileMenu />
-          </div>
-        </div>
-      </header>
-
-      <div className="relative min-h-[560px] w-full max-w-full overflow-hidden sm:min-h-[630px] lg:min-h-[650px]">
-        <div className="absolute inset-0 bg-[var(--background)]" />
-
-        <div className="absolute inset-y-0 right-0 hidden w-[52%] overflow-hidden lg:block">
-          <Image
-            src="/images/home/property-3.webp"
-            alt="Premium property in Rwanda"
-            fill
-            priority
-            sizes="52vw"
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--background)_0%,rgba(244,239,230,0.22)_16%,rgba(244,239,230,0)_48%)] dark:bg-[linear-gradient(90deg,var(--background)_0%,rgba(17,16,13,0.34)_18%,rgba(17,16,13,0)_52%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(244,239,230,0.08)_0%,rgba(244,239,230,0)_42%,var(--background)_100%)] dark:bg-[linear-gradient(180deg,rgba(17,16,13,0.08)_0%,rgba(17,16,13,0)_42%,var(--background)_100%)]" />
-        </div>
-
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--background)_0%,var(--background)_44%,rgba(244,239,230,0.10)_61%,rgba(244,239,230,0)_100%)] dark:bg-[linear-gradient(90deg,var(--background)_0%,rgba(17,16,13,0.96)_38%,rgba(17,16,13,0.70)_56%,rgba(17,16,13,0.10)_78%,rgba(17,16,13,0)_100%)]" />
-
-        <div className="relative z-10 mx-auto flex min-h-[560px] w-full max-w-[1440px] flex-col justify-center overflow-hidden px-5 py-10 sm:min-h-[630px] sm:px-8 lg:min-h-[650px] lg:px-12 xl:px-14">
-          <div className="max-w-6xl">
-
-            <h1 className="font-premium-display max-w-3xl text-[2.45rem] font-semibold leading-[0.94] tracking-[-0.045em] text-[var(--text)] dark:text-[var(--text)] min-[390px]:text-[2.65rem] sm:text-[3.85rem] lg:text-[4.55rem] xl:text-[5rem]">
-              Search verified property across{" "}
-              <span className="font-semibold italic text-[var(--accent-gold)]">
-                Rwanda
-              </span>
+        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-92px)] max-w-[1540px] flex-col px-5 pb-8 pt-[150px] sm:px-8 sm:pt-[160px] lg:min-h-[calc(100vh-104px)] lg:px-16 lg:pb-14 lg:pt-[215px] xl:min-h-[calc(100vh-112px)] xl:px-[150px] xl:pt-[185px]">
+          <div className="max-w-[590px]">
+            <h1 className="max-w-[640px] text-[1.9rem] font-semibold leading-[1.06] tracking-[-0.055em] text-[#06142d] drop-shadow-[0_2px_10px_rgba(255,255,255,0.55)] dark:text-white dark:drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] min-[390px]:text-[2.18rem] sm:text-[3.05rem] lg:text-[4rem]">
+              Properties that fit your lifestyle in Rwanda.
             </h1>
 
-            <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-[var(--text)]/76 dark:text-[var(--text)]/80 sm:text-lg sm:leading-8">
-              Homes, apartments, land, and commercial spaces with clearer listings,
-              safer contact, and a process built for the local market.
+            <p className="mt-4 max-w-[455px] text-[0.86rem] font-semibold leading-[1.55] text-[#10284f] drop-shadow-[0_2px_14px_rgba(255,255,255,0.96)] dark:text-white/88 dark:drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] min-[390px]:text-[0.9rem] sm:mt-6 sm:text-[1.06rem] lg:mt-7 lg:max-w-[500px] lg:text-[1.13rem]">
+              Homes, apartments, land, and commercial spaces with clearer
+              listings, safer contacts, and a smoother process, all in one place.
             </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="mt-8 w-full max-w-[1080px] overflow-hidden rounded-[18px] border border-[var(--border)] bg-[var(--surface)] p-4 text-[var(--foreground)] shadow-[0_14px_38px_rgba(58,42,29,0.09)] dark:border-[#4A4032] dark:bg-[#1F1B15] dark:shadow-[0_18px_46px_rgba(0,0,0,0.38)] sm:p-5 lg:p-5"
+            className="mt-8 w-full max-w-[1000px] rounded-[16px] border border-[#dce8f8] bg-white/92 p-3 text-[#07152f] shadow-[0_18px_55px_rgba(7,21,47,0.12)] backdrop-blur-xl dark:border-white/12 dark:bg-[#0A0A0A]/94 dark:text-white dark:shadow-none sm:p-5 lg:mt-[4.5rem] lg:rounded-[24px] lg:p-6"
           >
-            <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-              <div className="grid min-w-0 grid-cols-3 gap-2 sm:flex sm:flex-wrap">
-                {searchTabs.map((tab) => (
-                  <button
-                    key={tab.label}
-                    type="button"
-                    onClick={() => updateSearch("mode", tab.label)}
-                    className={`inline-flex h-9 min-w-0 items-center justify-center gap-2 rounded-md px-3 text-xs font-black transition duration-200 sm:h-10 sm:min-w-[108px] sm:px-4 sm:text-sm ${
-                      search.mode === tab.label
-                        ? "bg-[var(--primary)] text-white dark:bg-[var(--primary)] dark:text-[var(--cta-text)]"
-                        : "bg-transparent text-[var(--muted)] ring-1 ring-inset ring-[var(--border)] hover:text-[var(--foreground)]"
-                    }`}
-                  >
-                    <tab.icon size={19} />
-                    {tab.label}
-                  </button>
-                ))}
-              </div>
-
+            <div className="grid grid-cols-3 gap-2 sm:max-w-[430px] sm:gap-3">
+              {searchTabs.map((tab) => (
+                <button
+                  key={tab.label}
+                  type="button"
+                  onClick={() => updateSearch("mode", tab.label)}
+                  className={`flex h-[42px] items-center justify-center gap-2 rounded-[11px] text-[0.84rem] font-semibold transition sm:h-[50px] sm:gap-2.5 sm:rounded-[13px] sm:text-[0.95rem] ${
+                    search.mode === tab.label
+                      ? "bg-[#1357e8] text-white dark:bg-[#2f6bff]"
+                      : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#141414] dark:text-white/86 dark:hover:bg-[#1C1C1C]"
+                  }`}
+                >
+                  <tab.icon size={19} />
+                  {tab.label}
+                </button>
+              ))}
             </div>
 
-            <div className="mt-4 grid min-w-0 grid-flow-dense grid-cols-1 gap-3 min-[520px]:grid-cols-2 lg:grid-cols-[1.25fr_0.9fr_1.12fr_0.58fr_0.82fr] lg:items-end">
-              <SearchField label="Location" className="min-[520px]:col-span-2 lg:col-span-1">
-                <TextInput
-                  icon={<MapPin size={19} />}
-                  value={search.location}
-                  onChange={(value) => updateSearch("location", value)}
-                  placeholder="Kigali, Kinyinya, Nyarutarama..."
-                  ariaLabel="Location"
-                />
-              </SearchField>
+              <div className="mt-5 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:mt-7 lg:grid-cols-[1.35fr_0.92fr_1.05fr_auto]">
+                <SearchField label="Location">
+                  <TextInput
+                    icon={<MapPin size={18} />}
+                    value={search.location}
+                    onChange={(value) => updateSearch("location", value)}
+                    placeholder={
+                      search.mode === "Land"
+                        ? "Where is the land located?"
+                        : "Where do you want to live?"
+                    }
+                    ariaLabel="Location"
+                  />
+                </SearchField>
 
-              <SearchField label="Property Type">
-                <SelectInput
-                  value={search.propertyType}
-                  onChange={(value) => updateSearch("propertyType", value)}
-                  options={propertyTypes}
-                  ariaLabel="Property type"
-                />
-              </SearchField>
+                <SearchField
+                  label={search.mode === "Land" ? "Land Type" : "Property Type"}
+                  className="hidden sm:block"
+                >
+                  <SelectInput
+                    value={search.propertyType}
+                    onChange={(value) => updateSearch("propertyType", value)}
+                    options={search.mode === "Land" ? landTypes : propertyTypes}
+                    ariaLabel={search.mode === "Land" ? "Land type" : "Property type"}
+                  />
+                </SearchField>
 
-              <SearchField label="Budget (RWF)" className="min-[520px]:col-span-2 lg:col-span-1">
-                <BudgetInputs
-                  minPrice={search.minPrice}
-                  maxPrice={search.maxPrice}
-                  onMinChange={(value) => updateSearch("minPrice", value)}
-                  onMaxChange={(value) => updateSearch("maxPrice", value)}
-                />
-              </SearchField>
+                <SearchField label="Budget (RWF)" className="hidden sm:block">
+                  <BudgetInputs
+                    minPrice={search.minPrice}
+                    maxPrice={search.maxPrice}
+                    onMinChange={(value) => updateSearch("minPrice", value)}
+                    onMaxChange={(value) => updateSearch("maxPrice", value)}
+                  />
+                </SearchField>
 
-              <SearchField label="Bedrooms">
-                <SelectInput
-                  icon={<BedDouble size={19} />}
-                  value={search.bedrooms}
-                  onChange={(value) => updateSearch("bedrooms", value)}
-                  options={bedroomOptions}
-                  ariaLabel="Bedrooms"
-                />
-              </SearchField>
+                <SearchField label="Bedrooms" className="hidden">
+                  <SelectInput
+                    icon={<BedDouble size={18} />}
+                    value={search.bedrooms}
+                    onChange={(value) => updateSearch("bedrooms", value)}
+                    options={bedroomOptions}
+                    ariaLabel="Bedrooms"
+                  />
+                </SearchField>
+
+                <button
+                  type="submit"
+                  className="hidden h-[48px] items-center justify-center gap-2.5 rounded-[12px] bg-[#1357e8] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#0f49c7] sm:col-span-2 sm:flex sm:h-[54px] lg:col-span-1"
+                >
+                  <Search size={20} />
+                  Search
+                </button>
+              </div>
+
+              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-white/70 p-2 dark:border-white/12 dark:bg-[#111111] sm:p-3">
+                <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="flex min-w-0 flex-1 items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleVoiceIdea}
+                      disabled={voiceListening}
+                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-[#1357e8] text-white transition hover:bg-[#0f49c7] disabled:cursor-wait disabled:opacity-70 sm:h-9 sm:w-9"
+                      aria-label={
+                        voiceListening
+                          ? "Listening for voice search"
+                          : "Start voice search"
+                      }
+                    >
+                      <Mic
+                        size={17}
+                        className={voiceListening ? "animate-pulse" : ""}
+                      />
+                    </button>
+
+                    <input
+                      aria-label="Describe what you need"
+                      value={search.requestText}
+                      onChange={(event) =>
+                        updateSearch("requestText", event.target.value)
+                      }
+                      placeholder={
+                        search.mode === "Land"
+                          ? 'Describe the land you need, e.g. "plot near main road"'
+                          : 'Describe what you need, e.g. "3 bedrooms under 800k near school"'
+                      }
+                      className="min-w-0 flex-1 bg-transparent text-sm font-bold leading-6 text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/45"
+                    />
+                  </div>
+
+                  <div className="hidden">
+                    {requestExamples.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-[9px] border border-[#dce8f8] bg-white px-2.5 py-1.5 text-xs font-black text-[#6b7f9e] dark:border-white/12 dark:bg-[#141414] dark:text-white/58"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               <button
                 type="submit"
-                className="flex h-[54px] items-center justify-center gap-3 rounded-md bg-[var(--cta)] px-5 text-sm font-black text-[var(--cta-text)] transition duration-200 hover:opacity-90 min-[520px]:col-span-2 sm:text-base lg:col-span-1"
+                className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[12px] bg-[#1357e8] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#0f49c7] sm:hidden"
               >
-                <Search size={21} />
-                <span className="sm:hidden">Search</span>
-                <span className="hidden sm:inline">Search Properties</span>
+                <Search size={20} />
+                Search
               </button>
-            </div>
 
-            <div className="mt-3 rounded-[14px] border border-[var(--border)] bg-transparent p-3 dark:border-[#3E352A] dark:bg-[#181510]">
-              <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex min-w-0 items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={handleVoiceIdea}
-                    disabled={voiceListening}
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--cta)] text-[var(--cta-text)] transition hover:opacity-90 disabled:cursor-wait disabled:opacity-70"
-                    aria-label={
-                      voiceListening
-                        ? "Listening for voice search"
-                        : "Start voice search"
+              <details className="group mt-4 sm:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#1357e8] transition hover:text-[#0f49c7] dark:text-[#7da2ff] dark:hover:text-white [&::-webkit-details-marker]:hidden">
+                  <span className="inline-flex items-center gap-2">
+                    <SlidersHorizontal size={17} />
+                    Filters
+                  </span>
+
+                  <ChevronDown
+                    size={16}
+                    className="transition group-open:rotate-180"
+                  />
+                </summary>
+
+                <div className="mt-4 grid gap-3 border-t border-[#dce8f8] pt-4 dark:border-white/12 min-[430px]:grid-cols-2">
+                  <SearchField label={search.mode === "Land" ? "Land Type" : "Property Type"}>
+                    <SelectInput
+                      value={search.propertyType}
+                      onChange={(value) => updateSearch("propertyType", value)}
+                      options={search.mode === "Land" ? landTypes : propertyTypes}
+                      ariaLabel={search.mode === "Land" ? "Land type" : "Property type"}
+                    />
+                  </SearchField>
+
+                  {search.mode !== "Land" ? (
+                    <SearchField label="Bedrooms">
+                      <SelectInput
+                        icon={<BedDouble size={18} />}
+                        value={search.bedrooms}
+                        onChange={(value) => updateSearch("bedrooms", value)}
+                        options={bedroomOptions}
+                        ariaLabel="Bedrooms"
+                      />
+                    </SearchField>
+                  ) : null}
+
+                  <SearchField
+                    label="Budget (RWF)"
+                    className={
+                      search.mode === "Land" ? "" : "min-[430px]:col-span-2"
                     }
                   >
-                    <Mic
-                      size={17}
-                      className={voiceListening ? "animate-pulse" : ""}
+                    <BudgetInputs
+                      minPrice={search.minPrice}
+                      maxPrice={search.maxPrice}
+                      onMinChange={(value) => updateSearch("minPrice", value)}
+                      onMaxChange={(value) => updateSearch("maxPrice", value)}
                     />
-                  </button>
-
-                  <input
-                    aria-label="Smart search"
-                    value={search.smartQuery}
-                    onChange={(event) =>
-                      updateSearch("smartQuery", event.target.value)
-                    }
-                    placeholder='Example: "3 bedrooms under 800k near school"'
-                    className="min-w-0 flex-1 bg-transparent text-sm font-bold leading-6 text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
-                  />
+                  </SearchField>
                 </div>
-
-                <div className="hidden flex-wrap gap-2 md:flex">
-                  {smartTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md border border-[var(--border)] bg-transparent px-2.5 py-1.5 text-xs font-black text-[var(--muted)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+              </details>
 
             {search.advanced.length > 0 && !advancedOpen ? (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="hidden">
                 {search.advanced.slice(0, 8).map((option) => (
                   <button
                     key={option}
                     type="button"
                     onClick={() => toggleAdvancedOption(option)}
-                    className="inline-flex items-center gap-2 rounded-md bg-[var(--trust-soft)] px-3 py-2 text-xs font-black text-[var(--trust-green)] transition hover:opacity-90"
+                    className="inline-flex items-center gap-2 rounded-[9px] bg-[#eef4ff] px-3 py-2 text-xs font-black text-[#1357e8] transition hover:bg-[#e1ebff] dark:bg-[#12234a] dark:text-[#8fb0ff]"
                   >
                     {option}
                     <span aria-hidden="true">×</span>
@@ -832,7 +847,7 @@ export function HeroSection() {
                 ))}
 
                 {search.advanced.length > 8 ? (
-                  <span className="rounded-full bg-[var(--soft)] px-4 py-2 text-xs font-black text-[var(--muted)]">
+                  <span className="rounded-full bg-white px-4 py-2 text-xs font-black text-[#6b7f9e] dark:bg-[#141414] dark:text-white/58">
                     +{search.advanced.length - 8} more
                   </span>
                 ) : null}
@@ -841,120 +856,104 @@ export function HeroSection() {
 
             {searchMessage ? (
               <div
-                className="mt-4 rounded-[16px] border border-[var(--border)] bg-transparent px-4 py-3 text-sm font-bold text-[var(--muted)]"
+                className="hidden"
                 aria-live="polite"
               >
                 {searchMessage}
               </div>
             ) : null}
-            <div className="mt-4 flex justify-end">
+
+            <div className="mt-4 hidden justify-start sm:flex sm:justify-end">
               <button
                 type="button"
-                onClick={() => setAdvancedOpen((current) => !current)}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-transparent px-4 text-sm font-black text-[var(--primary)] transition hover:border-[var(--primary)] md:w-auto dark:text-[var(--accent-gold)] dark:hover:border-[var(--accent-gold)]"
+                onClick={goToSearch}
+                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[12px] border border-[#dce8f8] bg-white/70 px-4 text-sm font-black text-[#1357e8] transition hover:border-[#1357e8] hover:bg-white sm:w-auto dark:border-white/12 dark:bg-[#111111] dark:text-[#7da2ff] dark:hover:border-[#2f6bff]"
               >
                 <SlidersHorizontal size={18} />
                 {advancedOpen
                   ? "Hide filters"
                   : search.advanced.length > 0
                     ? `Filters (${search.advanced.length})`
-                    : "Filters"}
+                    : "More filters"}
               </button>
             </div>
-            {advancedOpen ? (
-              <>
-                <div className="mt-5 hidden w-full max-w-full overflow-hidden rounded-[1.45rem] border border-[var(--line)] bg-[var(--card)] shadow-[0_18px_55px_rgba(0,0,0,0.10)] dark:bg-[var(--surface)] dark:shadow-[0_18px_55px_rgba(0,0,0,0.32)] lg:block">
-                  <div className="flex items-center justify-between gap-3 border-b border-[var(--line)] px-4 py-3">
-                    <div className="flex min-w-0 items-center gap-3">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--trust-soft)] text-[var(--trust-green)]">
-                        <SlidersHorizontal size={16} />
-                      </span>
 
-                      <div className="min-w-0">
-                        <p className="text-sm font-black text-[var(--foreground)]">
-                          Advanced search
-                        </p>
-                        <p className="truncate text-xs font-semibold text-[var(--muted)]">
-                          Add only the filters that change the result.
-                        </p>
-                      </div>
-                    </div>
-
-                    <span className="shrink-0 rounded-full bg-[var(--soft)] px-3 py-1.5 text-[11px] font-black text-[var(--muted)]">
-                      {search.advanced.length} selected
-                    </span>
-                  </div>
-
-                  <div className="divide-y divide-[var(--line)]">
-                    {advancedSections.map((section) => (
-                      <div
-                        key={section.title}
-                        className="grid gap-3 px-4 py-3 sm:grid-cols-[120px_1fr] sm:items-center"
-                      >
-                        <p className="text-xs font-black uppercase tracking-[0.16em] text-[var(--muted)]">
+            {false ? (
+              <div className="mt-4 hidden rounded-[16px] border border-[#dce8f8] bg-white/70 p-4 dark:border-white/12 dark:bg-[#111111] lg:block">
+                <div className="grid gap-4 lg:grid-cols-4">
+                  {advancedSections.map((section) => (
+                    <div key={section.title}>
+                      <div className="mb-3 flex items-center justify-between gap-2">
+                        <p className="text-xs font-black uppercase tracking-[0.18em] text-[#315384] dark:text-white/58">
                           {section.title}
                         </p>
-
-                        <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-                          {section.options.map((option) => {
-                            const active = search.advanced.includes(option);
-
-                            return (
-                              <button
-                                key={option}
-                                type="button"
-                                onClick={() => toggleAdvancedOption(option)}
-                                className={`flex min-h-11 items-center justify-between gap-3 rounded-md border px-3.5 py-2.5 text-left text-sm font-black transition duration-200 ${
-                                  active
-                                    ? "border-[var(--trust-green)] bg-[var(--trust-soft)] text-[var(--trust-green)]"
-                                    : "border-[var(--border)] bg-[var(--surface-soft)] text-[var(--foreground)] hover:border-[var(--accent-gold)]/55"
-                                }`}
-                              >
-                                <span className="min-w-0 truncate">{option}</span>
-
-                                {active ? (
-                                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--trust-green)] text-[var(--trust-soft)]">
-                                    <Check size={12} strokeWidth={3} />
-                                  </span>
-                                ) : (
-                                  <span className="h-5 w-5 shrink-0 rounded-full border border-[var(--line)] bg-[var(--card)] dark:bg-[var(--surface)]" />
-                                )}
-                              </button>
-                            );
-                          })}
-                        </div>
+                        <span className="text-[11px] font-black text-[#6b7f9e] dark:text-white/42">
+                          {
+                            section.options.filter((option) =>
+                              search.advanced.includes(option)
+                            ).length
+                          }{" "}
+                          selected
+                        </span>
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="flex items-center justify-between gap-3 border-t border-[var(--line)] bg-[var(--soft)] px-4 py-3">
-                    {search.advanced.length > 0 ? (
-                      <button
-                        type="button"
-                        onClick={clearAdvancedOptions}
-                        className="h-9 rounded-full border border-[var(--line)] px-4 text-xs font-black text-[var(--foreground)] transition hover:bg-[var(--card)]"
-                      >
-                        Clear
-                      </button>
-                    ) : (
-                      <span className="text-xs font-semibold text-[var(--muted)]">
-                        No filters selected
-                      </span>
-                    )}
+                      <div className="grid gap-2">
+                        {section.options.map((option) => {
+                          const active = search.advanced.includes(option);
 
-                    <button
-                      type="button"
-                      onClick={() => setAdvancedOpen(false)}
-                      className="h-9 rounded-md bg-[var(--foreground)] px-5 text-xs font-black text-[var(--background)] transition hover:opacity-90"
-                    >
-                      Apply
-                    </button>
-                  </div>
+                          return (
+                            <button
+                              key={option}
+                              type="button"
+                              onClick={() => toggleAdvancedOption(option)}
+                              className={`flex min-h-11 items-center justify-between gap-3 rounded-[11px] border px-3 py-2 text-left text-xs font-black transition ${
+                                active
+                                  ? "border-[#1357e8] bg-[#eef4ff] text-[#1357e8] dark:border-[#2f6bff] dark:bg-[#12234a] dark:text-[#8fb0ff]"
+                                  : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#1357e8] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#2f6bff]"
+                              }`}
+                            >
+                              <span className="min-w-0 truncate">{option}</span>
+
+                              {active ? (
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#1357e8] text-white">
+                                  <Check size={12} strokeWidth={3} />
+                                </span>
+                              ) : (
+                                <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#101010]" />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-              </>
-            ) : null}
+                <div className="mt-4 flex items-center justify-between border-t border-[#dce8f8] pt-4 dark:border-white/12">
+                  {search.advanced.length > 0 ? (
+                    <button
+                      type="button"
+                      onClick={clearAdvancedOptions}
+                      className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] dark:border-white/12 dark:bg-[#141414] dark:text-white/74"
+                    >
+                      Clear
+                    </button>
+                  ) : (
+                    <span className="text-xs font-semibold text-[#6b7f9e] dark:text-white/48">
+                      No filters
+                    </span>
+                  )}
 
+                  <button
+                    type="button"
+                    onClick={() => setAdvancedOpen(false)}
+                    className="h-10 rounded-[10px] bg-[#1357e8] px-6 text-xs font-black text-white transition hover:bg-[#0f49c7]"
+                  >
+                    Apply filters
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </form>
         </div>
       </div>
@@ -969,7 +968,7 @@ export function HeroSection() {
           onClose={() => setAdvancedOpen(false)}
         />
       ) : null}
-
-    </section>
+      </section>
+    </>
   );
 }

@@ -33,7 +33,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#1e1f1c] shadow-sm ring-1 ring-black/10 transition duration-300 hover:-translate-y-0.5 hover:scale-105 dark:bg-[#f4efe3] dark:text-[#1e1f1c] dark:ring-white/10"
+      className="inline-flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border border-[#dce8f8] bg-white/72 text-[#07152f] backdrop-blur-xl transition hover:bg-white dark:border-white/12 dark:bg-white/10 dark:text-white dark:hover:bg-white/14"
       aria-label="Toggle color mode"
     >
       <Moon size={18} className="block dark:hidden" />
