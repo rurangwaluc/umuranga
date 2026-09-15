@@ -30,6 +30,7 @@ const navLinks = [
   { label: "How it works", href: "#how-it-works" },
 ];
 
+
 const searchTabs = [
   { label: "Buy", icon: Home },
   { label: "Rent", icon: KeyRound },
@@ -624,25 +625,26 @@ export function HeroSection() {
         }`}
       >
 
-      <div className="relative -mt-[92px] min-h-screen overflow-hidden bg-white dark:bg-[#050505] lg:-mt-[104px] xl:-mt-[112px]">
+      <div className="relative -mt-[92px] min-h-[790px] overflow-hidden bg-white dark:bg-[#050505] sm:min-h-[830px] lg:-mt-[104px] lg:min-h-[860px] xl:-mt-[112px] xl:min-h-[900px]">
         <Image
           src="/images/home/hero-umuranga-premium.webp"
           alt="Modern hillside property in Rwanda"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[58%_center] dark:brightness-[0.62] dark:saturate-[0.92] sm:object-[61%_center] lg:object-[64%_center]"
+          className="object-cover object-[58%_center] brightness-[0.9] saturate-[0.98] dark:brightness-[0.72] dark:saturate-[0.92] sm:object-[61%_center] lg:object-[64%_center]"
         />
 
-        <div className="pointer-events-none absolute left-[-92px] top-[112px] h-[500px] w-[560px] bg-[radial-gradient(ellipse_at_48%_42%,rgba(255,255,255,0.99)_0%,rgba(255,255,255,0.94)_45%,rgba(255,255,255,0.56)_68%,rgba(255,255,255,0)_88%)] blur-[14px] dark:bg-[radial-gradient(ellipse_at_48%_42%,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.66)_48%,rgba(0,0,0,0.2)_72%,rgba(0,0,0,0)_91%)] sm:left-[-28px] sm:w-[620px] lg:left-[58px] lg:top-[136px] lg:h-[475px] lg:w-[620px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,13,30,0.58)_0%,rgba(5,13,30,0.38)_34%,rgba(5,13,30,0.08)_64%,rgba(5,13,30,0.18)_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[28%] bg-[linear-gradient(180deg,rgba(5,5,5,0)_0%,rgba(5,5,5,0.34)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-92px)] max-w-[1540px] flex-col px-5 pb-8 pt-[150px] sm:px-8 sm:pt-[160px] lg:min-h-[calc(100vh-104px)] lg:px-16 lg:pb-14 lg:pt-[215px] xl:min-h-[calc(100vh-112px)] xl:px-[150px] xl:pt-[185px]">
-          <div className="max-w-[590px]">
-            <h1 className="max-w-[640px] text-[1.9rem] font-semibold leading-[1.06] tracking-[-0.055em] text-[#06142d] drop-shadow-[0_2px_10px_rgba(255,255,255,0.55)] dark:text-white dark:drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)] min-[390px]:text-[2.18rem] sm:text-[3.05rem] lg:text-[4rem]">
+        <div className="relative z-10 mx-auto flex min-h-[790px] max-w-[1540px] flex-col justify-center px-5 pb-10 pt-[118px] sm:min-h-[830px] sm:px-8 sm:pt-[128px] lg:min-h-[860px] lg:px-16 lg:pb-12 lg:pt-[142px] xl:min-h-[900px] xl:px-[150px] xl:pt-[150px]">
+          <div className="max-w-[760px]">
+            <h1 className="max-w-[760px] text-[2.22rem] font-semibold leading-[1.01] tracking-[-0.06em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.48)] min-[390px]:text-[2.6rem] sm:text-[3.55rem] lg:text-[4.55rem]">
               Properties that fit your lifestyle in Rwanda.
             </h1>
 
-            <p className="mt-4 max-w-[455px] text-[0.86rem] font-semibold leading-[1.55] text-[#10284f] drop-shadow-[0_2px_14px_rgba(255,255,255,0.96)] dark:text-white/88 dark:drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] min-[390px]:text-[0.9rem] sm:mt-6 sm:text-[1.06rem] lg:mt-7 lg:max-w-[500px] lg:text-[1.13rem]">
+            <p className="mt-5 max-w-[620px] text-[0.94rem] font-semibold leading-[1.62] text-white/92 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] min-[390px]:text-[1rem] sm:text-[1.1rem] lg:max-w-[650px] lg:text-[1.18rem]">
               Homes, apartments, land, and commercial spaces with clearer
               listings, safer contacts, and a smoother process, all in one place.
             </p>
@@ -650,15 +652,16 @@ export function HeroSection() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-8 w-full max-w-[1000px] rounded-[16px] border border-[#dce8f8] bg-white/92 p-3 text-[#07152f] shadow-[0_18px_55px_rgba(7,21,47,0.12)] backdrop-blur-xl dark:border-white/12 dark:bg-[#0A0A0A]/94 dark:text-white dark:shadow-none sm:p-5 lg:mt-[4.5rem] lg:rounded-[24px] lg:p-6"
+            className="mt-8 w-full max-w-[1160px] rounded-[14px] border border-white/45 bg-white/92 p-4 text-[#07152f] shadow-[0_30px_90px_rgba(7,21,47,0.22)] backdrop-blur-xl dark:border-white/12 dark:bg-[#0A0A0A]/96 dark:text-white dark:shadow-none sm:p-5 lg:mt-10 lg:rounded-[16px] lg:p-6"
           >
-            <div className="grid grid-cols-3 gap-2 sm:max-w-[430px] sm:gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="grid w-full grid-cols-3 gap-2 sm:w-auto sm:max-w-none sm:gap-3">
               {searchTabs.map((tab) => (
                 <button
                   key={tab.label}
                   type="button"
                   onClick={() => updateSearch("mode", tab.label)}
-                  className={`flex h-[42px] items-center justify-center gap-2 rounded-[11px] text-[0.84rem] font-semibold transition sm:h-[50px] sm:gap-2.5 sm:rounded-[13px] sm:text-[0.95rem] ${
+                  className={`flex h-[42px] items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[44px] sm:min-w-[112px] sm:gap-2.5 sm:rounded-[9px] sm:px-5 sm:text-[0.9rem] ${
                     search.mode === tab.label
                       ? "bg-[#1357e8] text-white dark:bg-[#2f6bff]"
                       : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#141414] dark:text-white/86 dark:hover:bg-[#1C1C1C]"
@@ -669,8 +672,20 @@ export function HeroSection() {
                 </button>
               ))}
             </div>
+                <button
+                  type="button"
+                  onClick={goToSearch}
+                  className="hidden h-[44px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#1357e8] transition hover:border-[#1357e8] hover:bg-white dark:border-white/12 dark:bg-[#111111] dark:text-[#7da2ff] dark:hover:border-[#2f6bff] sm:inline-flex"
+                >
+                  <SlidersHorizontal size={15} />
+                  {search.advanced.length > 0
+                    ? `Filters (${search.advanced.length})`
+                    : "More filters"}
+                </button>
+              </div>
 
-              <div className="mt-5 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:mt-7 lg:grid-cols-[1.35fr_0.92fr_1.05fr_auto]">
+
+              <div className="mt-5 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:mt-7 lg:grid-cols-[1.35fr_0.95fr_1.15fr_auto]">
                 <SearchField label="Location">
                   <TextInput
                     icon={<MapPin size={18} />}
@@ -725,7 +740,7 @@ export function HeroSection() {
                 </button>
               </div>
 
-              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-white/70 p-2 dark:border-white/12 dark:bg-[#111111] sm:p-3">
+              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#111111] sm:p-3">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <button
@@ -863,20 +878,6 @@ export function HeroSection() {
               </div>
             ) : null}
 
-            <div className="mt-4 hidden justify-start sm:flex sm:justify-end">
-              <button
-                type="button"
-                onClick={goToSearch}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[12px] border border-[#dce8f8] bg-white/70 px-4 text-sm font-black text-[#1357e8] transition hover:border-[#1357e8] hover:bg-white sm:w-auto dark:border-white/12 dark:bg-[#111111] dark:text-[#7da2ff] dark:hover:border-[#2f6bff]"
-              >
-                <SlidersHorizontal size={18} />
-                {advancedOpen
-                  ? "Hide filters"
-                  : search.advanced.length > 0
-                    ? `Filters (${search.advanced.length})`
-                    : "More filters"}
-              </button>
-            </div>
 
             {false ? (
               <div className="mt-4 hidden rounded-[16px] border border-[#dce8f8] bg-white/70 p-4 dark:border-white/12 dark:bg-[#111111] lg:block">
@@ -955,8 +956,11 @@ export function HeroSection() {
               </div>
             ) : null}
           </form>
+
+
+              </div>
+
         </div>
-      </div>
 
       {advancedOpen ? (
         <MobileAdvancedSearchPortal

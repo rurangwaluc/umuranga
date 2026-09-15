@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowRight,
   Building2,
   Home,
   Mail,
@@ -69,49 +67,7 @@ function LinkedInIcon() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 bg-[var(--card)] text-[var(--foreground)] sm:mt-24">
-      <section className="relative min-h-[430px] overflow-hidden sm:min-h-[520px]">
-        <Image
-          src="/images/home/project-3.webp"
-          alt="Premium Rwanda property"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/75" />
-
-        <div className="relative z-10 mx-auto flex min-h-[430px] max-w-5xl flex-col items-center justify-center px-5 py-20 text-center sm:min-h-[520px] sm:px-8">
-
-          <h2 className="max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.06em] text-white sm:text-5xl lg:text-7xl">
-            Move through Rwanda’s property market with more confidence.
-          </h2>
-
-          <p className="mt-6 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">
-            Search, compare, contact, and decide with better listing quality,
-            clearer actors, and a Rwanda-first property workflow.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg bg-white px-6 py-3.5 text-sm font-bold text-[#07152f] transition hover:bg-[#1357e8]"
-            >
-              Get started
-              <ArrowRight size={18} />
-            </Link>
-
-            <Link
-              href="#properties"
-              className="inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-lg border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:bg-white hover:text-[#07152f]"
-            >
-              Explore properties
-            </Link>
-          </div>
-        </div>
-      </section>
-
+    <footer className="mt-12 bg-[var(--card)] text-[var(--foreground)] sm:mt-16">
       <section className="grid gap-10 border-b border-[var(--line)] px-5 py-12 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-14 lg:py-16">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">

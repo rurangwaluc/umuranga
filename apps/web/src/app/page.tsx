@@ -193,9 +193,9 @@ export default function HomePage() {
       <div className="w-full">
         <HeroSection />
 
-        <div className="mx-auto w-full max-w-[1480px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10 lg:py-20 xl:px-12">
+        <div className="mx-auto w-full max-w-[1480px] px-5 pb-14 pt-6 sm:px-8 sm:pb-16 sm:pt-8 lg:px-10 lg:pb-20 lg:pt-10 xl:px-12">
 
-        <ScrollReveal className="mt-14 sm:mt-16" staggerChildren>
+        <ScrollReveal className="mt-8 sm:mt-10" staggerChildren>
           <section id="properties">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>

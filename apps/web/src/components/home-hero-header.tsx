@@ -103,30 +103,42 @@ export function HomeHeroHeader({
   return (
     <>
       <header
-        className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b transition-colors duration-300 ${
+        className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b px-3 transition-colors duration-300 sm:px-5 ${
           isScrolled || mobileOpen
-            ? "border-[#dce8f8]/80 bg-white/94 backdrop-blur-xl dark:border-white/10 dark:bg-[#050505]/94"
-            : "border-transparent bg-transparent"
+            ? "border-[#dce8f8] bg-white/94 py-2 backdrop-blur-xl dark:border-white/10 dark:bg-[#050505]/94"
+            : "border-transparent bg-transparent pt-3 sm:pt-4"
         }`}
       >
-        <div className="mx-auto grid h-[92px] max-w-[1540px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 lg:h-[104px] lg:px-16 xl:h-[112px] xl:grid-cols-[310px_minmax(0,1fr)_430px] xl:gap-8 xl:px-[150px]">
+        <div className="mx-auto grid h-[76px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[82px] sm:px-2 lg:h-[86px] lg:px-3 xl:h-[88px] xl:grid-cols-[280px_minmax(0,1fr)_390px] xl:gap-7">
           <Link href="/" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="relative grid h-[48px] w-[48px] shrink-0 place-items-center rounded-[15px] border-[3px] border-[#1357e8] text-[#1357e8] sm:h-[56px] sm:w-[56px] sm:rounded-[17px]">
+            <span className="relative grid h-[40px] w-[40px] shrink-0 place-items-center rounded-[10px] border-[2.5px] border-[#1357e8] text-[#1357e8] sm:h-[44px] sm:w-[44px] sm:rounded-[11px]">
               <span className="absolute h-[3px] w-8 -rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
               <span className="absolute h-[3px] w-8 rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
             </span>
 
             <span className="min-w-0 leading-none">
-              <span className="block whitespace-nowrap text-[1.22rem] font-black uppercase tracking-[0.15em] text-[#07152f] dark:text-white min-[380px]:text-[1.28rem] sm:text-[1.55rem] xl:text-[1.78rem]">
+              <span className={`block whitespace-nowrap text-[1.05rem] font-black uppercase tracking-[0.15em] min-[380px]:text-[1.12rem] sm:text-[1.28rem] xl:text-[1.45rem] ${
+                  isScrolled || mobileOpen
+                    ? "text-[#07152f] drop-shadow-none dark:text-white"
+                    : "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
+                }`}>
                 UMURANGA
               </span>
-              <span className="mt-1.5 block whitespace-nowrap text-[0.66rem] font-black uppercase tracking-[0.3em] text-[#315384] dark:text-white/62 sm:text-[0.76rem] xl:text-[0.84rem]">
+              <span className={`mt-1.5 block whitespace-nowrap text-[0.58rem] font-black uppercase tracking-[0.28em] sm:text-[0.64rem] xl:text-[0.7rem] ${
+                  isScrolled || mobileOpen
+                    ? "text-[#315384] drop-shadow-none dark:text-white/62"
+                    : "text-white/76 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
+                }`}>
                 Real Estate
               </span>
             </span>
           </Link>
 
-          <nav className="hidden items-center justify-center gap-10 whitespace-nowrap text-[1.02rem] font-black text-[#07152f] dark:text-white xl:flex">
+          <nav className={`hidden h-[46px] w-fit items-center justify-center gap-6 justify-self-center whitespace-nowrap rounded-[8px] px-6 text-[0.84rem] font-black transition xl:flex ${
+              isScrolled || mobileOpen
+                ? "text-[#07152f] dark:text-white"
+                : "border border-white/70 bg-white/82 text-[#07152f] shadow-[0_14px_36px_rgba(7,21,47,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-[#050505]/56 dark:text-white dark:shadow-none"
+            }`}>
             {visibleNavLinks.map((item) => (
               <Link key={item.label} href={item.href} className="transition hover:text-[#1357e8]">
                 {item.label}
@@ -137,7 +149,7 @@ export function HomeHeroHeader({
           <div className="hidden items-center justify-end gap-4 xl:flex">
             <Link
               href={listPropertyHref}
-              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] border border-[#1357e8] bg-white/86 px-7 text-[1rem] font-black text-[#1357e8] backdrop-blur-xl transition hover:bg-white dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8] dark:hover:bg-[#f4f7ff]"
+              className="inline-flex h-[46px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[8px] border border-[#1357e8] bg-white px-5 text-[0.86rem] font-black text-[#1357e8] transition hover:bg-[#f6f9ff] dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8] dark:hover:bg-[#f4f7ff]"
             >
               <CirclePlus size={21} />
               List property
@@ -145,7 +157,7 @@ export function HomeHeroHeader({
 
             <Link
               href={dashboardHref}
-              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] bg-[#1357e8] px-7 text-[1rem] font-black text-white transition hover:bg-[#0f49c7]"
+              className="inline-flex h-[46px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[8px] bg-[#1357e8] px-5 text-[0.86rem] font-black text-white transition hover:bg-[#0f49c7]"
             >
               <UserRound size={22} />
               {userLabel}
