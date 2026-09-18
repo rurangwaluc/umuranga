@@ -71,7 +71,7 @@ export function SiteFooter() {
       <section className="grid gap-10 border-b border-[var(--line)] px-5 py-12 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-14 lg:py-16">
         <div>
           <Link href="/" className="inline-flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#071F4D] dark:text-white">
               <Home size={18} />
             </span>
             <span className="text-2xl font-bold tracking-[-0.04em]">
@@ -150,7 +150,7 @@ export function SiteFooter() {
 
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#07152f] px-4 py-3 text-xs font-bold text-white dark:bg-[#ffffff] dark:text-[#07152f]"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#07152f] px-4 py-3 text-xs font-bold text-white dark:bg-[#071F4D] dark:text-white"
               >
                 Sign up
               </Link>
@@ -206,7 +206,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#ffffff] dark:hover:text-[#07152f]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
             >
               <InstagramIcon />
             </Link>
@@ -214,7 +214,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#ffffff] dark:hover:text-[#07152f]"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
             >
               <LinkedInIcon />
             </Link>

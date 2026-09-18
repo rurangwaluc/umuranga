@@ -180,7 +180,7 @@ export function HomeHeroHeader({
           />
 
           <div
-            className={`absolute inset-x-3 top-3 border border-black/18 bg-white px-5 pb-5 pt-3 text-[#07152f] transition duration-[240ms] ease-out dark:border-white/22 dark:bg-[#050505] dark:text-white sm:inset-x-8 sm:top-4 ${
+            className={`absolute inset-x-3 top-3 border border-black/18 bg-white px-5 pb-5 pt-3 text-[#07152f] transition duration-[240ms] ease-out dark:border-white/22 dark:bg-[#090A0C] dark:text-white sm:inset-x-8 sm:top-4 ${
               mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
             }`}
           >
@@ -199,7 +199,7 @@ export function HomeHeroHeader({
                     key={item.label}
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#071f4d] hover:text-[#071f4d] dark:border-white/24 dark:bg-transparent dark:hover:border-[#08285f] dark:hover:text-[#a7bced]"
+                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#071f4d] hover:text-[#071f4d] dark:border-white/24 dark:bg-transparent dark:hover:border-[#08285f] dark:hover:text-[#C8C0B3]"
                   >
                     {item.label}
                   </Link>

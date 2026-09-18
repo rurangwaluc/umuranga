@@ -198,7 +198,7 @@ function SelectInput({
         onChange={(event) => onChange(event.target.value)}
         className={`h-[46px] w-full appearance-none rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
-        } pr-11 text-xs font-black text-[#07152f] outline-none transition duration-200 hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#111111] dark:text-white sm:h-[50px] sm:rounded-[12px]`}
+        } pr-11 text-xs font-black text-[#07152f] outline-none transition duration-200 hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white sm:h-[50px] sm:rounded-[10px]`}
       >
         {options.map((option) => (
           <option key={option} value={option}>
@@ -248,7 +248,7 @@ function TextInput({
         onChange={(event) => onChange(event.target.value)}
         className={`h-[46px] w-full rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
-        } pr-4 text-xs font-semibold text-[#07152f] outline-none transition duration-200 placeholder:text-[#6b7f9e] hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#111111] dark:text-white dark:placeholder:text-white/62 sm:h-[50px] sm:rounded-[12px]`}
+        } pr-4 text-xs font-semibold text-[#07152f] outline-none transition duration-200 placeholder:text-[#6b7f9e] hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white dark:placeholder:text-white/62 sm:h-[50px] sm:rounded-[10px]`}
       />
     </span>
   );
@@ -266,7 +266,7 @@ function BudgetInputs({
   onMaxChange: (value: string) => void;
 }) {
   return (
-    <div className="grid h-[46px] grid-cols-[1fr_auto_1fr] items-center rounded-[11px] border border-[#dce8f8] bg-white px-4 text-xs font-semibold text-[#6b7f9e] dark:border-white/12 dark:bg-[#111111] dark:text-white/62 sm:h-[50px] sm:rounded-[12px]">
+    <div className="grid h-[46px] grid-cols-[1fr_auto_1fr] items-center rounded-[11px] border border-[#dce8f8] bg-white px-4 text-xs font-semibold text-[#6b7f9e] dark:border-white/12 dark:bg-[#15171C] dark:text-white/62 sm:h-[50px] sm:rounded-[10px]">
       <input
         aria-label="Minimum price"
         type="number"
@@ -321,7 +321,7 @@ function MobileAdvancedSearchPortal({
         className="absolute inset-0"
       />
 
-      <section className="relative w-full min-w-0 max-w-[430px] overflow-hidden rounded-[18px] border border-[#dce8f8] bg-white text-[#07152f] shadow-[0_24px_80px_rgba(7,21,47,0.22)] dark:border-white/12 dark:bg-[#0A0A0A] dark:text-white">
+      <section className="relative w-full min-w-0 max-w-[430px] overflow-hidden rounded-[18px] border border-[#dce8f8] bg-white text-[#07152f] shadow-[0_24px_80px_rgba(7,21,47,0.22)] dark:border-white/12 dark:bg-[#15171C] dark:text-white">
         <div className="flex items-center justify-between gap-3 border-b border-[#dce8f8] px-4 py-3 dark:border-white/12">
           <div className="min-w-0">
             <p className="text-base font-black">Filters</p>
@@ -333,7 +333,7 @@ function MobileAdvancedSearchPortal({
           <button
             type="button"
             onClick={onClose}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#dce8f8] bg-white text-[#07152f] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#111111] dark:text-white"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#dce8f8] bg-white text-[#07152f] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white"
             aria-label="Close filters"
           >
             <X size={18} />
@@ -341,7 +341,7 @@ function MobileAdvancedSearchPortal({
         </div>
 
         <div className="max-h-[66dvh] overflow-y-auto">
-          <div className="border-b border-[#dce8f8] bg-[#f6f9ff] px-3 py-3 dark:border-white/12 dark:bg-[#111111]">
+          <div className="border-b border-[#dce8f8] bg-[#f6f9ff] px-3 py-3 dark:border-white/12 dark:bg-[#15171C]">
             <div className="grid grid-cols-2 gap-2">
               {advancedSections.map((section) => {
                 const selectedCount = section.options.filter((option) =>
@@ -356,8 +356,8 @@ function MobileAdvancedSearchPortal({
                     onClick={() => setOpenAdvancedSection(section.title)}
                     className={`flex h-10 min-w-0 items-center justify-between gap-2 rounded-[10px] border px-3 text-xs font-black transition ${
                       active
-                        ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#12234a] dark:text-[#a7bced]"
-                        : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#08285f]"
+                        ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                        : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                     }`}
                   >
                     <span className="min-w-0 truncate">{section.title}</span>
@@ -367,7 +367,7 @@ function MobileAdvancedSearchPortal({
                         className={`flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-black ${
                           active
                             ? "bg-[#071f4d] text-white"
-                            : "bg-[#eef4ff] text-[#071f4d] dark:bg-[#12234a] dark:text-[#a7bced]"
+                            : "bg-[#eef4ff] text-[#071f4d] dark:bg-[#181D26] dark:text-[#D8D1C5]"
                         }`}
                       >
                         {selectedCount}
@@ -393,8 +393,8 @@ function MobileAdvancedSearchPortal({
                         onClick={() => toggleAdvancedOption(option)}
                         className={`flex min-h-12 items-center justify-between gap-3 rounded-[11px] border px-4 py-3 text-left text-sm font-black transition ${
                           active
-                            ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#12234a] dark:text-[#a7bced]"
-                            : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#08285f]"
+                            ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                            : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                         }`}
                       >
                         <span className="min-w-0 truncate">{option}</span>
@@ -404,7 +404,7 @@ function MobileAdvancedSearchPortal({
                             <Check size={12} strokeWidth={3} />
                           </span>
                         ) : (
-                          <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#101010]" />
+                          <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#1B1E24]" />
                         )}
                       </button>
                     );
@@ -415,12 +415,12 @@ function MobileAdvancedSearchPortal({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 border-t border-[#dce8f8] bg-[#f6f9ff] px-4 py-3 dark:border-white/12 dark:bg-[#111111]">
+        <div className="flex items-center justify-between gap-3 border-t border-[#dce8f8] bg-[#f6f9ff] px-4 py-3 dark:border-white/12 dark:bg-[#15171C]">
           {search.advanced.length > 0 ? (
             <button
               type="button"
               onClick={clearAdvancedOptions}
-              className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#141414] dark:text-white/74"
+              className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
             >
               Clear
             </button>
@@ -620,12 +620,12 @@ export function HeroSection() {
       />
 
       <section
-        className={`relative isolate w-full max-w-full overflow-visible bg-white text-[#07152f] dark:bg-[#050505] dark:text-white ${
+        className={`relative isolate w-full max-w-full overflow-visible bg-white text-[#07152f] dark:bg-[#0A0B0E] dark:text-white ${
           advancedOpen ? "z-[2147483646]" : "z-0"
         }`}
       >
 
-      <div className="relative -mt-[92px] min-h-[790px] overflow-hidden bg-white dark:bg-[#050505] sm:min-h-[830px] lg:-mt-[104px] lg:min-h-[860px] xl:-mt-[112px] xl:min-h-[900px]">
+      <div className="relative -mt-[92px] min-h-[790px] overflow-hidden bg-white dark:bg-[#0A0B0E] sm:min-h-[830px] lg:-mt-[104px] lg:min-h-[860px] xl:-mt-[112px] xl:min-h-[900px]">
         <Image
           src="/images/home/herosectionbg.webp"
           alt="Modern hillside property in Rwanda"
@@ -652,7 +652,7 @@ export function HeroSection() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-8 w-full max-w-[1160px] rounded-[14px] border border-white/45 bg-white/92 p-4 text-[#07152f] shadow-[0_30px_90px_rgba(7,21,47,0.22)] backdrop-blur-xl dark:border-white/12 dark:bg-[#0A0A0A]/96 dark:text-white dark:shadow-none sm:p-5 lg:mt-10 lg:rounded-[16px] lg:p-6"
+            className="mt-8 w-full max-w-[1160px] rounded-[10px] border border-white/50 bg-white/94 p-4 text-[#07152f] shadow-[0_28px_80px_rgba(7,21,47,0.2)] backdrop-blur-xl dark:border-white/12 dark:bg-[#15171C]/96 dark:text-white dark:shadow-none sm:p-5 lg:mt-10 lg:rounded-[14px] lg:p-6"
           >
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="grid w-full grid-cols-3 gap-2 sm:w-auto sm:max-w-none sm:gap-3">
@@ -664,7 +664,7 @@ export function HeroSection() {
                   className={`flex h-[42px] items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[44px] sm:min-w-[112px] sm:gap-2.5 sm:rounded-[9px] sm:px-5 sm:text-[0.9rem] ${
                     search.mode === tab.label
                       ? "bg-[#071f4d] text-white dark:bg-[#08285f]"
-                      : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#141414] dark:text-white/86 dark:hover:bg-[#1C1C1C]"
+                      : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/86 dark:hover:bg-[#242832]"
                   }`}
                 >
                   <tab.icon size={19} />
@@ -675,7 +675,7 @@ export function HeroSection() {
                 <button
                   type="button"
                   onClick={goToSearch}
-                  className="hidden h-[44px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#111111] dark:text-[#9bb4e8] dark:hover:border-[#08285f] sm:inline-flex"
+                  className="hidden h-[44px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
                 >
                   <SlidersHorizontal size={15} />
                   {search.advanced.length > 0
@@ -733,14 +733,14 @@ export function HeroSection() {
 
                 <button
                   type="submit"
-                  className="hidden h-[48px] items-center justify-center gap-2.5 rounded-[12px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] sm:col-span-2 sm:flex sm:h-[54px] lg:col-span-1"
+                  className="hidden h-[48px] items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex sm:h-[54px] lg:col-span-1"
                 >
                   <Search size={20} />
                   Search
                 </button>
               </div>
 
-              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#111111] sm:p-3">
+              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#15171C] sm:p-3">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                   <div className="flex min-w-0 flex-1 items-center gap-3">
                     <button
@@ -779,7 +779,7 @@ export function HeroSection() {
                     {requestExamples.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-[9px] border border-[#dce8f8] bg-white px-2.5 py-1.5 text-xs font-black text-[#6b7f9e] dark:border-white/12 dark:bg-[#141414] dark:text-white/58"
+                        className="rounded-[9px] border border-[#dce8f8] bg-white px-2.5 py-1.5 text-xs font-black text-[#6b7f9e] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/58"
                       >
                         {tag}
                       </span>
@@ -790,14 +790,14 @@ export function HeroSection() {
 
               <button
                 type="submit"
-                className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[12px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] sm:hidden"
+                className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:hidden"
               >
                 <Search size={20} />
                 Search
               </button>
 
               <details className="group mt-4 sm:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#071f4d] transition hover:text-[#061735] dark:text-[#9bb4e8] dark:hover:text-white [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#071f4d] transition hover:text-[#061735] dark:text-[#D8D1C5] dark:hover:text-white [&::-webkit-details-marker]:hidden">
                   <span className="inline-flex items-center gap-2">
                     <SlidersHorizontal size={17} />
                     Filters
@@ -854,7 +854,7 @@ export function HeroSection() {
                     key={option}
                     type="button"
                     onClick={() => toggleAdvancedOption(option)}
-                    className="inline-flex items-center gap-2 rounded-[9px] bg-[#eef4ff] px-3 py-2 text-xs font-black text-[#071f4d] transition hover:bg-[#e1ebff] dark:bg-[#12234a] dark:text-[#a7bced]"
+                    className="inline-flex items-center gap-2 rounded-[9px] bg-[#eef4ff] px-3 py-2 text-xs font-black text-[#071f4d] transition hover:bg-[#e1ebff] dark:bg-[#181D26] dark:text-[#D8D1C5]"
                   >
                     {option}
                     <span aria-hidden="true">×</span>
@@ -862,7 +862,7 @@ export function HeroSection() {
                 ))}
 
                 {search.advanced.length > 8 ? (
-                  <span className="rounded-full bg-white px-4 py-2 text-xs font-black text-[#6b7f9e] dark:bg-[#141414] dark:text-white/58">
+                  <span className="rounded-full bg-white px-4 py-2 text-xs font-black text-[#6b7f9e] dark:bg-[#1B1E24] dark:text-white/58">
                     +{search.advanced.length - 8} more
                   </span>
                 ) : null}
@@ -880,7 +880,7 @@ export function HeroSection() {
 
 
             {false ? (
-              <div className="mt-4 hidden rounded-[16px] border border-[#dce8f8] bg-white/70 p-4 dark:border-white/12 dark:bg-[#111111] lg:block">
+              <div className="mt-4 hidden rounded-[16px] border border-[#dce8f8] bg-white/70 p-4 dark:border-white/12 dark:bg-[#15171C] lg:block">
                 <div className="grid gap-4 lg:grid-cols-4">
                   {advancedSections.map((section) => (
                     <div key={section.title}>
@@ -909,8 +909,8 @@ export function HeroSection() {
                               onClick={() => toggleAdvancedOption(option)}
                               className={`flex min-h-11 items-center justify-between gap-3 rounded-[11px] border px-3 py-2 text-left text-xs font-black transition ${
                                 active
-                                  ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#12234a] dark:text-[#a7bced]"
-                                  : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#141414] dark:text-white/78 dark:hover:border-[#08285f]"
+                                  ? "border-[#071f4d] bg-[#eef4ff] text-[#071f4d] dark:border-[#08285f] dark:bg-[#181D26] dark:text-[#D8D1C5]"
+                                  : "border-[#dce8f8] bg-white text-[#344766] hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/78 dark:hover:border-[#08285f]"
                               }`}
                             >
                               <span className="min-w-0 truncate">{option}</span>
@@ -920,7 +920,7 @@ export function HeroSection() {
                                   <Check size={12} strokeWidth={3} />
                                 </span>
                               ) : (
-                                <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#101010]" />
+                                <span className="h-5 w-5 shrink-0 rounded-full border border-[#dce8f8] bg-white dark:border-white/12 dark:bg-[#1B1E24]" />
                               )}
                             </button>
                           );
@@ -935,7 +935,7 @@ export function HeroSection() {
                     <button
                       type="button"
                       onClick={clearAdvancedOptions}
-                      className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] dark:border-white/12 dark:bg-[#141414] dark:text-white/74"
+                      className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
                     >
                       Clear
                     </button>

@@ -141,8 +141,8 @@ const managementCards = [
 
 function PropertyCard({ item }: { item: (typeof propertyCards)[number] }) {
   return (
-    <article className="reveal-child rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-1.5 transition duration-200 hover:border-[var(--primary)]/35">
-      <div className="relative h-[220px] overflow-hidden rounded-[10px] bg-[var(--soft)] sm:h-[240px]">
+    <article className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-2 shadow-[0_18px_55px_rgba(7,21,47,0.06)] transition duration-200 hover:-translate-y-0.5 hover:border-[var(--primary)]/35 hover:shadow-[0_24px_70px_rgba(7,21,47,0.1)] dark:shadow-none dark:hover:shadow-none">
+      <div className="relative h-[220px] overflow-hidden rounded-[14px] bg-[var(--soft)] sm:h-[244px]">
         <Image
           src={item.image}
           alt={item.title}
@@ -193,7 +193,7 @@ export default function HomePage() {
       <div className="w-full">
         <HeroSection />
 
-        <div className="mx-auto w-full max-w-[1480px] px-5 pb-14 pt-6 sm:px-8 sm:pb-16 sm:pt-8 lg:px-10 lg:pb-20 lg:pt-10 xl:px-12">
+        <div className="mx-auto w-full max-w-[1420px] px-5 pb-14 pt-6 sm:px-8 sm:pb-16 sm:pt-8 lg:px-10 lg:pb-20 lg:pt-10 xl:px-12">
 
         <ScrollReveal className="mt-8 sm:mt-10" staggerChildren>
           <section id="properties">
@@ -216,7 +216,7 @@ export default function HomePage() {
               {categories.map((category, index) => (
                 <button
                   key={category}
-                  className={`min-h-10 shrink-0 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
+                  className={`min-h-10 shrink-0 rounded-[10px] px-4 py-2 text-xs font-bold transition ${
                     index === 0
                       ? "bg-[var(--primary)] text-white shadow-sm dark:bg-[var(--primary)] dark:text-white"
                       : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
@@ -253,13 +253,13 @@ export default function HomePage() {
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <Link
                     href="/signup"
-                    className="inline-flex h-12 items-center justify-center rounded-[12px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:opacity-90"
+                    className="inline-flex h-12 items-center justify-center rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:opacity-90 dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
                   >
                     List or manage property
                   </Link>
                   <Link
                     href="/search"
-                    className="inline-flex h-12 items-center justify-center rounded-[12px] border border-[var(--line)] px-5 text-sm font-bold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white"
+                    className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[var(--line)] px-5 text-sm font-bold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:border-white/18 dark:hover:bg-[#071F4D] dark:hover:text-white"
                   >
                     Search properties
                   </Link>
@@ -270,7 +270,7 @@ export default function HomePage() {
                 {managementCards.map((item) => (
                   <div
                     key={item.title}
-                    className="reveal-child rounded-[16px] border border-[var(--line)] bg-[var(--soft)] p-5"
+                    className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_14px_40px_rgba(7,21,47,0.045)] dark:shadow-none"
                   >
                     <p className="text-base font-semibold">{item.title}</p>
                     <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
@@ -322,7 +322,7 @@ export default function HomePage() {
                   {operatorCards.map((item) => (
                     <div
                       key={item.title}
-                      className="reveal-child rounded-[1.1rem] border border-[var(--line)] bg-[var(--soft)] p-3 text-center transition sm:rounded-[1.5rem] sm:p-5 sm:text-left"
+                      className="reveal-child rounded-[1.1rem] border border-[var(--line)] bg-[var(--card)] p-3 text-center shadow-[0_14px_40px_rgba(7,21,47,0.045)] transition dark:shadow-none sm:rounded-[1.35rem] sm:p-5 sm:text-left"
                     >
                       <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--card)] text-[var(--foreground)] sm:mx-0 sm:mb-5 sm:h-11 sm:w-11">
                         <item.icon size={17} />
@@ -337,7 +337,7 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <div className="reveal-child rounded-[20px] border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8 lg:p-10">
+                <div className="reveal-child rounded-[22px] border border-[var(--line)] bg-[var(--card)] p-6 shadow-[0_20px_70px_rgba(7,21,47,0.06)] dark:shadow-none sm:p-8 lg:p-10">
                   <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <h3 className="max-w-2xl text-2xl font-medium leading-[1.12] tracking-[-0.04em] sm:text-3xl lg:text-4xl">
@@ -345,7 +345,7 @@ export default function HomePage() {
                       </h3>
                     </div>
 
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--primary)] text-white dark:bg-[var(--primary)] dark:text-white">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--primary)] text-white dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white">
                       <ArrowRight size={20} />
                     </div>
                   </div>
@@ -363,7 +363,7 @@ export default function HomePage() {
                     ].map((item) => (
                       <div
                         key={item}
-                        className="rounded-2xl border border-[var(--line)] bg-[var(--soft)] px-4 py-3 text-sm font-semibold"
+                        className="rounded-[12px] border border-[var(--line)] bg-[var(--soft)] px-4 py-3 text-sm font-semibold"
                       >
                         {item}
                       </div>
@@ -372,7 +372,7 @@ export default function HomePage() {
 
                   <Link
                     href="/signup"
-                    className="mt-8 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-bold text-white transition dark:bg-[var(--primary)] dark:text-white"
+                    className="mt-8 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-bold text-white transition dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
                   >
                     Start with UMURANGA
                     <ArrowRight size={16} />

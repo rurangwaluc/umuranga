@@ -3,12 +3,12 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #FFFFFF;
+  --background: #F8F6F1;
   --surface: #FFFFFF;
-  --surface-soft: #F6F9FF;
+  --surface-soft: #F3F5F8;
   --text: #07152F;
   --muted: #6B7F9E;
-  --border: #DCE8F8;
+  --border: #DDE3EC;
   --primary: #071F4D;
   --primary-dark: #061735;
   --accent-gold: #071F4D;
@@ -29,18 +29,18 @@
 }
 
 .dark {
-  --background: #050505;
-  --surface: #111111;
-  --surface-soft: #0A0A0A;
-  --text: #FFFFFF;
-  --muted: rgba(255, 255, 255, 0.62);
-  --border: rgba(255, 255, 255, 0.12);
-  --primary: #08285F;
-  --primary-hover: #9BB4E8;
-  --accent-gold: #08285F;
-  --trust-green: #08285F;
-  --trust-soft: #12234A;
-  --cta: #08285F;
+  --background: #0A0B0E;
+  --surface: #15171C;
+  --surface-soft: #1B1E24;
+  --text: #F7F3EA;
+  --muted: rgba(226, 222, 214, 0.64);
+  --border: rgba(247, 243, 234, 0.10);
+  --primary: #071F4D;
+  --primary-hover: #0A2A66;
+  --accent-gold: #071F4D;
+  --trust-green: #071F4D;
+  --trust-soft: #181D26;
+  --cta: #071F4D;
   --cta-text: #FFFFFF;
   --danger: #FF6B6B;
 
