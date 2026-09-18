@@ -76,7 +76,7 @@ if (currentUser) {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         {notice ? (
-          <div className="rounded-2xl border border-[#1357e8]/25 bg-[#1357e8]/10 px-4 py-3 text-sm font-bold text-[var(--foreground)]">
+          <div className="rounded-2xl border border-[#071f4d]/25 bg-[#071f4d]/10 px-4 py-3 text-sm font-bold text-[var(--foreground)]">
             {notice}
           </div>
         ) : null}

@@ -60,7 +60,7 @@ export default async function OnboardingPage({
     <main className="min-h-screen bg-[var(--background)] px-3 py-3 text-[var(--foreground)] sm:px-5">
       <section className="mx-auto flex min-h-[calc(100vh-1.5rem)] max-w-5xl items-center justify-center rounded-[2rem] border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.08)] dark:shadow-[0_24px_90px_rgba(0,0,0,0.35)] sm:p-8">
         <div className="w-full max-w-2xl text-center">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#1357e8] text-white shadow-sm">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#071f4d] text-white shadow-sm">
             <Icon size={26} />
           </div>
 
@@ -87,7 +87,7 @@ export default async function OnboardingPage({
 
             <Link
               href="/login"
-              className="inline-flex h-14 items-center justify-center rounded-full bg-[#1357e8] px-6 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-xl"
+              className="inline-flex h-14 items-center justify-center rounded-full bg-[#071f4d] px-6 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-xl"
             >
               Go To Login
             </Link>

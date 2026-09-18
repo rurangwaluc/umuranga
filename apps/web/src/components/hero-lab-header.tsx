@@ -105,9 +105,9 @@ export function HeroLabHeader() {
       >
         <div className="mx-auto grid h-[92px] max-w-[1540px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 sm:px-8 lg:h-[104px] lg:px-16 xl:h-[112px] xl:grid-cols-[310px_minmax(0,1fr)_430px] xl:gap-8 xl:px-[150px]">
           <Link href="/" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="relative grid h-[48px] w-[48px] shrink-0 place-items-center rounded-[15px] border-[3px] border-[#1357e8] text-[#1357e8] sm:h-[56px] sm:w-[56px] sm:rounded-[17px]">
-              <span className="absolute h-[3px] w-8 -rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
-              <span className="absolute h-[3px] w-8 rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
+            <span className="relative grid h-[48px] w-[48px] shrink-0 place-items-center rounded-[15px] border-[3px] border-[#071f4d] text-[#071f4d] sm:h-[56px] sm:w-[56px] sm:rounded-[17px]">
+              <span className="absolute h-[3px] w-8 -rotate-35 rounded-full bg-[#071f4d] sm:w-9" />
+              <span className="absolute h-[3px] w-8 rotate-35 rounded-full bg-[#071f4d] sm:w-9" />
             </span>
 
             <span className="min-w-0 leading-none">
@@ -122,7 +122,7 @@ export function HeroLabHeader() {
 
           <nav className="hidden items-center justify-center gap-10 whitespace-nowrap text-[1.02rem] font-black text-[#07152f] dark:text-white xl:flex">
             {navLinks.map((item) => (
-              <a key={item} href="#" className="transition hover:text-[#1357e8]">
+              <a key={item} href="#" className="transition hover:text-[#071f4d]">
                 {item}
               </a>
             ))}
@@ -131,7 +131,7 @@ export function HeroLabHeader() {
           <div className="hidden items-center justify-end gap-4 xl:flex">
             <Link
               href="/signup"
-              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] border border-[#1357e8] bg-white/86 px-7 text-[1rem] font-black text-[#1357e8] backdrop-blur-xl transition hover:bg-white dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8] dark:hover:bg-[#f4f7ff]"
+              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] border border-[#071f4d] bg-white/86 px-7 text-[1rem] font-black text-[#071f4d] backdrop-blur-xl transition hover:bg-white dark:border-[#08285f] dark:bg-white dark:text-[#071f4d] dark:hover:bg-[#f4f7ff]"
             >
               <CirclePlus size={21} />
               List property
@@ -139,7 +139,7 @@ export function HeroLabHeader() {
 
             <Link
               href="/login"
-              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] bg-[#1357e8] px-7 text-[1rem] font-black text-white transition hover:bg-[#0f49c7]"
+              className="inline-flex h-[58px] items-center justify-center gap-3 whitespace-nowrap rounded-[14px] bg-[#071f4d] px-7 text-[1rem] font-black text-white transition hover:bg-[#061735]"
             >
               <UserRound size={22} />
               Sign in
@@ -199,7 +199,7 @@ export function HeroLabHeader() {
                     key={item}
                     href="#"
                     onClick={closeMobileMenu}
-                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#1357e8] hover:text-[#1357e8] dark:border-white/24 dark:bg-transparent dark:hover:border-[#2f6bff] dark:hover:text-[#8fb0ff]"
+                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#071f4d] hover:text-[#071f4d] dark:border-white/24 dark:bg-transparent dark:hover:border-[#08285f] dark:hover:text-[#a7bced]"
                   >
                     {item}
                   </a>
@@ -210,7 +210,7 @@ export function HeroLabHeader() {
                 <Link
                   href="/signup"
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#1357e8] bg-white text-[0.86rem] font-black text-[#1357e8] transition hover:bg-[#f6f9ff] dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#071f4d] bg-white text-[0.86rem] font-black text-[#071f4d] transition hover:bg-[#f6f9ff] dark:border-[#08285f] dark:bg-white dark:text-[#071f4d]"
                 >
                   <CirclePlus size={17} />
                   List
@@ -219,7 +219,7 @@ export function HeroLabHeader() {
                 <Link
                   href="/login"
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#1357e8] text-[0.86rem] font-black text-white transition hover:bg-[#0f49c7]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#071f4d] text-[0.86rem] font-black text-white transition hover:bg-[#061735]"
                 >
                   <UserRound size={17} />
                   Sign in

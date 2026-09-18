@@ -66,7 +66,7 @@ export function DashboardShell({
             href="/"
             className="inline-flex items-center gap-2 rounded-full bg-[var(--soft)] px-3 py-2 text-sm font-black"
           >
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#1357e8] text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#071f4d] text-white">
               <Home size={15} />
             </span>
             UMURANGA
@@ -84,7 +84,7 @@ export function DashboardShell({
                 href={href}
                 className={`rounded-full px-5 py-3 transition ${
                   index === 0
-                    ? "bg-[#1357e8] text-white"
+                    ? "bg-[#071f4d] text-white"
                     : "text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
                 }`}
               >
@@ -132,7 +132,7 @@ export function DashboardShell({
               </p>
 
               <div className="mt-4 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1357e8] text-sm font-black text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#071f4d] text-sm font-black text-white">
                   {user?.fullName?.slice(0, 1) ?? "U"}
                 </div>
 
@@ -158,7 +158,7 @@ export function DashboardShell({
                 key={card.title}
                 className="rounded-[1.6rem] border border-[var(--line)] bg-[var(--soft)] p-5 transition hover:-translate-y-1 hover:bg-[var(--card)]"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#1357e8] text-white">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#071f4d] text-white">
                   <Sparkles size={19} />
                 </div>
 

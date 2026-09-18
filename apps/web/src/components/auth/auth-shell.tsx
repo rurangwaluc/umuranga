@@ -70,7 +70,7 @@ export function AuthShell({
 
             <Link
               href={headerAction.href}
-              className="hidden whitespace-nowrap rounded-full bg-[#1357e8] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
+              className="hidden whitespace-nowrap rounded-full bg-[#071f4d] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
             >
               {headerAction.label}
             </Link>

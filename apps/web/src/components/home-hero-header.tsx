@@ -103,44 +103,28 @@ export function HomeHeroHeader({
   return (
     <>
       <header
-        className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b px-3 transition-colors duration-300 sm:px-5 ${
-          isScrolled || mobileOpen
-            ? "border-[#dce8f8] bg-white/94 py-2 backdrop-blur-xl dark:border-white/10 dark:bg-[#050505]/94"
-            : "border-transparent bg-transparent pt-3 sm:pt-4"
-        }`}
+        className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b border-white/10 bg-[#08285f] px-3 py-2 text-white shadow-[0_8px_24px_rgba(7,21,47,0.16)] transition-colors duration-300 dark:border-white/10 dark:bg-[#08285f] sm:px-5`}
       >
-        <div className="mx-auto grid h-[76px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[82px] sm:px-2 lg:h-[86px] lg:px-3 xl:h-[88px] xl:grid-cols-[280px_minmax(0,1fr)_390px] xl:gap-7">
+        <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[58px] sm:px-2 lg:h-[60px] lg:px-3 xl:grid-cols-[280px_minmax(0,1fr)_390px] xl:gap-7">
           <Link href="/" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="relative grid h-[40px] w-[40px] shrink-0 place-items-center rounded-[10px] border-[2.5px] border-[#1357e8] text-[#1357e8] sm:h-[44px] sm:w-[44px] sm:rounded-[11px]">
-              <span className="absolute h-[3px] w-8 -rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
-              <span className="absolute h-[3px] w-8 rotate-35 rounded-full bg-[#1357e8] sm:w-9" />
+            <span className="relative grid h-[36px] w-[36px] shrink-0 place-items-center rounded-[8px] border-[2px] border-white/85 text-white sm:h-[38px] sm:w-[38px] sm:rounded-[9px]">
+              <span className="absolute h-[2.5px] w-7 -rotate-35 rounded-full bg-white sm:w-8" />
+              <span className="absolute h-[2.5px] w-7 rotate-35 rounded-full bg-white sm:w-8" />
             </span>
 
             <span className="min-w-0 leading-none">
-              <span className={`block whitespace-nowrap text-[1.05rem] font-black uppercase tracking-[0.15em] min-[380px]:text-[1.12rem] sm:text-[1.28rem] xl:text-[1.45rem] ${
-                  isScrolled || mobileOpen
-                    ? "text-[#07152f] drop-shadow-none dark:text-white"
-                    : "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
-                }`}>
+              <span className="block whitespace-nowrap text-[0.98rem] font-black uppercase tracking-[0.15em] text-white min-[380px]:text-[1.05rem] sm:text-[1.16rem] xl:text-[1.28rem]">
                 UMURANGA
               </span>
-              <span className={`mt-1.5 block whitespace-nowrap text-[0.58rem] font-black uppercase tracking-[0.28em] sm:text-[0.64rem] xl:text-[0.7rem] ${
-                  isScrolled || mobileOpen
-                    ? "text-[#315384] drop-shadow-none dark:text-white/62"
-                    : "text-white/76 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
-                }`}>
+              <span className="mt-1 block whitespace-nowrap text-[0.52rem] font-black uppercase tracking-[0.28em] text-white/72 sm:text-[0.58rem] xl:text-[0.62rem]">
                 Real Estate
               </span>
             </span>
           </Link>
 
-          <nav className={`hidden h-[46px] w-fit items-center justify-center gap-6 justify-self-center whitespace-nowrap rounded-[8px] px-6 text-[0.84rem] font-black transition xl:flex ${
-              isScrolled || mobileOpen
-                ? "text-[#07152f] dark:text-white"
-                : "border border-white/70 bg-white/82 text-[#07152f] shadow-[0_14px_36px_rgba(7,21,47,0.12)] backdrop-blur-xl dark:border-white/10 dark:bg-[#050505]/56 dark:text-white dark:shadow-none"
-            }`}>
+          <nav className="hidden h-[40px] w-fit items-center justify-center gap-6 justify-self-center whitespace-nowrap px-4 text-[0.82rem] font-black text-white/92 transition xl:flex">
             {visibleNavLinks.map((item) => (
-              <Link key={item.label} href={item.href} className="transition hover:text-[#1357e8]">
+              <Link key={item.label} href={item.href} className="transition hover:text-white">
                 {item.label}
               </Link>
             ))}
@@ -149,7 +133,7 @@ export function HomeHeroHeader({
           <div className="hidden items-center justify-end gap-4 xl:flex">
             <Link
               href={listPropertyHref}
-              className="inline-flex h-[46px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[8px] border border-[#1357e8] bg-white px-5 text-[0.86rem] font-black text-[#1357e8] transition hover:bg-[#f6f9ff] dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8] dark:hover:bg-[#f4f7ff]"
+              className="inline-flex h-[40px] items-center justify-center gap-2 whitespace-nowrap rounded-[7px] border border-white bg-white px-4 text-[0.82rem] font-black text-[#08285f] transition hover:bg-[#eef4ff]"
             >
               <CirclePlus size={21} />
               List property
@@ -157,7 +141,7 @@ export function HomeHeroHeader({
 
             <Link
               href={dashboardHref}
-              className="inline-flex h-[46px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[8px] bg-[#1357e8] px-5 text-[0.86rem] font-black text-white transition hover:bg-[#0f49c7]"
+              className="inline-flex h-[40px] items-center justify-center gap-2 whitespace-nowrap rounded-[7px] border border-white/24 bg-[#07152f]/22 px-4 text-[0.82rem] font-black text-white transition hover:bg-[#07152f]/32"
             >
               <UserRound size={22} />
               {userLabel}
@@ -172,7 +156,7 @@ export function HomeHeroHeader({
             <button
               type="button"
               onClick={toggleMobileMenu}
-              className="inline-flex h-[48px] w-[48px] items-center justify-center rounded-full border border-[#dce8f8] bg-white text-[#07152f] transition hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#101010] dark:text-white dark:hover:bg-[#161616] sm:h-[54px] sm:w-[54px]"
+              className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white transition hover:bg-white/18 sm:h-[42px] sm:w-[42px]"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
             >
@@ -215,7 +199,7 @@ export function HomeHeroHeader({
                     key={item.label}
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#1357e8] hover:text-[#1357e8] dark:border-white/24 dark:bg-transparent dark:hover:border-[#2f6bff] dark:hover:text-[#8fb0ff]"
+                    className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#071f4d] hover:text-[#071f4d] dark:border-white/24 dark:bg-transparent dark:hover:border-[#08285f] dark:hover:text-[#a7bced]"
                   >
                     {item.label}
                   </Link>
@@ -226,7 +210,7 @@ export function HomeHeroHeader({
                 <Link
                   href={listPropertyHref}
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#1357e8] bg-white text-[0.86rem] font-black text-[#1357e8] transition hover:bg-[#f6f9ff] dark:border-[#2f6bff] dark:bg-white dark:text-[#1357e8]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#071f4d] bg-white text-[0.86rem] font-black text-[#071f4d] transition hover:bg-[#f6f9ff] dark:border-[#08285f] dark:bg-white dark:text-[#071f4d]"
                 >
                   <CirclePlus size={17} />
                   List
@@ -235,7 +219,7 @@ export function HomeHeroHeader({
                 <Link
                   href={dashboardHref}
                   onClick={closeMobileMenu}
-                  className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#1357e8] text-[0.86rem] font-black text-white transition hover:bg-[#0f49c7]"
+                  className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#071f4d] text-[0.86rem] font-black text-white transition hover:bg-[#061735]"
                 >
                   <UserRound size={17} />
                   {userLabel}

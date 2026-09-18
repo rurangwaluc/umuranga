@@ -54,7 +54,7 @@ export default function HeroLabPage() {
                   key={item.label}
                   className={`flex h-[42px] items-center justify-center gap-2 rounded-[11px] text-[0.84rem] font-semibold transition sm:h-[50px] sm:gap-2.5 sm:rounded-[13px] sm:text-[0.95rem] ${
                     item.active
-                      ? "bg-[#1357e8] text-white dark:bg-[#2f6bff]"
+                      ? "bg-[#071f4d] text-white dark:bg-[#08285f]"
                       : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#141414] dark:text-white/86 dark:hover:bg-[#1C1C1C]"
                   }`}
                 >
@@ -71,7 +71,7 @@ export default function HeroLabPage() {
                 </span>
                 <div className="flex h-[46px] items-center justify-between rounded-[11px] border border-[#dce8f8] bg-white px-4 text-[#6b7f9e] dark:border-white/12 dark:bg-[#111111] dark:text-white/62 sm:h-[50px] sm:rounded-[12px]">
                   <span className="flex min-w-0 items-center gap-2.5">
-                    <MapPin size={18} className="shrink-0 text-[#1357e8]" />
+                    <MapPin size={18} className="shrink-0 text-[#071f4d]" />
                     <span className="truncate text-xs font-semibold">
                       Where do you want to live?
                     </span>
@@ -114,14 +114,14 @@ export default function HeroLabPage() {
                 </div>
               </label>
 
-              <button className="flex h-[48px] items-center justify-center gap-2.5 rounded-[12px] bg-[#1357e8] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#0f49c7] sm:col-span-2 sm:h-[50px] lg:col-span-1">
+              <button className="flex h-[48px] items-center justify-center gap-2.5 rounded-[12px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] sm:col-span-2 sm:h-[50px] lg:col-span-1">
                 <Search size={20} />
                 Search
               </button>
             </div>
 
               <details className="group mt-4 sm:hidden">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#1357e8] transition hover:text-[#0f49c7] dark:text-[#7da2ff] dark:hover:text-white [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#071f4d] transition hover:text-[#061735] dark:text-[#9bb4e8] dark:hover:text-white [&::-webkit-details-marker]:hidden">
                   <span className="inline-flex items-center gap-2">
                     <SlidersHorizontal size={17} />
                     Advanced search
@@ -172,7 +172,7 @@ export default function HeroLabPage() {
               <div className="mt-5 hidden justify-end sm:flex">
                 <Link
                   href="/search?purpose=buy"
-                  className="inline-flex items-center gap-2 text-sm font-black text-[#1357e8] transition hover:text-[#0f49c7] dark:text-[#7da2ff] dark:hover:text-white"
+                  className="inline-flex items-center gap-2 text-sm font-black text-[#071f4d] transition hover:text-[#061735] dark:text-[#9bb4e8] dark:hover:text-white"
                 >
                   <SlidersHorizontal size={17} />
                   Advanced search
