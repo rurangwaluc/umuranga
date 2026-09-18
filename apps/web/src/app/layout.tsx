@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/figtree";
+import "@fontsource-variable/mulish";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
 

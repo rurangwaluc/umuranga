@@ -87,7 +87,6 @@ const trustAvatars = [
   "/images/home/agent-1.webp",
   "/images/home/agent-2.webp",
   "/images/home/agent-3.webp",
-  "/images/home/property-1.webp",
 ];
 
 
@@ -187,7 +186,7 @@ function SelectInput({
   return (
     <span className="relative block">
       {icon ? (
-        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#071f4d]">
+        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#071f4d] dark:text-[#D8D1C5]">
           {icon}
         </span>
       ) : null}
@@ -233,7 +232,7 @@ function TextInput({
   return (
     <span className="relative block">
       {icon ? (
-        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#071f4d]">
+        <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-[#071f4d] dark:text-[#D8D1C5]">
           {icon}
         </span>
       ) : null}
@@ -625,7 +624,7 @@ export function HeroSection() {
         }`}
       >
 
-      <div className="relative -mt-[92px] min-h-[790px] overflow-hidden bg-white dark:bg-[#0A0B0E] sm:min-h-[830px] lg:-mt-[104px] lg:min-h-[860px] xl:-mt-[112px] xl:min-h-[900px]">
+      <div className="relative -mt-[92px] min-h-[720px] overflow-hidden bg-white dark:bg-[#0A0B0E] sm:min-h-[750px] lg:-mt-[104px] lg:min-h-[700px] xl:-mt-[112px] xl:min-h-[720px]">
         <Image
           src="/images/home/herosectionbg.webp"
           alt="Modern hillside property in Rwanda"
@@ -638,13 +637,13 @@ export function HeroSection() {
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,13,30,0.58)_0%,rgba(5,13,30,0.38)_34%,rgba(5,13,30,0.08)_64%,rgba(5,13,30,0.18)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[28%] bg-[linear-gradient(180deg,rgba(5,5,5,0)_0%,rgba(5,5,5,0.34)_100%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[790px] max-w-[1540px] flex-col justify-center px-5 pb-10 pt-[118px] sm:min-h-[830px] sm:px-8 sm:pt-[128px] lg:min-h-[860px] lg:px-16 lg:pb-12 lg:pt-[142px] xl:min-h-[900px] xl:px-[150px] xl:pt-[150px]">
+        <div className="relative z-10 mx-auto flex min-h-[720px] max-w-[1540px] flex-col justify-start px-5 pb-7 pt-[152px] sm:min-h-[750px] sm:px-8 sm:pt-[166px] lg:min-h-[700px] lg:px-16 lg:pb-7 lg:pt-[210px] xl:min-h-[720px] xl:px-[120px] xl:pt-[220px]">
           <div className="max-w-[760px]">
-            <h1 className="max-w-[760px] text-[2.22rem] font-semibold leading-[1.01] tracking-[-0.06em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.48)] min-[390px]:text-[2.6rem] sm:text-[3.55rem] lg:text-[4.55rem]">
-              Properties that fit your lifestyle in Rwanda.
+            <h1 className="max-w-[760px] text-[2.22rem] font-semibold leading-[1.01] tracking-[-0.06em] text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.48)] min-[390px]:text-[2.6rem] sm:text-[3.35rem] lg:text-[4.05rem] xl:text-[4.35rem]">
+              Properties That Fit Your Lifestyle In Rwanda.
             </h1>
 
-            <p className="mt-5 max-w-[620px] text-[0.94rem] font-semibold leading-[1.62] text-white/92 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] min-[390px]:text-[1rem] sm:text-[1.1rem] lg:max-w-[650px] lg:text-[1.18rem]">
+            <p className="mt-4 max-w-[620px] text-[0.94rem] font-semibold leading-[1.55] text-white/92 drop-shadow-[0_3px_16px_rgba(0,0,0,0.45)] min-[390px]:text-[1rem] sm:text-[1.05rem] lg:max-w-[650px] lg:text-[1.08rem]">
               Homes, apartments, land, and commercial spaces with clearer
               listings, safer contacts, and a smoother process, all in one place.
             </p>
@@ -652,16 +651,16 @@ export function HeroSection() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-8 w-full max-w-[1160px] rounded-[10px] border border-white/50 bg-white/94 p-4 text-[#07152f] shadow-[0_28px_80px_rgba(7,21,47,0.2)] backdrop-blur-xl dark:border-white/12 dark:bg-[#15171C]/96 dark:text-white dark:shadow-none sm:p-5 lg:mt-10 lg:rounded-[14px] lg:p-6"
+            className="mt-8 w-full max-w-[1280px] rounded-[10px] border border-white/50 bg-white/94 p-4 text-[#07152f] shadow-[0_28px_80px_rgba(7,21,47,0.2)] backdrop-blur-xl dark:border-white/12 dark:bg-[#15171C]/96 dark:text-white dark:shadow-none sm:p-4 lg:mt-9 lg:rounded-[14px] lg:p-4"
           >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
             <div className="grid w-full grid-cols-3 gap-2 sm:w-auto sm:max-w-none sm:gap-3">
               {searchTabs.map((tab) => (
                 <button
                   key={tab.label}
                   type="button"
                   onClick={() => updateSearch("mode", tab.label)}
-                  className={`flex h-[42px] items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[44px] sm:min-w-[112px] sm:gap-2.5 sm:rounded-[9px] sm:px-5 sm:text-[0.9rem] ${
+                  className={`flex h-[40px] items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[40px] sm:min-w-[108px] sm:gap-2 sm:rounded-[9px] sm:px-4 sm:text-[0.86rem] ${
                     search.mode === tab.label
                       ? "bg-[#071f4d] text-white dark:bg-[#08285f]"
                       : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/86 dark:hover:bg-[#242832]"
@@ -675,7 +674,7 @@ export function HeroSection() {
                 <button
                   type="button"
                   onClick={goToSearch}
-                  className="hidden h-[44px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
+                  className="hidden h-[40px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
                 >
                   <SlidersHorizontal size={15} />
                   {search.advanced.length > 0
@@ -685,7 +684,7 @@ export function HeroSection() {
               </div>
 
 
-              <div className="mt-5 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:mt-7 lg:grid-cols-[1.35fr_0.95fr_1.15fr_auto]">
+              <div className="mt-4 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:mt-4 lg:grid-cols-[1.45fr_1fr_1.15fr_auto]">
                 <SearchField label="Location">
                   <TextInput
                     icon={<MapPin size={18} />}
@@ -733,21 +732,21 @@ export function HeroSection() {
 
                 <button
                   type="submit"
-                  className="hidden h-[48px] items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex sm:h-[54px] lg:col-span-1"
+                  className="hidden h-[46px] items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.92rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex lg:col-span-1"
                 >
                   <Search size={20} />
                   Search
                 </button>
               </div>
 
-              <div className="mt-3 rounded-[14px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#15171C] sm:p-3">
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="flex min-w-0 flex-1 items-center gap-3">
+              <div className="mt-2.5 rounded-[12px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#15171C] sm:p-2.5">
+                <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+                  <div className="flex min-w-0 items-center gap-3">
                     <button
                       type="button"
                       onClick={handleVoiceIdea}
                       disabled={voiceListening}
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-[#071f4d] text-white transition hover:bg-[#061735] disabled:cursor-wait disabled:opacity-70 sm:h-9 sm:w-9"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[9px] bg-[#071f4d] text-white transition hover:bg-[#061735] disabled:cursor-wait disabled:opacity-70 sm:h-8 sm:w-8"
                       aria-label={
                         voiceListening
                           ? "Listening for voice search"
@@ -771,20 +770,32 @@ export function HeroSection() {
                           ? 'Describe the land you need, e.g. "plot near main road"'
                           : 'Describe what you need, e.g. "3 bedrooms under 800k near school"'
                       }
-                      className="min-w-0 flex-1 bg-transparent text-sm font-bold leading-6 text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/45"
+                      className="min-w-0 flex-1 bg-transparent text-[0.86rem] font-bold leading-5 text-[#07152f] outline-none placeholder:text-[#6b7f9e] dark:text-white dark:placeholder:text-white/45"
                     />
                   </div>
 
-                  <div className="hidden">
-                    {requestExamples.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-[9px] border border-[#dce8f8] bg-white px-2.5 py-1.5 text-xs font-black text-[#6b7f9e] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/58"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    <div className="hidden min-w-0 items-center gap-2.5 lg:flex lg:min-w-[360px] lg:justify-end">
+                      <div className="flex shrink-0 -space-x-2">
+                        {trustAvatars.map((image, index) => (
+                          <span
+                            key={image}
+                            className="relative h-7 w-7 overflow-hidden rounded-full border-2 border-white bg-[var(--soft)] dark:border-[#15171C] sm:h-8 sm:w-8"
+                          >
+                            <Image
+                              src={image}
+                              alt={`Trusted UMURANGA advisor ${index + 1}`}
+                              fill
+                              sizes="32px"
+                              className="object-cover"
+                            />
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="min-w-0 text-[0.68rem] font-bold leading-4 text-[#344766] dark:text-white/70 sm:text-[0.72rem] sm:leading-4">
+                        Trusted by local renters, buyers, and property teams.
+                      </p>
+                    </div>
                 </div>
               </div>
 
