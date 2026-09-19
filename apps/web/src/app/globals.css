@@ -56,6 +56,21 @@
   box-sizing: border-box;
 }
 
+button:not(:disabled),
+a[href],
+select,
+summary,
+[role="button"],
+[role="link"] {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+
 html {
   scroll-behavior: smooth;
   background: var(--background);
