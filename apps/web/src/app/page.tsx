@@ -228,7 +228,7 @@ export default function HomePage() {
               id="management"
               className="border-t border-b border-[var(--line)] py-12 sm:py-14 lg:py-16"
             >
-              <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start xl:gap-16">
+              <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-center xl:gap-16">
                 <div className="reveal-child">
                   <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--primary)] dark:text-white/58">
                     Property operations
