@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import {
@@ -18,6 +18,7 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
+import { AsyncButton } from "@/components/async-button";
 import { HomeHeroHeader } from "@/components/home-hero-header";
 import { getPostLoginPath, useAuthUser } from "@/lib/auth";
 
@@ -445,6 +446,7 @@ function MobileAdvancedSearchPortal({
 export function HeroSection() {
   const router = useRouter();
   const user = useAuthUser();
+  const [isSearchPending, startSearchTransition] = useTransition();
 
   const [search, setSearch] = useState<SearchState>(initialSearchState);
   const [advancedOpen, setAdvancedOpen] = useState(false);
@@ -601,7 +603,9 @@ export function HeroSection() {
       params.set("features", search.advanced.join(","));
     }
 
-    router.push(`/search?${params.toString()}`);
+    startSearchTransition(() => {
+      router.push(`/search?${params.toString()}`);
+    });
   }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -674,7 +678,7 @@ export function HeroSection() {
                 <button
                   type="button"
                   onClick={goToSearch}
-                  className="hidden h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
+                    className="hidden h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] shadow-[0_8px_22px_rgba(7,31,77,0.08)] transition hover:-translate-y-0.5 hover:border-[#071f4d] hover:bg-white hover:shadow-[0_12px_28px_rgba(7,31,77,0.12)] dark:border-white/14 dark:bg-white/[0.06] dark:text-white/86 dark:shadow-none dark:hover:border-white/28 dark:hover:bg-white/[0.10] dark:hover:text-white sm:inline-flex"
                 >
                   <SlidersHorizontal size={15} />
                   {search.advanced.length > 0
@@ -730,13 +734,15 @@ export function HeroSection() {
                   />
                 </SearchField>
 
-                <button
+                <AsyncButton
                   type="submit"
+                  loading={isSearchPending}
+                  loadingText="Searching"
                   className="hidden h-[46px] cursor-pointer items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.92rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex lg:col-span-1"
                 >
                   <Search size={20} />
                   Search
-                </button>
+                </AsyncButton>
               </div>
 
               <div className="mt-2.5 rounded-[12px] border border-[#dce8f8] bg-[#f7faff]/82 p-2 dark:border-white/12 dark:bg-[#15171C] sm:p-2.5">
@@ -799,13 +805,15 @@ export function HeroSection() {
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:hidden"
-              >
-                <Search size={20} />
-                Search
-              </button>
+                <AsyncButton
+                  type="submit"
+                  loading={isSearchPending}
+                  loadingText="Searching"
+                  className="mt-3 flex h-[52px] w-full items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.95rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:hidden"
+                >
+                  <Search size={20} />
+                  Search
+                </AsyncButton>
 
               <details className="group mt-4 sm:hidden">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-black text-[#071f4d] transition hover:text-[#061735] dark:text-[#D8D1C5] dark:hover:text-white [&::-webkit-details-marker]:hidden">
