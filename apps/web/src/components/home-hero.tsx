@@ -195,7 +195,7 @@ function SelectInput({
         aria-label={ariaLabel}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className={`h-[46px] w-full appearance-none rounded-[11px] border border-[#dce8f8] bg-white ${
+        className={`h-[46px] w-full cursor-pointer appearance-none rounded-[11px] border border-[#dce8f8] bg-white ${
           icon ? "pl-12" : "pl-4"
         } pr-11 text-xs font-black text-[#07152f] outline-none transition duration-200 hover:border-[#071f4d] focus:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white sm:h-[50px] sm:rounded-[10px]`}
       >
@@ -332,7 +332,7 @@ function MobileAdvancedSearchPortal({
           <button
             type="button"
             onClick={onClose}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#dce8f8] bg-white text-[#07152f] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white"
+            className="cursor-pointer flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#dce8f8] bg-white text-[#07152f] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#15171C] dark:text-white"
             aria-label="Close filters"
           >
             <X size={18} />
@@ -419,7 +419,7 @@ function MobileAdvancedSearchPortal({
             <button
               type="button"
               onClick={clearAdvancedOptions}
-              className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
+              className="cursor-pointer h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] transition hover:border-[#071f4d] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
             >
               Clear
             </button>
@@ -432,7 +432,7 @@ function MobileAdvancedSearchPortal({
           <button
             type="button"
             onClick={onClose}
-            className="h-10 rounded-[10px] bg-[#071f4d] px-6 text-xs font-black text-white transition hover:bg-[#061735]"
+            className="cursor-pointer h-10 rounded-[10px] bg-[#071f4d] px-6 text-xs font-black text-white transition hover:bg-[#061735]"
           >
             Apply filters
           </button>
@@ -660,7 +660,7 @@ export function HeroSection() {
                   key={tab.label}
                   type="button"
                   onClick={() => updateSearch("mode", tab.label)}
-                  className={`flex h-[40px] items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[40px] sm:min-w-[108px] sm:gap-2 sm:rounded-[9px] sm:px-4 sm:text-[0.86rem] ${
+                  className={`flex h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[9px] px-3 text-[0.84rem] font-semibold transition sm:h-[40px] sm:min-w-[108px] sm:gap-2 sm:rounded-[9px] sm:px-4 sm:text-[0.86rem] ${
                     search.mode === tab.label
                       ? "bg-[#071f4d] text-white dark:bg-[#08285f]"
                       : "border border-[#e6edf7] bg-white text-[#344766] hover:bg-[#f6f9ff] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/86 dark:hover:bg-[#242832]"
@@ -674,7 +674,7 @@ export function HeroSection() {
                 <button
                   type="button"
                   onClick={goToSearch}
-                  className="hidden h-[40px] items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
+                  className="hidden h-[40px] cursor-pointer items-center justify-center gap-2 rounded-[8px] border border-[#dce8f8] bg-white/72 px-4 text-xs font-black text-[#071f4d] transition hover:border-[#071f4d] hover:bg-white dark:border-white/12 dark:bg-[#15171C] dark:text-[#D8D1C5] dark:hover:border-[#08285f] sm:inline-flex"
                 >
                   <SlidersHorizontal size={15} />
                   {search.advanced.length > 0
@@ -732,7 +732,7 @@ export function HeroSection() {
 
                 <button
                   type="submit"
-                  className="hidden h-[46px] items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.92rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex lg:col-span-1"
+                  className="hidden h-[46px] cursor-pointer items-center justify-center gap-2.5 rounded-[10px] bg-[#071f4d] px-7 text-[0.92rem] font-semibold text-white transition hover:bg-[#061735] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66] sm:col-span-2 sm:flex lg:col-span-1"
                 >
                   <Search size={20} />
                   Search
@@ -746,7 +746,7 @@ export function HeroSection() {
                       type="button"
                       onClick={handleVoiceIdea}
                       disabled={voiceListening}
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[9px] bg-[#071f4d] text-white transition hover:bg-[#061735] disabled:cursor-wait disabled:opacity-70 sm:h-8 sm:w-8"
+                      className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-[9px] bg-[#071f4d] text-white transition hover:bg-[#061735] disabled:cursor-wait disabled:opacity-70 sm:h-8 sm:w-8"
                       aria-label={
                         voiceListening
                           ? "Listening for voice search"
@@ -946,7 +946,7 @@ export function HeroSection() {
                     <button
                       type="button"
                       onClick={clearAdvancedOptions}
-                      className="h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
+                      className="cursor-pointer h-10 rounded-[10px] border border-[#dce8f8] bg-white px-4 text-xs font-black text-[#344766] dark:border-white/12 dark:bg-[#1B1E24] dark:text-white/74"
                     >
                       Clear
                     </button>
@@ -959,7 +959,7 @@ export function HeroSection() {
                   <button
                     type="button"
                     onClick={() => setAdvancedOpen(false)}
-                    className="h-10 rounded-[10px] bg-[#071f4d] px-6 text-xs font-black text-white transition hover:bg-[#061735]"
+                    className="cursor-pointer h-10 rounded-[10px] bg-[#071f4d] px-6 text-xs font-black text-white transition hover:bg-[#061735]"
                   >
                     Apply filters
                   </button>
