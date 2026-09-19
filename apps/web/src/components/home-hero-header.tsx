@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { CirclePlus, Menu, UserRound, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -105,21 +106,17 @@ export function HomeHeroHeader({
       <header
         className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b border-white/10 bg-[#08285f] px-3 py-2 text-white shadow-[0_8px_24px_rgba(7,21,47,0.16)] transition-colors duration-300 dark:border-white/10 dark:bg-[#08285f] sm:px-5`}
       >
-        <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[58px] sm:px-2 lg:h-[60px] lg:px-3 xl:grid-cols-[280px_minmax(0,1fr)_390px] xl:gap-7">
-          <Link href="/" className="flex min-w-0 items-center gap-3 sm:gap-4">
-            <span className="relative grid h-[36px] w-[36px] shrink-0 place-items-center rounded-[8px] border-[2px] border-white/85 text-white sm:h-[38px] sm:w-[38px] sm:rounded-[9px]">
-              <span className="absolute h-[2.5px] w-7 -rotate-35 rounded-full bg-white sm:w-8" />
-              <span className="absolute h-[2.5px] w-7 rotate-35 rounded-full bg-white sm:w-8" />
-            </span>
+        <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[64px] sm:px-2 lg:h-[70px] lg:px-3 xl:grid-cols-[340px_minmax(0,1fr)_390px] xl:gap-7">
+          <Link href="/" className="flex w-fit min-w-0 items-center">
+              <Image
+                src="/images/umurangalogo-white.png"
+                alt="UMURANGA logo"
+                width={300}
+                height={100}
+                priority
+                className="h-[46px] w-auto object-contain sm:h-[52px] lg:h-[56px]"
+              />
 
-            <span className="min-w-0 leading-none">
-              <span className="block whitespace-nowrap text-[0.98rem] font-black uppercase tracking-[0.15em] text-white min-[380px]:text-[1.05rem] sm:text-[1.16rem] xl:text-[1.28rem]">
-                UMURANGA
-              </span>
-              <span className="mt-1 block whitespace-nowrap text-[0.52rem] font-black uppercase tracking-[0.28em] text-white/72 sm:text-[0.58rem] xl:text-[0.62rem]">
-                Real Estate
-              </span>
-            </span>
           </Link>
 
           <nav className="hidden h-[40px] w-fit items-center justify-center gap-7 justify-self-center whitespace-nowrap px-4 text-[0.82rem] font-black text-white/88 transition xl:flex">
