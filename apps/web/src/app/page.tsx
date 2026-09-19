@@ -178,19 +178,19 @@ export default function HomePage() {
 
         <ScrollReveal className="mt-8 sm:mt-10" staggerChildren>
           <section id="properties">
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
                     Featured verified listings
                   </h2>
-                  <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--muted)]">
-                    Curated homes, land, and commercial spaces with clear pricing, location, and essential property details.
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+                    Verified homes, land, and commercial spaces with clear pricing, location, and key details.
                   </p>
               </div>
 
               <Link
                 href="/search"
-                className="w-fit whitespace-nowrap rounded-lg border border-[var(--line)] px-4 py-2 text-xs font-bold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)] dark:hover:text-white"
+                className="inline-flex h-9 w-fit items-center justify-center whitespace-nowrap rounded-[9px] border border-[var(--line)] px-4 text-xs font-black text-[var(--foreground)] transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)] dark:hover:text-white"
               >
                 View all listings
               </Link>
@@ -200,10 +200,10 @@ export default function HomePage() {
               {categories.map((category, index) => (
                 <button
                   key={category}
-                  className={`min-h-10 rounded-[10px] px-3.5 py-2 text-xs font-bold transition sm:px-4 ${
+                  className={`min-h-9 rounded-[9px] px-3.5 py-2 text-xs font-black transition sm:px-4 ${
                     index === 0
                       ? "bg-[var(--primary)] text-white shadow-sm dark:bg-[var(--primary)] dark:text-white"
-                      : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
+                      : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:border-[var(--primary)]/35 hover:bg-[var(--card)] hover:text-[var(--foreground)]"
                   }`}
                 >
                   {category}

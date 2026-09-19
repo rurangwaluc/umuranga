@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,7 +12,8 @@ import {
   Ruler,
   ShieldCheck,
 } from "lucide-react";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { KeyboardEvent, MouseEvent, useState } from "react";
 
 export type VerifiedPropertyCardItem = {
   images: string[];
@@ -34,8 +34,24 @@ type VerifiedPropertyCardProps = {
 };
 
 export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
+  const router = useRouter();
   const [activeImage, setActiveImage] = useState(0);
   const imageCount = item.images.length;
+
+  function openProperty() {
+    router.push(item.href);
+  }
+
+  function openPropertyWithKeyboard(event: KeyboardEvent<HTMLElement>) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProperty();
+    }
+  }
+
+  function stopCardClick(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+  }
 
   function previousImage() {
     setActiveImage((current) => (current === 0 ? imageCount - 1 : current - 1));
@@ -46,15 +62,29 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
   }
 
   return (
-    <article className="reveal-child group overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] dark:shadow-none dark:hover:border-white/18 dark:hover:shadow-none">
+    <article
+      role="link"
+      tabIndex={0}
+      aria-label={`Open ${item.title}`}
+      onClick={openProperty}
+      onKeyDown={openPropertyWithKeyboard}
+      className="reveal-child group cursor-pointer overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] outline-none transition duration-300 hover:-translate-y-0.5 hover:border-[var(--primary)]/30 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] focus-visible:ring-2 focus-visible:ring-[var(--primary)]/45 dark:shadow-none dark:hover:border-white/18 dark:hover:shadow-none"
+    >
       <div className="relative h-[232px] overflow-hidden rounded-[12px] bg-[var(--soft)] sm:h-[252px]">
-        <Image
-          src={item.images[activeImage]}
-          alt={`${item.title} photo ${activeImage + 1}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
-        />
+        {item.images.map((image, index) => (
+          <Image
+            key={image}
+            src={image}
+            alt={`${item.title} photo ${index + 1}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className={`object-cover object-center transition-[opacity,transform] duration-500 ease-out ${
+              activeImage === index
+                ? "opacity-100 scale-100 group-hover:scale-[1.03]"
+                : "opacity-0 scale-[1.015]"
+            }`}
+          />
+        ))}
 
         <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3">
           <div className="inline-flex items-center gap-1.5 rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-black text-[#07152f] shadow-[0_10px_28px_rgba(0,0,0,0.14)]">
@@ -72,7 +102,10 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
             <button
               type="button"
               aria-label={`Previous image for ${item.title}`}
-              onClick={previousImage}
+              onClick={(event) => {
+                  stopCardClick(event);
+                  previousImage();
+                }}
               className="absolute left-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
             >
               <ArrowLeft size={15} />
@@ -81,67 +114,59 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
             <button
               type="button"
               aria-label={`Next image for ${item.title}`}
-              onClick={nextImage}
+              onClick={(event) => {
+                  stopCardClick(event);
+                  nextImage();
+                }}
               className="absolute right-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
             >
               <ArrowRight size={15} />
             </button>
 
-            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/14 bg-black/40 px-2.5 py-1.5 backdrop-blur-md">
-              {item.images.map((image, index) => (
-                <button
-                  key={`${image}-${index}`}
-                  type="button"
-                  aria-label={`Show image ${index + 1} for ${item.title}`}
-                  onClick={() => setActiveImage(index)}
-                  className={`h-1.5 rounded-full transition ${
-                    activeImage === index ? "w-5 bg-white" : "w-1.5 bg-white/48 hover:bg-white/75"
-                  }`}
-                />
-              ))}
+            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/14 bg-black/42 px-2.5 py-1.5 text-[10px] font-black text-white backdrop-blur-md">
+              <span>{activeImage + 1}</span>
+              <span className="h-1 w-1 rounded-full bg-white/45" />
+              <span>{imageCount}</span>
             </div>
           </>
         ) : null}
       </div>
 
       <div className="px-2.5 pb-2.5 pt-3.5">
-        <div className="mb-2.5 flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <p className="text-[1.08rem] font-black tracking-[-0.035em] text-[var(--foreground)] sm:text-[1.15rem]">
-              {item.price}
-              <span className="ml-1 text-[11px] font-bold text-[var(--muted)]">
-                /month
-              </span>
-            </p>
-            <p className="mt-1 inline-flex max-w-full items-center gap-1.5 truncate text-[11px] font-semibold text-[var(--muted)]">
-              <MapPin size={12} />
-              <span className="truncate">{item.location}</span>
-            </p>
-          </div>
-
-          <Link
-            href={item.href}
-            className="inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-[var(--line)] px-3 text-[11px] font-black text-[var(--foreground)] transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)]"
-          >
-            View
-          </Link>
+        <div className="min-w-0">
+          <h3 className="line-clamp-1 text-[0.95rem] font-black tracking-[-0.015em] text-[var(--foreground)]">
+            {item.title}
+          </h3>
+          <p className="mt-1 inline-flex max-w-full items-center gap-1.5 truncate text-[11px] font-semibold text-[var(--muted)]">
+            <MapPin size={12} />
+            <span className="truncate">{item.location}</span>
+          </p>
         </div>
 
-        <h3 className="line-clamp-1 text-[0.92rem] font-black tracking-[-0.015em] text-[var(--foreground)]">
-          {item.title}
-        </h3>
+        <div className="mt-3 flex items-center justify-between gap-3">
+          <p className="min-w-0 text-[1.1rem] font-black tracking-[-0.035em] text-[var(--foreground)] sm:text-[1.16rem]">
+            {item.price}
+            <span className="ml-1 text-[11px] font-bold text-[var(--muted)]">
+              /month
+            </span>
+          </p>
 
-        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-[var(--line)] pt-3 text-[11px] font-bold text-[var(--muted)] sm:grid-cols-4">
-          <span className="inline-flex items-center gap-1.5">
+          <span className="inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-[var(--line)] px-3 text-[11px] font-black text-[var(--foreground)] transition group-hover:border-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white dark:group-hover:bg-[var(--primary)]">
+            View
+          </span>
+        </div>
+
+        <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[var(--line)] pt-3 text-[11px] font-bold text-[var(--muted)] sm:grid-cols-4">
+          <span className="inline-flex min-w-0 items-center gap-1.5 truncate rounded-md bg-[var(--soft)] px-2 py-1.5">
             <BedDouble size={13} /> {item.beds}
           </span>
-          <span className="inline-flex items-center gap-1.5">
+          <span className="inline-flex min-w-0 items-center gap-1.5 truncate rounded-md bg-[var(--soft)] px-2 py-1.5">
             <Bath size={13} /> {item.baths}
           </span>
-          <span className="inline-flex items-center gap-1.5">
+          <span className="inline-flex min-w-0 items-center gap-1.5 truncate rounded-md bg-[var(--soft)] px-2 py-1.5">
             <Ruler size={13} /> {item.area}
           </span>
-          <span className="inline-flex items-center gap-1.5">
+          <span className="inline-flex min-w-0 items-center gap-1.5 truncate rounded-md bg-[var(--soft)] px-2 py-1.5">
             {item.extra.toLowerCase().includes("parking") ? <Car size={13} /> : <Expand size={13} />}
             {item.extra}
           </span>
