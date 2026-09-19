@@ -3,8 +3,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  Bath,
-  BedDouble,
   Building2,
   MapPin,
   ShieldCheck,
@@ -13,65 +11,96 @@ import {
 import { HeroSection } from "@/components/home-hero";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { SiteFooter } from "@/components/site-footer";
+import { VerifiedPropertyCard } from "@/components/verified-property-card";
 
 const categories = [
-  "All Type",
-  "House",
-  "Apartment",
-  "Villa",
-  "Duplex",
+  "All",
+  "Homes",
+  "Apartments",
+  "Villas",
+  "Duplexes",
   "Land",
   "Commercial",
 ];
 
 const propertyCards = [
   {
-    image: "/images/home/property-1.webp",
+    images: ["/images/home/property-1.webp", "/images/home/property-2.webp", "/images/home/property-3.webp"],
     title: "Modern Luxury House with Pool",
     price: "RWF 2,400,000",
     location: "KG 12 Ave, Kigali, Rwanda",
     beds: "3 beds",
-    baths: "2 bathrooms",
+    baths: "2 baths",
+    area: "320 sqm",
+    extra: "Parking",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/modern-luxury-house-with-pool",
   },
   {
-    image: "/images/home/property-2.webp",
+    images: ["/images/home/property-2.webp", "/images/home/property-5.webp", "/images/home/property-1.webp"],
     title: "Bright Villa Near Nyarutarama",
     price: "RWF 2,400,000",
     location: "Nyarutarama, Kigali",
     beds: "4 beds",
-    baths: "3 bathrooms",
+    baths: "3 baths",
+    area: "410 sqm",
+    extra: "Parking",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/bright-villa-near-nyarutarama",
   },
   {
-    image: "/images/home/property-3.webp",
+    images: ["/images/home/property-3.webp", "/images/home/property-6.webp", "/images/home/property-4.webp"],
     title: "Modern Home at Dusk",
     price: "RWF 2,400,000",
     location: "Kacyiru, Kigali",
     beds: "5 beds",
-    baths: "4 bathrooms",
+    baths: "4 baths",
+    area: "460 sqm",
+    extra: "Parking",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/modern-home-at-dusk",
   },
   {
-    image: "/images/home/property-4.webp",
+    images: ["/images/home/property-4.webp", "/images/home/property-1.webp", "/images/home/property-5.webp"],
     title: "Waterfront Inspired Residence",
     price: "RWF 2,400,000",
     location: "Lake view concept",
     beds: "3 beds",
-    baths: "2 bathrooms",
+    baths: "2 baths",
+    area: "285 sqm",
+    extra: "Garden",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/waterfront-inspired-residence",
   },
   {
-    image: "/images/home/property-5.webp",
+    images: ["/images/home/property-5.webp", "/images/home/property-3.webp", "/images/home/property-2.webp"],
     title: "Family Home with Garden",
     price: "RWF 2,400,000",
     location: "Kibagabaga, Kigali",
     beds: "4 beds",
-    baths: "3 bathrooms",
+    baths: "3 baths",
+    area: "360 sqm",
+    extra: "Garden",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/family-home-with-garden",
   },
   {
-    image: "/images/home/property-6.webp",
+    images: ["/images/home/property-6.webp", "/images/home/property-4.webp", "/images/home/property-3.webp"],
     title: "Premium Green Residence",
     price: "RWF 2,400,000",
     location: "Kimihurura, Kigali",
     beds: "5 beds",
-    baths: "4 bathrooms",
+    baths: "4 baths",
+    area: "520 sqm",
+    extra: "Parking",
+    status: "Verified",
+    type: "For Sale",
+    href: "/property/premium-green-residence",
   },
 ];
 
@@ -139,54 +168,6 @@ const managementCards = [
 ];
 
 
-function PropertyCard({ item }: { item: (typeof propertyCards)[number] }) {
-  return (
-    <article className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-2 shadow-[0_18px_55px_rgba(7,21,47,0.06)] transition duration-200 hover:-translate-y-0.5 hover:border-[var(--primary)]/35 hover:shadow-[0_24px_70px_rgba(7,21,47,0.1)] dark:shadow-none dark:hover:shadow-none">
-      <div className="relative h-[220px] overflow-hidden rounded-[14px] bg-[var(--soft)] sm:h-[244px]">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-center"
-        />
-
-        <div className="absolute left-3 top-3 rounded-md bg-white/92 px-2.5 py-1 text-[11px] font-black text-[#07152f]">
-          For Sale
-        </div>
-      </div>
-
-      <div className="px-2 py-3">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <p className="text-base font-semibold sm:text-lg">
-            {item.price}
-            <span className="text-xs text-[var(--muted)]">/month</span>
-          </p>
-
-          <button className="whitespace-nowrap rounded-md border border-[var(--line)] px-3 py-1.5 text-xs font-semibold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)] dark:hover:text-white">
-            View
-          </button>
-        </div>
-
-        <h3 className="text-sm font-semibold">{item.title}</h3>
-        <p className="mt-1 text-[11px] text-[var(--muted)]">
-          {item.location}
-        </p>
-
-        <div className="mt-3 flex items-center gap-4 border-t border-[var(--line)] pt-3 text-[11px] text-[var(--muted)]">
-          <span className="inline-flex items-center gap-1">
-            <BedDouble size={13} /> {item.beds}
-          </span>
-          <span className="inline-flex items-center gap-1">
-            <Bath size={13} /> {item.baths}
-          </span>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -200,7 +181,7 @@ export default function HomePage() {
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
-                  Latest verified property
+                  Featured verified homes
                 </h2>
               </div>
 
@@ -212,11 +193,11 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
+            <div className="mb-6 flex flex-wrap gap-2 sm:gap-2.5">
               {categories.map((category, index) => (
                 <button
                   key={category}
-                  className={`min-h-10 shrink-0 rounded-[10px] px-4 py-2 text-xs font-bold transition ${
+                  className={`min-h-10 rounded-[10px] px-3.5 py-2 text-xs font-bold transition sm:px-4 ${
                     index === 0
                       ? "bg-[var(--primary)] text-white shadow-sm dark:bg-[var(--primary)] dark:text-white"
                       : "border border-[var(--line)] bg-[var(--soft)] text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
@@ -229,7 +210,7 @@ export default function HomePage() {
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {propertyCards.map((item) => (
-                <PropertyCard key={item.title} item={item} />
+                <VerifiedPropertyCard key={item.title} item={item} />
               ))}
             </div>
           </section>
