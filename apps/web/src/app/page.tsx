@@ -150,20 +150,24 @@ const operatorCards = [
 
 const managementCards = [
   {
+    label: "Listing file",
     title: "Listings",
-    text: "Publish, update, pause, and review property listings from one place.",
+    text: "Price, status, availability, owner details, and viewing readiness stay clear.",
   },
   {
+    label: "Tenant file",
     title: "Tenants",
-    text: "Keep tenant records, contacts, rent status, and property history organized.",
+    text: "Contacts, documents, lease notes, rent status, and property history stay together.",
   },
   {
-    title: "Rent payments",
-    text: "Track expected rent, paid rent, unpaid balances, and payment follow-up.",
+    label: "Rent follow-up",
+    title: "Rent",
+    text: "Expected rent, paid rent, late balances, and follow-up notes stay visible.",
   },
   {
+    label: "Work log",
     title: "Maintenance",
-    text: "Log requests, assign work, and keep owners or tenants updated faster.",
+    text: "Requests, responsible people, progress, and communication history stay organized.",
   },
 ];
 
@@ -220,55 +224,78 @@ export default function HomePage() {
         </ScrollReveal>
 
         <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
-          <section
-            id="management"
-            className="border-t border-[var(--line)] pt-12 sm:pt-14 lg:pt-16"
-          >
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div className="reveal-child">
-                <h2 className="max-w-2xl text-3xl font-semibold leading-[1.04] tracking-[-0.05em] sm:text-4xl lg:text-5xl">
-                  Manage property without chasing people every day.
-                </h2>
-                <p className="mt-5 max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
-                  UMURANGA helps owners, landlords, agencies, and property teams keep listings,
-                  tenants, rent, and maintenance work organized.
-                </p>
+            <section
+              id="management"
+              className="border-t border-b border-[var(--line)] py-12 sm:py-14 lg:py-16"
+            >
+              <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start xl:gap-16">
+                <div className="reveal-child">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--primary)] dark:text-white/58">
+                    Property operations
+                  </p>
 
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href="/signup"
-                    className="inline-flex h-12 items-center justify-center rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:opacity-90 dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
-                  >
-                    List or manage property
-                  </Link>
-                  <Link
-                    href="/search"
-                    className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[var(--line)] px-5 text-sm font-bold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:border-white/18 dark:hover:bg-[#071F4D] dark:hover:text-white"
-                  >
-                    Search properties
-                  </Link>
+                  <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.03] tracking-[-0.055em] sm:text-4xl lg:text-5xl">
+                    Manage property work without losing track.
+                  </h2>
+
+                  <p className="mt-5 max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
+                    UMURANGA helps property teams keep the daily work clear: what is listed,
+                    who is renting, what has been paid, and what still needs attention.
+                  </p>
+
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <Link
+                      href="/signup"
+                      className="inline-flex h-12 items-center justify-center rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+                    >
+                      List or manage property
+                    </Link>
+                    <Link
+                      href="/search"
+                      className="inline-flex h-12 items-center justify-center rounded-[9px] border border-[var(--line)] bg-transparent px-5 text-sm font-bold transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:border-white/12 dark:hover:border-white/22 dark:hover:bg-white/[0.08] dark:hover:text-white"
+                    >
+                      Search properties
+                    </Link>
+                  </div>
                 </div>
-              </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {managementCards.map((item) => (
-                  <div
-                    key={item.title}
-                    className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-5 shadow-[0_14px_40px_rgba(7,21,47,0.045)] dark:shadow-none"
-                  >
-                    <p className="text-base font-semibold">{item.title}</p>
-                    <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                      {item.text}
+                <div className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-4 shadow-[0_18px_55px_rgba(7,21,47,0.055)] dark:bg-[#15171C] dark:shadow-none sm:p-5">
+                  <div className="border-b border-[var(--line)] px-2 pb-5 pt-1 sm:px-3">
+                    <p className="text-sm font-black tracking-[-0.01em]">
+                      Property operations file
+                    </p>
+                    <p className="mt-1 text-xs font-bold leading-5 text-[var(--muted)]">
+                      A clearer structure for the work owners and property teams handle every day.
                     </p>
                   </div>
-                ))}
+
+                  <div className="divide-y divide-[var(--line)]">
+                    {managementCards.map((item) => (
+                      <div
+                        key={item.title}
+                        className="grid gap-4 px-2 py-5 transition hover:bg-[var(--soft)] dark:hover:bg-white/[0.035] sm:grid-cols-[170px_minmax(0,1fr)] sm:px-3"
+                      >
+                        <div>
+                          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">
+                            {item.label}
+                          </p>
+                          <p className="mt-2 text-lg font-black tracking-[-0.03em]">
+                            {item.title}
+                          </p>
+                        </div>
+
+                        <p className="max-w-[520px] text-sm font-bold leading-6 text-[var(--muted)]">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          </section>
-        </ScrollReveal>
+            </section>
+          </ScrollReveal>
 
-
-        <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
+          <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
           <section className="border-t border-[var(--line)] pt-14 sm:pt-16 lg:pt-20">
             <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
               <div className="reveal-child">
