@@ -46,23 +46,23 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
   }
 
   return (
-    <article className="reveal-child group overflow-hidden rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-[var(--primary)]/40 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] dark:shadow-none dark:hover:shadow-none">
-      <div className="relative h-[226px] overflow-hidden rounded-[14px] bg-[var(--soft)] sm:h-[246px]">
+    <article className="reveal-child group overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--card)] p-2.5 shadow-[0_18px_55px_rgba(7,21,47,0.06)] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_24px_70px_rgba(7,21,47,0.12)] dark:shadow-none dark:hover:border-white/18 dark:hover:shadow-none">
+      <div className="relative h-[232px] overflow-hidden rounded-[12px] bg-[var(--soft)] sm:h-[252px]">
         <Image
           src={item.images[activeImage]}
           alt={`${item.title} photo ${activeImage + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover object-center transition duration-500 group-hover:scale-[1.025]"
+          className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
         />
 
         <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3">
-          <div className="inline-flex items-center gap-1.5 rounded-md bg-white/94 px-2.5 py-1 text-[10px] font-black text-[#07152f] shadow-[0_10px_30px_rgba(0,0,0,0.16)]">
+          <div className="inline-flex items-center gap-1.5 rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-black text-[#07152f] shadow-[0_10px_28px_rgba(0,0,0,0.14)]">
             <ShieldCheck size={12} />
             {item.status}
           </div>
 
-          <div className="rounded-md bg-black/48 px-2.5 py-1 text-[10px] font-black text-white backdrop-blur-md">
+          <div className="rounded-md border border-white/18 bg-black/46 px-2.5 py-1 text-[10px] font-black text-white backdrop-blur-md">
             {item.type}
           </div>
         </div>
@@ -73,7 +73,7 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
               type="button"
               aria-label={`Previous image for ${item.title}`}
               onClick={previousImage}
-              className="absolute left-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/42 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:opacity-0 sm:group-hover:opacity-100"
+              className="absolute left-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
             >
               <ArrowLeft size={15} />
             </button>
@@ -82,12 +82,12 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
               type="button"
               aria-label={`Next image for ${item.title}`}
               onClick={nextImage}
-              className="absolute right-3 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border border-white/30 bg-black/42 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:opacity-0 sm:group-hover:opacity-100"
+              className="absolute right-3 top-1/2 grid h-7 w-7 -translate-y-1/2 place-items-center rounded-full border border-white/24 bg-black/38 text-white opacity-100 backdrop-blur-md transition hover:bg-black/62 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
             >
               <ArrowRight size={15} />
             </button>
 
-            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-black/42 px-2.5 py-1.5 backdrop-blur-md">
+            <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/14 bg-black/40 px-2.5 py-1.5 backdrop-blur-md">
               {item.images.map((image, index) => (
                 <button
                   key={`${image}-${index}`}
@@ -104,10 +104,10 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
         ) : null}
       </div>
 
-      <div className="px-2.5 pb-2 pt-3.5">
+      <div className="px-2.5 pb-2.5 pt-3.5">
         <div className="mb-2.5 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[1.05rem] font-black tracking-[-0.03em] text-[var(--foreground)] sm:text-[1.12rem]">
+            <p className="text-[1.08rem] font-black tracking-[-0.035em] text-[var(--foreground)] sm:text-[1.15rem]">
               {item.price}
               <span className="ml-1 text-[11px] font-bold text-[var(--muted)]">
                 /month
@@ -127,11 +127,11 @@ export function VerifiedPropertyCard({ item }: VerifiedPropertyCardProps) {
           </Link>
         </div>
 
-        <h3 className="line-clamp-1 text-sm font-black tracking-[-0.01em] text-[var(--foreground)]">
+        <h3 className="line-clamp-1 text-[0.92rem] font-black tracking-[-0.015em] text-[var(--foreground)]">
           {item.title}
         </h3>
 
-        <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[var(--line)] pt-3 text-[11px] font-bold text-[var(--muted)] sm:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-[var(--line)] pt-3 text-[11px] font-bold text-[var(--muted)] sm:grid-cols-4">
           <span className="inline-flex items-center gap-1.5">
             <BedDouble size={13} /> {item.beds}
           </span>

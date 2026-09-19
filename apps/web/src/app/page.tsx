@@ -181,15 +181,18 @@ export default function HomePage() {
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-4xl">
-                  Featured verified homes
-                </h2>
+                    Featured verified listings
+                  </h2>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-[var(--muted)]">
+                    Curated homes, land, and commercial spaces with clear pricing, location, and essential property details.
+                  </p>
               </div>
 
               <Link
-                href="/signup"
+                href="/search"
                 className="w-fit whitespace-nowrap rounded-lg border border-[var(--line)] px-4 py-2 text-xs font-bold transition hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[var(--primary)] dark:hover:text-white"
               >
-                See all
+                View all listings
               </Link>
             </div>
 
