@@ -296,108 +296,97 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal className="mt-16 sm:mt-20" staggerChildren>
-          <section className="border-t border-[var(--line)] pt-14 sm:pt-16 lg:pt-20">
-            <div className="grid gap-8 xl:grid-cols-[0.9fr_1.1fr]">
-              <div className="reveal-child">
-
-                <h2 className="max-w-xl text-3xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-4xl lg:text-5xl">
-                  Trust, verification, and cleaner property decisions.
-                </h2>
-
-                <div className="relative mt-7 h-[300px] overflow-hidden rounded-[20px] bg-[var(--soft)] sm:h-[360px] lg:h-[420px] xl:h-[460px]">
-                  <Image
-                    src="/images/home/trust-verified-property.webp"
-                    alt="Verified premium property in Rwanda"
-                    fill
-                    sizes="(max-width: 1280px) 100vw, 42vw"
-                    className="object-cover object-center"
-                  />
-
-                  <div className="absolute inset-x-4 bottom-4 rounded-[1.3rem] bg-black/45 p-4 text-white backdrop-blur-md">
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck size={18} />
-                      <p className="text-sm font-semibold">
-                        Verification before visibility
-                      </p>
-                    </div>
-                    <p className="mt-2 text-xs leading-5 text-white/75">
-                      Built for listings that can be trusted, reviewed, and
-                      managed professionally.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid content-start gap-5">
-                <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                  {operatorCards.map((item) => (
-                    <div
-                      key={item.title}
-                      className="reveal-child rounded-[1.1rem] border border-[var(--line)] bg-[var(--card)] p-3 text-center shadow-[0_14px_40px_rgba(7,21,47,0.045)] transition dark:shadow-none sm:rounded-[1.35rem] sm:p-5 sm:text-left"
-                    >
-                      <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--card)] text-[var(--foreground)] sm:mx-0 sm:mb-5 sm:h-11 sm:w-11">
-                        <item.icon size={17} />
-                      </div>
-                      <p className="text-sm font-semibold tracking-[-0.03em] sm:text-2xl sm:tracking-[-0.04em]">
-                        {item.title}
-                      </p>
-                      <p className="mt-1 text-[10px] font-medium leading-4 text-[var(--muted)] sm:text-sm">
-                        {item.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="reveal-child rounded-[22px] border border-[var(--line)] bg-[var(--card)] p-6 shadow-[0_20px_70px_rgba(7,21,47,0.06)] dark:shadow-none sm:p-8 lg:p-10">
-                  <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h3 className="max-w-2xl text-2xl font-medium leading-[1.12] tracking-[-0.04em] sm:text-3xl lg:text-4xl">
-                        Connecting verified listings with renters, buyers, owners, and operators.
-                      </h3>
-                    </div>
-
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--primary)] text-white dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white">
-                      <ArrowRight size={20} />
-                    </div>
-                  </div>
-
-                  <p className="max-w-3xl text-sm leading-7 text-[var(--muted)] sm:text-base">
-                    UMURANGA is built around verified actors, reviewed listings, clearer
-                    property information, and faster next steps.
+            <section className="border-t border-[var(--line)] pt-14 sm:pt-16 lg:pt-20">
+              <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr] xl:items-stretch">
+                <div className="reveal-child">
+                  <p className="text-xs font-black uppercase tracking-[0.24em] text-[var(--primary)] dark:text-white/58">
+                    Before you visit
                   </p>
 
-                  <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                    {[
-                      "Verified owners and agents",
-                      "Reviewed property listings",
-                      "Clear contact and viewing steps",
-                    ].map((item) => (
+                  <h2 className="mt-4 max-w-xl text-3xl font-semibold leading-[1.02] tracking-[-0.055em] sm:text-4xl lg:text-5xl">
+                    Know what is real before you take the next step.
+                  </h2>
+
+                  <div className="relative mt-7 h-[340px] overflow-hidden rounded-[16px] border border-[var(--line)] bg-[var(--soft)] shadow-[0_22px_70px_rgba(7,21,47,0.08)] dark:shadow-none sm:h-[420px] xl:h-[480px]">
+                    <Image
+                      src="/images/home/trust-property-real.webp"
+                      alt="Verified property listing on UMURANGA"
+                      fill
+                      sizes="(max-width: 1280px) 100vw, 42vw"
+                      className="object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+
+                  </div>
+                </div>
+
+                <div className="grid content-start gap-4">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                    {operatorCards.map((item) => (
                       <div
-                        key={item}
-                        className="rounded-[12px] border border-[var(--line)] bg-[var(--soft)] px-4 py-3 text-sm font-semibold"
+                        key={item.title}
+                        className="reveal-child rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-4 transition hover:-translate-y-0.5 hover:border-[var(--primary)]/25 hover:shadow-[0_16px_42px_rgba(7,21,47,0.07)] dark:bg-[#15171C] dark:hover:border-white/18 dark:hover:shadow-none sm:p-5"
                       >
-                        {item}
+                        <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-[10px] border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] dark:border-white/10 dark:bg-white/[0.04]">
+                          <item.icon size={17} />
+                        </div>
+                        <p className="text-sm font-black tracking-[-0.03em] sm:text-2xl sm:tracking-[-0.04em]">
+                          {item.title}
+                        </p>
+                        <p className="mt-1 text-[10px] font-bold leading-4 text-[var(--muted)] sm:text-sm">
+                          {item.label}
+                        </p>
                       </div>
                     ))}
                   </div>
 
-                  <Link
-                    href="/signup"
-                    className="mt-8 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--primary)] px-6 py-3 text-sm font-bold text-white transition dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
-                  >
-                    Start with UMURANGA
-                    <ArrowRight size={16} />
-                  </Link>
+                  <div className="reveal-child rounded-[18px] border border-[var(--line)] bg-[var(--card)] p-6 shadow-[0_20px_70px_rgba(7,21,47,0.06)] dark:bg-[#15171C] dark:shadow-none sm:p-8 lg:p-10">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[var(--primary)] dark:text-white/58">
+                      Before visibility
+                    </p>
+
+                    <h3 className="mt-4 max-w-2xl text-2xl font-semibold leading-[1.1] tracking-[-0.045em] sm:text-3xl lg:text-4xl">
+                      Clearer property decisions start with better information.
+                    </h3>
+
+                    <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--muted)] sm:text-base">
+                      UMURANGA helps people understand who is involved, what is being offered,
+                      and what to do next before they visit or commit.
+                    </p>
+
+                    <div className="mt-7 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+                      {[
+                        ["Actor clarity", "Know whether you are dealing with an owner, landlord, agent, or agency."],
+                        ["Listing quality", "See cleaner pricing, location, property details, and viewing context."],
+                        ["Next step confidence", "Understand the next step before calling, visiting, or paying."],
+                      ].map(([title, text]) => (
+                        <div key={title} className="grid gap-2 py-4 sm:grid-cols-[160px_minmax(0,1fr)]">
+                          <p className="text-sm font-black tracking-[-0.02em]">
+                            {title}
+                          </p>
+                          <p className="text-sm font-bold leading-6 text-[var(--muted)]">
+                            {text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Link
+                      href="/signup"
+                      className="mt-8 inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-[9px] bg-[var(--primary)] px-5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+                    >
+                      Start with UMURANGA
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </ScrollReveal>
+            </section>
+          </ScrollReveal>
+</div>
 
-
-        </div>
-
-        <SiteFooter />
+          <SiteFooter />
       </div>
     </main>
   );
