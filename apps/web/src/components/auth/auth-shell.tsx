@@ -1,154 +1,267 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Home, Search, ShieldCheck } from "lucide-react";
-import { MobileMenu } from "@/components/mobile-menu";
+import { CirclePlus, Menu, UserRound, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+const MENU_ANIMATION_MS = 260;
+
 type AuthShellProps = {
-  eyebrow: string;
   title: string;
   description: string;
   activePage: "login" | "signup";
   children: React.ReactNode;
 };
 
+const navLinks = [
+  ["Buy", "/search?purpose=buy"],
+  ["Rent", "/search?purpose=rent"],
+  ["Land", "/search?type=land"],
+  ["Agents", "/agent"],
+  ["Agencies", "/agency"],
+];
+
 export function AuthShell({
-  eyebrow,
   title,
   description,
   activePage,
   children,
 }: AuthShellProps) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileMounted, setMobileMounted] = useState(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const headerAction =
     activePage === "login"
-      ? {
-          label: "Create Account",
-          href: "/signup",
-        }
-      : {
-          label: "Sign In",
-          href: "/login",
-        };
+      ? { label: "Create account", href: "/signup" }
+      : { label: "Sign in", href: "/login" };
+
+  useEffect(() => {
+    if (!mobileMounted) return;
+
+    const body = document.body;
+    const root = document.documentElement;
+    const originalRootOverflow = root.style.overflow;
+    const originalBodyOverflow = body.style.overflow;
+
+    root.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+
+    return () => {
+      root.style.overflow = originalRootOverflow;
+      body.style.overflow = originalBodyOverflow;
+    };
+  }, [mobileMounted]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  function openMobileMenu() {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+
+    setMobileMounted(true);
+    window.requestAnimationFrame(() => setMobileOpen(true));
+  }
+
+  function closeMobileMenu() {
+    setMobileOpen(false);
+
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+
+    closeTimerRef.current = setTimeout(() => {
+      setMobileMounted(false);
+    }, MENU_ANIMATION_MS);
+  }
+
+  function toggleMobileMenu() {
+    if (mobileOpen) {
+      closeMobileMenu();
+      return;
+    }
+
+    openMobileMenu();
+  }
 
   return (
-    <main className="min-h-screen bg-[var(--background)] px-2 py-2 text-[var(--foreground)] sm:px-4 lg:px-5">
-      <section className="mx-auto min-h-[calc(100vh-1rem)] w-full max-w-[1500px] overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[var(--card)] shadow-[0_24px_90px_rgba(0,0,0,0.08)] dark:shadow-[0_24px_90px_rgba(0,0,0,0.35)]">
-        <header className="relative z-30 flex items-center justify-between gap-3 border-b border-[var(--line)] bg-[var(--card)] px-4 py-3 sm:px-6 lg:px-8">
-          <Link
-            href="/"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--soft)] px-3 py-2 text-sm font-black text-[var(--foreground)] transition hover:-translate-y-0.5"
-          >
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]">
-              <Home size={15} />
-            </span>
-            UMURANGA
-          </Link>
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <section className="grid min-h-screen lg:h-screen lg:grid-cols-[0.8fr_1.2fr] lg:overflow-hidden">
+        <aside className="relative hidden overflow-hidden bg-[#071F4D] lg:block">
+          <Image
+            src="/images/home/herosectionbg.webp"
+            alt="UMURANGA property"
+            fill
+            priority
+            sizes="42vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[#071F4D]/78" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-[#071F4D]/18 to-[#020817]/82" />
 
-          <nav className="hidden items-center gap-2 rounded-full bg-[var(--soft)] p-1 text-sm font-bold lg:flex">
-            {[
-              ["Home", "/"],
-              ["Rent", "/#properties"],
-              ["Sell", "/#properties"],
-              ["Agents", "/#agents"],
-            ].map(([label, href], index) => (
-              <Link
-                key={label}
-                href={href}
-                className={`rounded-full px-5 py-3 transition ${
-                  index === 0
-                    ? "bg-[#07152f] text-white dark:bg-[#ffffff] dark:text-[#07152f]"
-                    : "text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--foreground)]"
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-
-            <Link
-              href={headerAction.href}
-              className="hidden whitespace-nowrap rounded-full bg-[#071f4d] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:shadow-lg sm:inline-flex"
-            >
-              {headerAction.label}
+          <div className="relative z-10 flex h-full flex-col justify-between p-10 xl:p-14">
+            <Link href="/" className="inline-flex w-fit items-center">
+              <Image
+                src="/images/umurangalogo-white.png"
+                alt="UMURANGA"
+                width={300}
+                height={100}
+                className="h-[52px] w-auto object-contain"
+              />
             </Link>
 
-            <MobileMenu />
-          </div>
-        </header>
+            <div className="max-w-[480px]">
+              <p className="text-4xl font-semibold leading-[1.04] tracking-[-0.055em] text-white xl:text-5xl">
+                Property access should start with a trusted identity.
+              </p>
 
-        <div className="grid min-h-[calc(100vh-5.5rem)] lg:grid-cols-[0.98fr_1.02fr]">
-          <aside className="relative hidden overflow-hidden bg-[#07152f] p-6 text-white lg:flex lg:flex-col lg:justify-between xl:p-8">
-            <Image
-              src="/images/auth/auth-villa.webp"
-              alt="Premium UMURANGA property"
-              fill
-              priority
-              sizes="50vw"
-              className="object-cover object-center"
-            />
-
-            <div className="absolute inset-0 bg-black/35" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_18%,rgba(184,216,121,0.22),transparent_30%),linear-gradient(to_bottom,rgba(0,0,0,0.18),rgba(0,0,0,0.78))]" />
-
-            <div className="relative z-10">
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/12 px-4 py-2 text-xs font-black text-white/85 backdrop-blur-md">
-                <ShieldCheck size={14} />
-                Verified Rwanda Real Estate
+              <p className="mt-5 max-w-sm text-sm font-semibold leading-7 text-white/66">
+                Rwanda-first access for buyers, renters, owners, agencies, agents, and trusted partners.
               </p>
             </div>
+          </div>
+        </aside>
 
-            <div className="relative z-10">
-              <h2 className="max-w-2xl text-5xl font-semibold leading-[1.02] tracking-[-0.06em] xl:text-6xl">
-                One Identity For Every Serious Property Move.
-              </h2>
+        <section className="flex min-h-screen flex-col lg:h-screen">
+          <header
+            className={`${mobileOpen ? "fixed inset-x-0 top-0" : "sticky top-0"} z-[100] border-b border-white/10 bg-[#08285f] px-3 py-2 text-white shadow-[0_8px_24px_rgba(7,21,47,0.16)] transition-colors duration-300 dark:border-white/10 dark:bg-[#08285f] sm:px-5 lg:relative lg:inset-auto lg:border-[var(--line)] lg:bg-[var(--background)] lg:text-[var(--foreground)] lg:shadow-none lg:dark:bg-[#0A0B0E]`}
+          >
+            <div className="mx-auto grid h-[54px] max-w-[1420px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-1 transition sm:h-[64px] sm:px-2 lg:h-[70px] lg:grid-cols-[minmax(0,1fr)_auto] lg:px-3">
+              <Link href="/" className="flex w-fit min-w-0 items-center lg:hidden">
+                <Image
+                  src="/images/umurangalogo-white.png"
+                  alt="UMURANGA logo"
+                  width={300}
+                  height={100}
+                  priority
+                  className="h-[46px] w-auto object-contain sm:h-[52px]"
+                />
+              </Link>
 
-              <p className="mt-5 max-w-xl rounded-[1.25rem] border border-white/14 bg-white/12 px-5 py-4 text-sm font-semibold leading-7 text-white/82 backdrop-blur-md">
-                Public discovery stays open. Accounts protect the actions that
-                need trust: saved listings, viewing requests, alerts, owner
-                onboarding, agency access, agent profiles, partner access, and
-                platform operations.
-              </p>
-
-              <div className="mt-5 grid grid-cols-2 gap-2">
-                {[
-                  "Search Publicly",
-                  "Save With Account",
-                  "List After Review",
-                  "Approve As Platform",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-white/14 bg-white/12 px-4 py-2 text-center text-[11px] font-black text-white/88 backdrop-blur-md"
+              <nav className="hidden h-[40px] w-fit items-center justify-center gap-7 whitespace-nowrap px-1 text-[0.82rem] font-black transition lg:flex">
+                {navLinks.map(([label, href]) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    className="group relative inline-flex h-[40px] items-center justify-center overflow-hidden px-0.5 tracking-[0.01em] text-[var(--foreground)]/78 transition duration-300 ease-out hover:text-[var(--foreground)]"
                   >
-                    {item}
-                  </div>
+                    <span className="relative z-10">{label}</span>
+                    <span className="absolute bottom-[5px] left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[var(--foreground)] opacity-0 transition-all duration-300 ease-out group-hover:w-full group-hover:opacity-100" />
+                  </Link>
                 ))}
+              </nav>
+
+              <div className="flex items-center justify-end gap-2">
+                <ThemeToggle />
+
+                <Link
+                  href={headerAction.href}
+                  className="hidden h-[40px] items-center justify-center whitespace-nowrap rounded-[9px] border border-white/28 bg-white/10 px-4 text-[0.82rem] font-black text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-md transition duration-300 ease-out hover:-translate-y-0.5 hover:border-white/46 hover:bg-white/16 active:translate-y-0 sm:inline-flex lg:border-transparent lg:bg-[var(--primary)] lg:text-white lg:shadow-none lg:hover:bg-[var(--primary-dark)] lg:dark:border-white/14"
+                >
+                  {headerAction.label}
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={toggleMobileMenu}
+                  className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[8px] border border-white/24 bg-white/12 text-white transition hover:bg-white/18 sm:h-[42px] sm:w-[42px] lg:hidden"
+                  aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+                  aria-expanded={mobileOpen}
+                >
+                  {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                </button>
               </div>
             </div>
-          </aside>
+          </header>
 
-          <section className="flex min-h-full flex-col p-5 sm:p-8 lg:p-10 xl:p-12">
-            <div className="mx-auto flex w-full max-w-[620px] flex-1 flex-col justify-center">
-              <p className="mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-[var(--soft)] px-4 py-2 text-xs font-black text-[var(--muted)]">
-                <Search size={14} />
-                {eyebrow}
-              </p>
+          {mobileMounted ? (
+            <div
+              className={`fixed inset-x-0 bottom-0 top-[78px] z-[80] overscroll-contain transition duration-[240ms] ease-out sm:top-[92px] lg:hidden ${
+                mobileOpen ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <button
+                type="button"
+                aria-label="Close navigation menu"
+                onClick={closeMobileMenu}
+                className="absolute inset-0 bg-black/10 backdrop-blur-[1px] dark:bg-black/34"
+              />
 
-              <h1 className="text-4xl font-semibold leading-[1.04] tracking-[-0.055em] sm:text-5xl">
+              <div
+                className={`absolute inset-x-3 top-3 border border-black/18 bg-white px-5 pb-5 pt-3 text-[#07152f] transition duration-[240ms] ease-out dark:border-white/22 dark:bg-[#090A0C] dark:text-white sm:inset-x-8 sm:top-4 ${
+                  mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+                }`}
+              >
+                <div className="mx-auto max-w-[520px]">
+                  <div className="mx-auto mb-4 h-px w-12 bg-black/20 dark:bg-white/24" />
+
+                  <div className="mb-4">
+                    <p className="text-[0.7rem] font-black uppercase tracking-[0.26em] text-black/50 dark:text-white/50">
+                      Menu
+                    </p>
+                  </div>
+
+                  <nav className="grid grid-cols-2 gap-2">
+                    {navLinks.map(([label, href]) => (
+                      <Link
+                        key={label}
+                        href={href}
+                        onClick={closeMobileMenu}
+                        className="flex h-11 items-center justify-center border border-black/18 bg-transparent text-[0.9rem] font-black transition hover:border-[#071f4d] hover:text-[#071f4d] dark:border-white/24 dark:bg-transparent dark:hover:border-[#08285f] dark:hover:text-[#C8C0B3]"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </nav>
+
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <Link
+                      href="/signup"
+                      onClick={closeMobileMenu}
+                      className="inline-flex h-[48px] items-center justify-center gap-2 border border-[#071f4d] bg-white text-[0.86rem] font-black text-[#071f4d] transition hover:bg-[#f6f9ff] dark:border-[#08285f] dark:bg-white dark:text-[#071f4d]"
+                    >
+                      <CirclePlus size={17} />
+                      Create
+                    </Link>
+
+                    <Link
+                      href="/login"
+                      onClick={closeMobileMenu}
+                      className="inline-flex h-[48px] items-center justify-center gap-2 bg-[#071f4d] text-[0.86rem] font-black text-white transition hover:bg-[#061735]"
+                    >
+                      <UserRound size={17} />
+                      Sign in
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="flex flex-1 items-center px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+            <div className="mx-auto w-full max-w-[420px] lg:max-w-[430px] lg:-mt-6">
+              <h1 className="text-[clamp(1.85rem,6.9vw,3.05rem)] font-semibold leading-[1.02] tracking-[-0.055em] lg:whitespace-nowrap lg:text-[clamp(2.2rem,2.85vw,3.05rem)]">
                 {title}
               </h1>
 
-              <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--muted)] sm:text-base">
+              <p className="mt-3 text-sm font-bold leading-6 text-[var(--muted)]">
                 {description}
               </p>
 
-              <div className="mt-8">{children}</div>
+              <div className="mt-7">{children}</div>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </section>
     </main>
   );
