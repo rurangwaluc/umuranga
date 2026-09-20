@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowRight,
   Building2,
   Home,
   Mail,
@@ -13,20 +15,20 @@ const primaryLinks = [
   { label: "Home", href: "/" },
   { label: "Properties", href: "#properties" },
   { label: "Agents", href: "#agents" },
-  { label: "Services", href: "/" },
+  { label: "List a property", href: "/signup" },
 ];
 
 const secondaryLinks = [
   { label: "About UMURANGA", href: "/" },
-  { label: "List a property", href: "/signup" },
   { label: "Find a home", href: "#properties" },
-  { label: "Contact", href: "/login" },
+  { label: "Contact", href: "mailto:support@umuranga.rw" },
+  { label: "Sign in", href: "/login" },
 ];
 
 const proofItems = [
-  ["Verified actors", "Landlords, agencies, and agents reviewed."],
-  ["Clearer listings", "Better photos, details, and availability."],
-  ["Rwanda-first", "Built around local search behavior and trust."],
+  ["Verified actors", "Landlords, agencies, and agents reviewed before visibility."],
+  ["Clearer listings", "Better property details, pricing, location, and viewing context."],
+  ["Rwanda-first", "Built around local search behavior, trust, and property decisions."],
 ];
 
 function InstagramIcon() {
@@ -67,33 +69,44 @@ function LinkedInIcon() {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-12 bg-[var(--card)] text-[var(--foreground)] sm:mt-16">
-      <section className="grid gap-10 border-b border-[var(--line)] px-5 py-12 sm:px-8 lg:grid-cols-[1.2fr_0.8fr] lg:px-14 lg:py-16">
+    <footer className="mt-12 border-t border-[var(--line)] bg-[var(--card)] text-[var(--foreground)] sm:mt-16">
+      <section className="mx-auto grid w-full max-w-[1420px] gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.12fr_0.88fr] lg:px-12 lg:py-16">
         <div>
-          <Link href="/" className="inline-flex items-center gap-3">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#07152f] text-white dark:bg-[#071F4D] dark:text-white">
-              <Home size={18} />
-            </span>
-            <span className="text-2xl font-bold tracking-[-0.04em]">
-              UMURANGA
-            </span>
+          <Link href="/" className="inline-flex items-center">
+            <Image
+              src="/images/umurangalogo.webp"
+              alt="UMURANGA"
+              width={300}
+              height={100}
+              className="h-[48px] w-auto object-contain dark:hidden"
+            />
+            <Image
+              src="/images/umurangalogo-white.png"
+              alt="UMURANGA"
+              width={300}
+              height={100}
+              className="hidden h-[48px] w-auto object-contain dark:block"
+            />
           </Link>
 
           <h3 className="mt-7 max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.055em] sm:text-4xl lg:text-5xl">
-            Discover Rwanda’s properties with clearer listings, verified actors,
-            and better guidance.
+            Find, verify, and move on Rwanda’s properties with more confidence.
           </h3>
+
+          <p className="mt-5 max-w-2xl text-sm font-bold leading-7 text-[var(--muted)] sm:text-base">
+            Built for renters, buyers, owners, landlords, agents, and agencies who need clearer listings, cleaner next steps, and better trust.
+          </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {proofItems.map(([title, text]) => (
               <div
                 key={title}
-                className="rounded-[14px] border border-[var(--line)] bg-[var(--soft)] p-4"
+                className="rounded-[14px] border border-[var(--line)] bg-[var(--soft)] p-4 dark:bg-white/[0.035]"
               >
-                <p className="text-sm font-bold text-[var(--foreground)]">
+                <p className="text-sm font-black text-[var(--foreground)]">
                   {title}
                 </p>
-                <p className="mt-2 text-xs leading-5 text-[var(--muted)]">
+                <p className="mt-2 text-xs font-bold leading-5 text-[var(--muted)]">
                   {text}
                 </p>
               </div>
@@ -101,23 +114,35 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="rounded-[18px] border border-[var(--line)] bg-[var(--soft)] p-5 sm:p-6">
+        <div className="rounded-[18px] border border-[var(--line)] bg-[var(--soft)] p-5 dark:bg-[#15171C] sm:p-6">
+          <div className="flex items-start justify-between gap-4 border-b border-[var(--line)] pb-5">
+            <div>
+              <p className="text-sm font-black">Talk to UMURANGA</p>
+              <p className="mt-1 text-xs font-bold leading-5 text-[var(--muted)]">
+                Start with a property question, listing request, or partnership conversation.
+              </p>
+            </div>
 
-          <div className="space-y-4 text-sm text-[var(--muted)]">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[var(--line)] bg-[var(--card)] text-[var(--foreground)] dark:border-white/10 dark:bg-white/[0.04]">
+              <ShieldCheck size={17} />
+            </span>
+          </div>
+
+          <div className="mt-5 space-y-4 text-sm text-[var(--muted)]">
             <div className="flex gap-3">
-              <MapPin size={18} className="mt-0.5 shrink-0 text-[#7a9d35]" />
+              <MapPin size={18} className="mt-0.5 shrink-0 text-[var(--primary)] dark:text-white/70" />
               <div>
-                <p className="font-semibold text-[var(--foreground)]">
+                <p className="font-black text-[var(--foreground)]">
                   Kigali, Rwanda
                 </p>
-                <p className="mt-1">KG 123 St, Kigali</p>
+                <p className="mt-1">Rwanda-first property platform</p>
               </div>
             </div>
 
             <div className="flex gap-3">
-              <Phone size={18} className="mt-0.5 shrink-0 text-[#7a9d35]" />
+              <Phone size={18} className="mt-0.5 shrink-0 text-[var(--primary)] dark:text-white/70" />
               <div>
-                <p className="font-semibold text-[var(--foreground)]">
+                <p className="font-black text-[var(--foreground)]">
                   +250 780 000 000
                 </p>
                 <p className="mt-1">Customer support</p>
@@ -125,9 +150,9 @@ export function SiteFooter() {
             </div>
 
             <div className="flex gap-3">
-              <Mail size={18} className="mt-0.5 shrink-0 text-[#7a9d35]" />
+              <Mail size={18} className="mt-0.5 shrink-0 text-[var(--primary)] dark:text-white/70" />
               <div>
-                <p className="font-semibold text-[var(--foreground)]">
+                <p className="font-black text-[var(--foreground)]">
                   support@umuranga.rw
                 </p>
                 <p className="mt-1">General inquiries</p>
@@ -135,61 +160,58 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="mt-7 rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-2 text-[var(--foreground)]">
-            <div className="flex items-center gap-2 rounded-xl px-3 py-2">
-              <Building2 size={16} />
-            </div>
+          <div className="mt-7 grid gap-2 sm:grid-cols-2">
+            <Link
+              href="mailto:support@umuranga.rw"
+              className="inline-flex h-12 items-center justify-center whitespace-nowrap rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-4 text-xs font-black text-[var(--foreground)] transition hover:-translate-y-0.5 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white dark:border-white/12 dark:bg-white/[0.04] dark:hover:border-white/20 dark:hover:bg-white/[0.08]"
+            >
+              Contact us
+            </Link>
 
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[var(--soft)] px-4 py-3 text-xs font-bold text-[var(--foreground)]"
-              >
-                Contact us
-              </Link>
-
-              <Link
-                href="/signup"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#07152f] px-4 py-3 text-xs font-bold text-white dark:bg-[#071F4D] dark:text-white"
-              >
-                Sign up
-              </Link>
-            </div>
+            <Link
+              href="/signup"
+              className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[9px] bg-[var(--primary)] px-4 text-xs font-black text-white transition hover:-translate-y-0.5 hover:bg-[var(--primary-dark)] dark:border dark:border-white/14 dark:bg-[#071F4D] dark:text-white dark:hover:bg-[#0A2A66]"
+            >
+              Sign up
+              <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-8 border-b border-[var(--line)] px-5 py-9 sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-14">
-        <nav className="grid grid-cols-2 gap-3 text-sm sm:flex sm:flex-wrap sm:gap-5">
-          {primaryLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+      <section className="border-y border-[var(--line)]">
+        <div className="mx-auto grid w-full max-w-[1420px] gap-8 px-5 py-8 sm:px-8 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:px-12">
+          <nav className="grid grid-cols-2 gap-3 text-sm sm:flex sm:flex-wrap sm:gap-5">
+            {primaryLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="hidden h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] lg:flex">
-          <Home size={16} />
+          <div className="hidden h-10 w-10 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] lg:flex">
+            <Home size={15} />
+          </div>
+
+          <nav className="grid grid-cols-2 gap-3 text-sm sm:flex sm:flex-wrap sm:justify-start sm:gap-5 lg:justify-end">
+            {secondaryLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
-
-        <nav className="grid grid-cols-2 gap-3 text-sm sm:flex sm:flex-wrap sm:justify-start sm:gap-5 lg:justify-end">
-          {secondaryLinks.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </section>
 
-      <section className="grid gap-5 px-5 py-8 text-sm text-[var(--muted)] min-[600px]:grid-cols-[1fr_auto] min-[600px]:items-center sm:px-8 lg:px-14">
+      <section className="mx-auto grid w-full max-w-[1420px] gap-5 px-5 py-8 text-sm text-[var(--muted)] min-[600px]:grid-cols-[1fr_auto] min-[600px]:items-center sm:px-8 lg:px-12">
         <p>
           © <CurrentYear /> UMURANGA. All rights reserved.
         </p>
@@ -206,7 +228,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
             >
               <InstagramIcon />
             </Link>
@@ -214,7 +236,7 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[#07152f] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--soft)] text-[var(--foreground)] transition hover:bg-[var(--primary)] hover:text-white dark:hover:bg-[#071F4D] dark:hover:text-white"
             >
               <LinkedInIcon />
             </Link>
