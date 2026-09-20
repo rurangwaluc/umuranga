@@ -306,8 +306,8 @@ export default function HomePage() {
 
                 <div className="relative mt-7 h-[300px] overflow-hidden rounded-[20px] bg-[var(--soft)] sm:h-[360px] lg:h-[420px] xl:h-[460px]">
                   <Image
-                    src="/images/home/brokerage-building.webp"
-                    alt="Premium real estate network"
+                    src="/images/home/trust-verified-property.webp"
+                    alt="Verified premium property in Rwanda"
                     fill
                     sizes="(max-width: 1280px) 100vw, 42vw"
                     className="object-cover object-center"
