@@ -1,10 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import L from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Polygon,
+  Popup,
+  TileLayer,
+  useMap,
+} from "react-leaflet";
 import type { SearchMapListing } from "./search-map";
+
+const kigaliSearchBoundary: [number, number][] = [
+  [-1.9192, 30.0258],
+  [-1.9098, 30.0814],
+  [-1.9254, 30.1417],
+  [-1.9618, 30.1534],
+  [-1.9896, 30.1218],
+  [-1.9822, 30.0624],
+  [-1.9584, 30.0196],
+];
 
 function FitListings({ listings }: { listings: SearchMapListing[] }) {
   const map = useMap();
@@ -17,18 +34,24 @@ function FitListings({ listings }: { listings: SearchMapListing[] }) {
   return null;
 }
 
-function createPriceIcon(label: string) {
+function createPropertyIcon(label: string, active: boolean) {
   return L.divIcon({
     className: "",
-    html: `
-      <div class="umuranga-map-price-marker">
-        ${label}
-        <span></span>
-      </div>
-    `,
-    iconSize: [74, 34],
-    iconAnchor: [37, 34],
-    popupAnchor: [0, -34],
+    html: active
+      ? `
+        <div class="umuranga-map-marker umuranga-map-marker-active">
+          ${label}
+          <span class="umuranga-map-marker-tail"></span>
+        </div>
+      `
+      : `
+        <div class="umuranga-map-marker-dot">
+          <span></span>
+        </div>
+      `,
+    iconSize: active ? [78, 36] : [22, 22],
+    iconAnchor: active ? [39, 36] : [11, 11],
+    popupAnchor: active ? [0, -36] : [0, -16],
   });
 }
 
@@ -51,22 +74,43 @@ function shortPrice(price: string) {
   return `RWF ${amount}`;
 }
 
-function MarkerWithPopup({ item }: { item: SearchMapListing }) {
+function MarkerWithPopup({
+  item,
+  active,
+  onSelect,
+}: {
+  item: SearchMapListing;
+  active: boolean;
+  onSelect: (slug: string) => void;
+}) {
   const markerRef = useRef<L.Marker | null>(null);
+  const icon = useMemo(
+    () => createPropertyIcon(shortPrice(item.price), active),
+    [active, item.price],
+  );
 
   return (
     <Marker
       ref={markerRef}
       position={[item.lat, item.lng]}
-      icon={createPriceIcon(shortPrice(item.price))}
+      icon={icon}
+      zIndexOffset={active ? 1000 : 0}
       eventHandlers={{
-        mouseover: () => markerRef.current?.openPopup(),
-        click: () => markerRef.current?.openPopup(),
+        mouseover: () => {
+          onSelect(item.slug);
+        },
+        click: () => {
+          onSelect(item.slug);
+          markerRef.current?.openPopup();
+        },
       }}
     >
       <Popup closeButton={false} autoPan>
-        <Link href={`/property/${item.slug}`} className="block bg-[var(--surface)] text-[var(--foreground)]">
-          <div className="relative h-[130px] bg-[var(--surface-soft)]">
+        <Link
+          href={`/property/${item.slug}`}
+          className="block bg-[var(--surface)] text-[var(--foreground)]"
+        >
+          <div className="relative h-[104px] bg-[var(--surface-soft)]">
             <img
               src={item.image}
               alt={item.title}
@@ -75,22 +119,26 @@ function MarkerWithPopup({ item }: { item: SearchMapListing }) {
             <span className="absolute left-3 top-3 rounded-md bg-white/94 px-2.5 py-1 text-[11px] font-black text-[#1A1A16]">
               {item.tag}
             </span>
+
+            {item.verified ? (
+              <span className="absolute right-3 top-3 rounded-md border border-white/15 bg-[#071F4D] px-2.5 py-1 text-[10px] font-black text-white shadow-[0_8px_20px_rgba(7,31,77,0.24)]">
+                Verified
+              </span>
+            ) : null}
           </div>
 
-          <div className="p-3.5">
+          <div className="p-3">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-[15px] font-black tracking-[-0.025em] text-[var(--foreground)]">{item.price}</p>
+                <p className="text-[15px] font-black tracking-[-0.025em] text-[var(--foreground)]">
+                  {item.price}
+                </p>
                 <h3 className="mt-1 truncate text-sm font-black text-[var(--foreground)]">
                   {item.title}
                 </h3>
               </div>
 
-              {item.verified ? (
-                <span className="rounded-md bg-[var(--trust-soft)] px-2 py-1 text-[10px] font-black text-[var(--trust-green)]">
-                  Verified
-                </span>
-              ) : null}
+
             </div>
 
             <p className="mt-2 text-xs font-bold text-[var(--muted)]">
@@ -98,8 +146,8 @@ function MarkerWithPopup({ item }: { item: SearchMapListing }) {
             </p>
 
             <div className="mt-3 flex items-center gap-3 border-t border-[var(--border)] pt-3 text-xs font-bold text-[var(--muted)]">
-              <span>{item.beds} beds</span>
-              <span>{item.baths} baths</span>
+              <span>{item.beds}</span>
+              <span>{item.baths}</span>
               <span>{item.type}</span>
             </div>
           </div>
@@ -115,6 +163,7 @@ export default function SearchMapInner({
   listings: SearchMapListing[];
 }) {
   const center: [number, number] = [-1.9441, 30.0619];
+  const [selectedSlug, setSelectedSlug] = useState(listings[0]?.slug ?? "");
 
   return (
     <div className="relative h-full min-h-full w-full overflow-hidden bg-[var(--surface-soft)]">
@@ -143,7 +192,7 @@ export default function SearchMapInner({
 
         .leaflet-popup-content {
           margin: 0;
-          width: 260px !important;
+          width: 238px !important;
         }
 
         .leaflet-popup-tip {
@@ -151,45 +200,78 @@ export default function SearchMapInner({
           border: 1px solid var(--border);
         }
 
-        .umuranga-map-price-marker {
+        .umuranga-map-marker-dot {
           position: relative;
-          display: inline-flex;
-          min-width: 74px;
-          height: 32px;
-          align-items: center;
-          justify-content: center;
-          border-radius: 7px;
-          border: 1px solid rgba(58, 42, 29, 0.22);
-          background: #fffaf2;
-          color: #11100d;
-          font-size: 12px;
-          font-weight: 900;
-          line-height: 1;
-          box-shadow: 0 10px 22px rgba(26, 20, 14, 0.18);
+          display: grid;
+          width: 22px;
+          height: 22px;
+          place-items: center;
+          border-radius: 999px;
+          border: 2px solid rgba(255, 255, 255, 0.96);
+          background: #071f4d;
+          box-shadow:
+            0 8px 20px rgba(7, 31, 77, 0.24),
+            0 0 0 3px rgba(7, 31, 77, 0.12);
           transition:
-              transform 160ms ease,
-              background 160ms ease,
-              border-color 160ms ease,
-              box-shadow 160ms ease;
+            transform 160ms ease,
+            box-shadow 160ms ease;
         }
 
-        .umuranga-map-price-marker span {
+        .umuranga-map-marker-dot span {
+          width: 6px;
+          height: 6px;
+          border-radius: 999px;
+          background: #ffffff;
+          opacity: 0.92;
+        }
+
+        .leaflet-marker-icon:hover .umuranga-map-marker-dot {
+          transform: scale(1.18);
+          box-shadow:
+            0 12px 26px rgba(7, 31, 77, 0.3),
+            0 0 0 5px rgba(7, 31, 77, 0.14);
+        }
+
+        .umuranga-map-marker-active {
+          position: relative;
+          display: inline-flex;
+          min-width: 78px;
+          height: 34px;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          background: #071f4d;
+          color: #ffffff;
+          font-size: 12px;
+          font-weight: 950;
+          letter-spacing: -0.02em;
+          line-height: 1;
+          box-shadow:
+            0 16px 36px rgba(7, 31, 77, 0.34),
+            0 0 0 4px rgba(7, 31, 77, 0.12);
+          transition:
+            transform 160ms ease,
+            box-shadow 160ms ease;
+        }
+
+        .umuranga-map-marker-tail {
           position: absolute;
           left: 50%;
           top: 100%;
-          width: 9px;
-          height: 9px;
+          width: 10px;
+          height: 10px;
           transform: translate(-50%, -5px) rotate(45deg);
-          border-right: 1px solid rgba(58, 42, 29, 0.28);
-          border-bottom: 1px solid rgba(58, 42, 29, 0.28);
-          background: inherit;
+          border-right: 1px solid rgba(255, 255, 255, 0.18);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+          background: #071f4d;
         }
 
-        .leaflet-marker-icon:hover .umuranga-map-price-marker {
+        .leaflet-marker-icon:hover .umuranga-map-marker-active {
           transform: translateY(-2px);
-          border-color: var(--accent-gold);
-          background: #f2d08a;
-            box-shadow: 0 14px 30px rgba(26, 20, 14, 0.26);
+          box-shadow:
+            0 20px 44px rgba(7, 31, 77, 0.42),
+            0 0 0 5px rgba(7, 31, 77, 0.14);
         }
       `}</style>
 
@@ -204,10 +286,26 @@ export default function SearchMapInner({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <Polygon
+          positions={kigaliSearchBoundary}
+          pathOptions={{
+            color: "#071F4D",
+            weight: 2,
+            opacity: 0.92,
+            fillColor: "#071F4D",
+            fillOpacity: 0.08,
+          }}
+        />
+
         <FitListings listings={listings} />
 
         {listings.map((item) => (
-          <MarkerWithPopup key={item.slug} item={item} />
+          <MarkerWithPopup
+            key={item.slug}
+            item={item}
+            active={item.slug === selectedSlug}
+            onSelect={setSelectedSlug}
+          />
         ))}
       </MapContainer>
     </div>
