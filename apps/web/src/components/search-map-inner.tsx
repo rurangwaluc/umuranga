@@ -117,7 +117,7 @@ export default function SearchMapInner({
   const center: [number, number] = [-1.9441, 30.0619];
 
   return (
-    <div className="relative h-full min-h-[calc(100vh-73px)] w-full overflow-hidden bg-[var(--surface-soft)]">
+    <div className="relative h-full min-h-full w-full overflow-hidden bg-[var(--surface-soft)]">
       <style jsx global>{`
         .leaflet-container {
           height: 100% !important;
@@ -197,7 +197,7 @@ export default function SearchMapInner({
         center={center}
         zoom={13}
         scrollWheelZoom
-        className="h-full min-h-[calc(100vh-73px)] w-full"
+        className="h-full min-h-full w-full"
       >
         <TileLayer
           attribution='&copy; OpenStreetMap contributors'

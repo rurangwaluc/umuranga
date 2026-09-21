@@ -1,37 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown, SlidersHorizontal } from "lucide-react";
+import {
+  Check,
+  ChevronDown,
+  MapPin,
+  Search,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 
 type Option = {
   label: string;
   value: string;
 };
-
-const purposeOptions: Option[] = [
-  { label: "Search", value: "" },
-  { label: "Buy", value: "buy" },
-  { label: "Rent", value: "rent" },
-  { label: "Land", value: "land" },
-];
-
-const propertyTypeOptions: Option[] = [
-  { label: "All property", value: "" },
-  { label: "House", value: "House" },
-  { label: "Apartment", value: "Apartment" },
-  { label: "Villa", value: "Villa" },
-  { label: "Land", value: "Land" },
-  { label: "Commercial", value: "Commercial" },
-];
-
-const bedroomOptions: Option[] = [
-  { label: "Any beds", value: "" },
-  { label: "1 bed", value: "1" },
-  { label: "2 beds", value: "2" },
-  { label: "3 beds", value: "3" },
-  { label: "4 beds", value: "4" },
-  { label: "5+ beds", value: "5" },
-];
 
 type SearchFiltersProps = {
   location: string;
@@ -41,11 +23,44 @@ type SearchFiltersProps = {
   initialBedrooms?: string;
 };
 
-function getLabel(options: Option[], value: string) {
-  return options.find((option) => option.value === value)?.label ?? options[0].label;
+const purposeOptions: Option[] = [
+  { label: "For sale", value: "buy" },
+  { label: "For rent", value: "rent" },
+  { label: "Land", value: "land" },
+  { label: "Any purpose", value: "" },
+];
+
+const priceOptions: Option[] = [
+  { label: "Any price", value: "" },
+  { label: "Under RWF 500K", value: "500000" },
+  { label: "Under RWF 1M", value: "1000000" },
+  { label: "Under RWF 2M", value: "2000000" },
+  { label: "Under RWF 5M", value: "5000000" },
+];
+
+const bedroomOptions: Option[] = [
+  { label: "Any beds", value: "" },
+  { label: "1+ bed", value: "1" },
+  { label: "2+ beds", value: "2" },
+  { label: "3+ beds", value: "3" },
+  { label: "4+ beds", value: "4" },
+  { label: "5+ beds", value: "5" },
+];
+
+const propertyTypeOptions: Option[] = [
+  { label: "Any type", value: "" },
+  { label: "House", value: "House" },
+  { label: "Apartment", value: "Apartment" },
+  { label: "Villa", value: "Villa" },
+  { label: "Land", value: "Land" },
+  { label: "Commercial", value: "Commercial" },
+];
+
+function labelFor(options: Option[], value: string) {
+  return options.find((item) => item.value === value)?.label ?? options[0].label;
 }
 
-function FilterDropdown({
+function FilterButton({
   label,
   name,
   value,
@@ -69,18 +84,16 @@ function FilterDropdown({
       <button
         type="button"
         onClick={onOpen}
-        className={`flex min-h-[50px] w-full items-center justify-between gap-2 rounded-md border bg-[var(--background)] px-3 py-2 text-left transition dark:bg-[var(--surface)] ${
-          open
-            ? "border-[var(--primary)] dark:border-[var(--accent-gold)]"
-            : "border-[var(--border)] hover:border-[var(--primary)]/55"
+        className={`flex h-11 w-full items-center justify-between gap-3 rounded-[10px] border bg-[var(--card)] px-3 text-left text-sm font-black text-[var(--foreground)] transition hover:border-[var(--primary)] ${
+          open ? "border-[var(--primary)]" : "border-[var(--line)]"
         }`}
       >
         <span className="min-w-0">
           <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">
             {label}
           </span>
-          <span className="mt-1 block truncate text-sm font-black text-[var(--foreground)]">
-            {getLabel(options, value)}
+          <span className="mt-0.5 block truncate">
+            {labelFor(options, value)}
           </span>
         </span>
 
@@ -91,130 +104,25 @@ function FilterDropdown({
       </button>
 
       {open ? (
-        <div className="absolute left-0 right-0 top-[calc(100%+0.35rem)] z-50 max-h-[220px] overflow-y-auto rounded-md border border-[var(--border)] bg-[var(--surface)] shadow-[0_12px_28px_rgba(0,0,0,0.2)] dark:shadow-[0_12px_28px_rgba(0,0,0,0.4)]">
+        <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-[90] overflow-hidden rounded-[12px] border border-[var(--line)] bg-[var(--card)] p-1.5 shadow-[0_18px_50px_rgba(7,21,47,0.14)] dark:bg-[#15171C]">
           {options.map((option) => {
             const selected = option.value === value;
 
             return (
               <button
-                key={option.value || option.label}
+                key={option.label}
                 type="button"
                 onClick={() => onChange(option.value)}
-                className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-[13px] font-black text-[var(--foreground)] transition hover:bg-[var(--surface-soft)]"
+                className="flex h-10 w-full items-center justify-between rounded-[9px] px-3 text-left text-sm font-black text-[var(--foreground)] transition hover:bg-[var(--soft)]"
               >
-                <span>{option.label}</span>
-                {selected ? (
-                  <Check size={14} className="text-[var(--trust-green)]" strokeWidth={3} />
-                ) : null}
+                {option.label}
+                {selected ? <Check size={15} strokeWidth={3} /> : null}
               </button>
             );
           })}
         </div>
       ) : null}
     </div>
-  );
-}
-
-function FilterFields({
-  location,
-  purpose,
-  propertyType,
-  maxPrice,
-  bedrooms,
-  setPurpose,
-  setPropertyType,
-  setBedrooms,
-  open,
-  setOpen,
-  isMobile = false,
-}: {
-  location: string;
-  purpose: string;
-  propertyType: string;
-  maxPrice: string;
-  bedrooms: string;
-  setPurpose: (value: string) => void;
-  setPropertyType: (value: string) => void;
-  setBedrooms: (value: string) => void;
-  open: "purpose" | "type" | "beds" | null;
-  setOpen: (value: "purpose" | "type" | "beds" | null) => void;
-  isMobile?: boolean;
-}) {
-  function toggleOpen(value: "purpose" | "type" | "beds") {
-    setOpen(open === value ? null : value);
-  }
-
-  return (
-    <form
-      action="/search"
-      className={
-        isMobile
-          ? "grid grid-cols-2 gap-2"
-          : "hidden gap-2 lg:grid lg:w-fit lg:grid-cols-[150px_210px_170px_150px_auto]"
-      }
-    >
-      <input type="hidden" name="location" value={location} />
-
-      <FilterDropdown
-        label="Purpose"
-        name="purpose"
-        value={purpose}
-        options={purposeOptions}
-        open={open === "purpose"}
-        onOpen={() => toggleOpen("purpose")}
-        onChange={(value) => {
-          setPurpose(value);
-          setOpen(null);
-        }}
-      />
-
-      <FilterDropdown
-        label="Type"
-        name="propertyType"
-        value={propertyType}
-        options={propertyTypeOptions}
-        open={open === "type"}
-        onOpen={() => toggleOpen("type")}
-        onChange={(value) => {
-          setPropertyType(value);
-          setOpen(null);
-        }}
-      />
-
-      <label className="group min-h-[50px] min-w-0 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-2 transition focus-within:border-[var(--primary)] dark:bg-[var(--surface)]">
-        <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">
-          Budget
-        </span>
-        <input
-          name="maxPrice"
-          defaultValue={maxPrice}
-          inputMode="numeric"
-          placeholder="Any price"
-          className="mt-1 h-7 w-full bg-transparent text-sm font-black text-[var(--foreground)] outline-none placeholder:text-[var(--muted)]"
-        />
-      </label>
-
-      <FilterDropdown
-        label="Beds"
-        name="bedrooms"
-        value={bedrooms}
-        options={bedroomOptions}
-        open={open === "beds"}
-        onOpen={() => toggleOpen("beds")}
-        onChange={(value) => {
-          setBedrooms(value);
-          setOpen(null);
-        }}
-      />
-
-      <button
-        type="submit"
-        className="col-span-2 inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-md bg-[var(--cta)] px-5 text-sm font-black text-[var(--cta-text)] transition hover:opacity-90 lg:col-span-1 lg:w-auto"
-      >
-        <SlidersHorizontal size={15} />
-        Update results
-      </button>
-    </form>
   );
 }
 
@@ -225,75 +133,204 @@ export function SearchFilters({
   initialMaxPrice = "",
   initialBedrooms = "",
 }: SearchFiltersProps) {
-  const [purpose, setPurpose] = useState(initialPurpose);
+  const [purpose, setPurpose] = useState(initialPurpose || "buy");
   const [propertyType, setPropertyType] = useState(initialPropertyType);
+  const [maxPrice, setMaxPrice] = useState(initialMaxPrice);
   const [bedrooms, setBedrooms] = useState(initialBedrooms);
-  const [open, setOpen] = useState<"purpose" | "type" | "beds" | null>(null);
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [open, setOpen] = useState<
+    "purpose" | "price" | "beds" | "type" | null
+  >(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const summary = [
-    getLabel(purposeOptions, purpose),
-    getLabel(propertyTypeOptions, propertyType),
-    initialMaxPrice || "Any price",
-    getLabel(bedroomOptions, bedrooms),
-  ].join(" / ");
+  function toggle(value: "purpose" | "price" | "beds" | "type") {
+    setOpen((current) => (current === value ? null : value));
+  }
+
+  const filterFields = (
+    <div className="grid gap-2 sm:grid-cols-2 lg:flex lg:w-auto lg:items-center">
+      <FilterButton
+        label="Purpose"
+        name="purpose"
+        value={purpose}
+        options={purposeOptions}
+        open={open === "purpose"}
+        onOpen={() => toggle("purpose")}
+        onChange={(value) => {
+          setPurpose(value);
+          setOpen(null);
+        }}
+      />
+
+      <FilterButton
+        label="Price"
+        name="maxPrice"
+        value={maxPrice}
+        options={priceOptions}
+        open={open === "price"}
+        onOpen={() => toggle("price")}
+        onChange={(value) => {
+          setMaxPrice(value);
+          setOpen(null);
+        }}
+      />
+
+      <FilterButton
+        label="Beds"
+        name="bedrooms"
+        value={bedrooms}
+        options={bedroomOptions}
+        open={open === "beds"}
+        onOpen={() => toggle("beds")}
+        onChange={(value) => {
+          setBedrooms(value);
+          setOpen(null);
+        }}
+      />
+
+      <FilterButton
+        label="Type"
+        name="propertyType"
+        value={propertyType}
+        options={propertyTypeOptions}
+        open={open === "type"}
+        onOpen={() => toggle("type")}
+        onChange={(value) => {
+          setPropertyType(value);
+          setOpen(null);
+        }}
+      />
+    </div>
+  );
 
   return (
-    <div>
-      <div className="lg:hidden">
+    <form action="/search" className="relative">
+      <div className="grid gap-2 lg:hidden">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-2">
+          <label className="flex h-11 min-w-0 items-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black text-[var(--foreground)]">
+            <Search size={16} className="shrink-0 text-[var(--muted)]" />
+            <input
+              name="location"
+              defaultValue={location}
+              placeholder="Kigali, Rwanda"
+              className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[var(--muted)]"
+            />
+            <MapPin size={15} className="shrink-0 text-[var(--muted)]" />
+          </label>
+
+          <button
+            type="submit"
+            className="inline-flex h-11 items-center justify-center rounded-[10px] bg-[var(--primary)] px-4 text-xs font-black text-white"
+          >
+            Search
+          </button>
+        </div>
+
         <button
           type="button"
           onClick={() => {
-            setMobileFiltersOpen((value) => !value);
+            setFiltersOpen((value) => !value);
             setOpen(null);
           }}
-          className="flex w-full items-center justify-between gap-3 rounded-md border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-left dark:bg-[var(--surface)]"
+          className="flex h-11 w-full items-center justify-between rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black text-[var(--foreground)]"
         >
-          <span className="min-w-0">
-            <span className="block text-[10px] font-black uppercase tracking-[0.16em] text-[var(--muted)]">
-              Filters
-            </span>
-            <span className="mt-1 block truncate text-sm font-black text-[var(--foreground)]">
-              {summary}
-            </span>
-          </span>
-
-          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[var(--cta)] text-[var(--cta-text)]">
+          <span className="inline-flex items-center gap-2">
             <SlidersHorizontal size={15} />
+            Filters
+          </span>
+          <span className="text-xs font-bold text-[var(--muted)]">
+            {labelFor(purposeOptions, purpose)} / {labelFor(priceOptions, maxPrice)}
           </span>
         </button>
 
-        {mobileFiltersOpen ? (
-          <div className="mt-2 rounded-md border border-[var(--border)] bg-[var(--surface)] p-2">
-            <FilterFields
-              isMobile
-              location={location}
-              purpose={purpose}
-              propertyType={propertyType}
-              maxPrice={initialMaxPrice}
-              bedrooms={bedrooms}
-              setPurpose={setPurpose}
-              setPropertyType={setPropertyType}
-              setBedrooms={setBedrooms}
-              open={open}
-              setOpen={setOpen}
-            />
+        {filtersOpen ? (
+          <div className="absolute inset-x-0 top-[calc(100%+8px)] z-[90] rounded-[14px] border border-[var(--line)] bg-[var(--card)] p-3 shadow-[0_18px_50px_rgba(7,21,47,0.18)] dark:bg-[#15171C]">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-black">Filters</p>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setFiltersOpen(false);
+                  setOpen(null);
+                }}
+                className="grid h-8 w-8 place-items-center rounded-[8px] border border-[var(--line)] bg-[var(--soft)]"
+                aria-label="Close filters"
+              >
+                <X size={15} />
+              </button>
+            </div>
+
+            {filterFields}
+
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <label className="flex h-11 items-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--soft)] px-3 text-xs font-black">
+                <input
+                  type="checkbox"
+                  name="verifiedOnly"
+                  value="true"
+                  className="h-4 w-4 accent-[var(--primary)]"
+                />
+                Verified only
+              </label>
+
+              <label className="flex h-11 items-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--soft)] px-3 text-xs font-black">
+                <input
+                  type="checkbox"
+                  name="viewing"
+                  value="true"
+                  className="h-4 w-4 accent-[var(--primary)]"
+                />
+                Viewing
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              className="mt-3 inline-flex h-11 w-full items-center justify-center rounded-[10px] bg-[var(--primary)] text-sm font-black text-white"
+            >
+              Apply filters
+            </button>
           </div>
         ) : null}
       </div>
 
-      <FilterFields
-        location={location}
-        purpose={purpose}
-        propertyType={propertyType}
-        maxPrice={initialMaxPrice}
-        bedrooms={bedrooms}
-        setPurpose={setPurpose}
-        setPropertyType={setPropertyType}
-        setBedrooms={setBedrooms}
-        open={open}
-        setOpen={setOpen}
-      />
-    </div>
+      <div className="hidden gap-2 lg:flex">
+        <label className="flex h-11 min-w-[260px] flex-1 items-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-3 text-sm font-black text-[var(--foreground)] lg:max-w-[360px]">
+          <Search size={17} className="shrink-0 text-[var(--muted)]" />
+          <input
+            name="location"
+            defaultValue={location}
+            placeholder="Kigali, Rwanda"
+            className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-[var(--muted)]"
+          />
+          <MapPin size={16} className="shrink-0 text-[var(--muted)]" />
+        </label>
+
+        {filterFields}
+
+        <button
+          type="button"
+          className="inline-flex h-11 min-w-[138px] items-center justify-center gap-2 rounded-[10px] border border-[var(--line)] bg-[var(--card)] px-4 text-sm font-black text-[var(--foreground)] transition hover:border-[var(--primary)]"
+        >
+          <SlidersHorizontal size={16} />
+          More filters
+          <ChevronDown size={16} />
+        </button>
+
+        <button
+          type="submit"
+          className="inline-flex h-11 min-w-[118px] items-center justify-center rounded-[10px] bg-[var(--primary)] px-5 text-sm font-black text-white transition hover:bg-[var(--primary-dark)]"
+        >
+          Search
+        </button>
+
+        <button
+          type="button"
+          className="inline-flex h-11 min-w-[124px] items-center justify-center rounded-[10px] border border-[var(--primary)] bg-[var(--primary)] px-5 text-sm font-black text-white transition hover:bg-[var(--primary-dark)]"
+        >
+          Save search
+        </button>
+      </div>
+    </form>
   );
 }
