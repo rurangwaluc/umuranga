@@ -1,15 +1,6 @@
-import Link from "next/link";
 import { HomeHeroHeader } from "@/components/home-hero-header";
 import { SearchFilters } from "@/components/search-filters";
-import { SearchMap } from "@/components/search-map";
-import {
-  ListFilter,
-  Map,
-} from "lucide-react";
-import {
-  VerifiedPropertyCard,
-  type VerifiedPropertyCardItem,
-} from "@/components/verified-property-card";
+import { SearchResultsShell } from "@/components/search-results-shell";
 
 type SearchPageProps = {
   searchParams?: Promise<{
@@ -38,7 +29,7 @@ const listings = [
     images: [
       "/images/home/property-1.webp",
       "/images/home/featured-villa.webp",
-      "/images/home/featured-home-dusk.webp",
+      "/images/home/property-3.webp",
     ],
     image: "/images/home/property-1.webp",
     title: "Modern Luxury House with Pool",
@@ -233,57 +224,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
         </div>
       </section>
 
-      <div className="mx-auto grid w-full max-w-[1540px] lg:h-[calc(100vh-151px)] lg:grid-cols-[minmax(0,54%)_minmax(500px,46%)]">
-        <aside className="hidden min-w-0 border-r border-[var(--line)] bg-[#050505] dark:bg-[#050505] lg:block">
-          <div className="sticky top-[151px] h-[calc(100vh-151px)]">
-            <SearchMap listings={listings} />
-          </div>
-        </aside>
-
-        <section className="min-w-0 bg-[var(--background)] lg:h-[calc(100vh-151px)] lg:overflow-y-auto">
-          <div className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--background)]/97 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-7">
-            <div className="flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <div className="mb-2 inline-flex items-center gap-2 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-3 py-2 text-xs font-black text-[var(--muted)] lg:hidden">
-                  <Map size={14} />
-                  Map view available on desktop
-                </div>
-
-                <p className="truncate text-sm font-black text-[var(--foreground)]">
-                  {resultItems.length} verified properties
-                </p>
-                <p className="mt-0.5 truncate text-xs font-bold text-[var(--muted)]">
-                  {location} / {purpose} / {propertyType} / {budgetLabel} / {bedrooms}
-                </p>
-              </div>
-
-              <button className="inline-flex h-10 shrink-0 items-center gap-2 rounded-[9px] border border-[var(--line)] bg-[var(--card)] px-3 text-xs font-black transition hover:border-[var(--primary)]">
-                <ListFilter size={15} />
-                Recommended
-              </button>
-            </div>
-          </div>
-
-          <div className="px-4 py-4 sm:px-6 lg:px-7">
-            <div className="grid gap-4 xl:grid-cols-2">
-              {resultItems.map((item, index) => (
-                <VerifiedPropertyCard
-                  key={`${item.title}-${index}`}
-                  item={item as VerifiedPropertyCardItem}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <Link
-        href="#"
-        className="fixed bottom-5 left-1/2 z-50 inline-flex h-12 -translate-x-1/2 items-center gap-2 rounded-full bg-[var(--primary)] px-5 text-sm font-black text-white shadow-[0_18px_44px_rgba(7,31,77,0.26)] lg:hidden"
-      >
-        <Map size={17} />
-        View map
-      </Link>
+      <SearchResultsShell
+        listings={listings}
+        resultItems={resultItems}
+        location={location}
+        purpose={purpose}
+        propertyType={propertyType}
+        budgetLabel={budgetLabel}
+        bedrooms={bedrooms}
+      />
     </main>
   );
 }
